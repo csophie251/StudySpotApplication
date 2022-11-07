@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#3BFFEB3B"
+    tools:context=".StudySpotAuthenticatedActivity">
+
+    <EditText
+        android:id="@+id/Home"
+        style="@android:style/Widget.Material.Light.EditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
+        android:text="StudyBuddy"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#5A0EE3"
+        android:textSize="30sp"
+        android:visibility="visible"
+        tools:layout_centerHorizontal="true"
+        tools:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="450dp"
+        android:layout_height="730dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="130dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/rounded_edges"
+        android:backgroundTint="#AD5F6EF6"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="400dp"
+        android:layout_height="300dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/rounded_edges"
+        android:backgroundTint="#A882EC"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+
+    </LinearLayout>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:minHeight="48dp"
+        android:text=" Insert picture here" />
+
+    <LinearLayout
+        android:layout_width="400dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="250dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/rounded_edges"
+        android:backgroundTint="#8369B3"
+        android:visibility="visible"     ></LinearLayout>
+
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="250dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+
+        android:fontFamily="casual"
+
+        android:text=" Leavey Library"
+        android:textColor="#C1FFFFFF"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:visibility="visible" />
+    <EditText
+        android:id="@+id/location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="300dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:text=" 625 W Jefferson St \n Los Angeles, CA 90007"
+        android:fontFamily="casual"
+        android:textColor="#C1FFFFFF"
+        android:textSize="20sp"
+        android:visibility="visible" />
+    <EditText
+        android:id="@+id/rate"
+        android:layout_width="330dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="450dp"
+        android:background="@drawable/rounded_edges"
+        android:backgroundTint="#A882EC"
+        android:orientation="vertical"
+        android:text=" Rate this Spot!"
+        android:fontFamily="casual"
+        android:textColor="#FEFEFE"
+        tools:textSize="25dp">
+    </EditText>
+
+
+    <EditText
+        android:id="@+id/tags"
+        android:layout_width="330dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="515dp"
+        android:background="@drawable/rounded_edges"
+        android:backgroundTint="#A882EC"
+        android:fontFamily="casual"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:text=" Select Your Tags: "
+        android:textColor="#FEFEFE"
+        tools:textSize="30dp">></EditText>
+
+    <EditText
+        android:id="@+id/reviews"
+        android:layout_width="330dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="600dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/rounded_edges"
+        android:backgroundTint="#A882EC"
+        android:fontFamily="casual"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:text=" Reviews: "
+        android:textColor="#FEFEFE"
+        tools:textSize="30sp"></EditText>
+
+
+
+
+
+</RelativeLayout>
