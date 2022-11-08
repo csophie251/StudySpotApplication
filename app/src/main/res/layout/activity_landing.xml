@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#3BFFEB3B"
+    tools:context=".StudySpotGuestActivity">
+
+    <EditText
+        android:id="@+id/Home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="115dp"
+        android:layout_marginTop="200dp"
+
+        android:background="@null"
+        android:fontFamily="@font/miltoniantattooregular"
+        android:minHeight="48dp"
+        android:text="StudyBuddy"
+        android:textColor="#6A62B7"
+
+        android:textSize="30sp"
+        android:visibility="visible"
+        tools:layout_centerHorizontal="true"
+        tools:textStyle="bold" />
+
+    <EditText
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="250dp"
+        android:orientation="vertical"
+        android:fontFamily="@font/mochiypoponeregular"
+        android:textColor="#3C79C1"
+        android:layout_centerHorizontal="true"
+        android:textSize="15dp"
+        android:background="@null"
+        android:text="For all your studying needs!">
+
+    </EditText>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="goToLoginPage"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="200dp"
+        android:layout_marginTop="360dp"
+        android:layout_marginEnd="10dp"
+
+        android:background="@drawable/dark_blue_oval"
+
+        android:orientation="horizontal"/>
+
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#699AFD"
+        android:id="@+id/loginBtn"
+        android:onClick="goToLoginPage"
+        android:text=" LogIn  "
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="365dp"
+        android:layout_marginEnd="10dp"
+        android:background="@null"
+        android:fontFamily="@font/mochiypoponeregular"
+        android:textFontWeight="400"
+        android:orientation="vertical"
+        android:padding="8dp"
+        android:textSize="20dp"
+        android:textAllCaps="true"
+        android:textColor="#FEFEFE"
+        ></EditText>
+
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="goToLoginPage"
+        android:backgroundTint="#69F4FD"
+
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="200dp"
+        android:layout_marginTop="440dp"
+        android:layout_marginEnd="10dp"
+
+        android:background="@drawable/bright_blue_oval"
+
+        android:orientation="horizontal"></LinearLayout>
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="200dp"
+        android:layout_marginTop="445dp"
+        android:layout_marginEnd="10dp"
+        android:fontFamily="@font/mochiypoponeregular"
+        android:id="@+id/signUpBtn"
+
+        android:text=" Sign Up  "
+        android:layout_centerHorizontal="true"
+
+        android:textFontWeight="400"
+        android:orientation="vertical"
+        android:padding="8dp"
+        android:textSize="20dp"
+        android:textAllCaps="true"
+        android:background="@null"
+        android:onClick="goToLoginPage"
+
+        android:textColor="#FEFEFE">
+
+    </EditText>
+
+    <EditText
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="510dp"
+        android:orientation="vertical"
+        android:fontFamily="@font/mochiypoponeregular"
+        android:textColor="#3C79C1"
+        android:layout_centerHorizontal="true"
+        android:textSize="15dp"
+        android:background="@null"
+        android:onClick="goToLoginPage"
+        android:text="In a hurry? View as a guest.">
+
+    </EditText>
+</RelativeLayout>
