@@ -1,0 +1,419 @@
+{
+  "study spots data": [
+    {
+      "name": "USC Village",
+      "latitude": 34.025506158943806,
+      "longitude": -118.29181389529705,
+      "location": "123 ABC St Los Angeles, CA 90089",
+      "openHours":" Monday-Sunday 9-5pm",
+      "tags": "Loud, Busy"
+    },
+    {
+      "name": "Ronald Tutor Campus Center",
+      "latitude": 34.02039965484519,
+      "longitude": -118.28635450010054,
+      "location": "123 ABC St Los Angeles, CA 90089",
+      "openHours":" Monday-Sunday 9-5pm",     
+      "tags": "Loud, Busy"
+
+    },
+    {
+      "name": "Thornton Courtyard",
+      "latitude": 34.022570260598826,
+      "longitude": -118.28543641032063,
+      "location": "123 ABC St Los Angeles, CA 90089",
+      "openHours":" Monday-Sunday 9-5pm",     
+      "tags": "Quiet"
+
+    },
+    {
+      "name": "Taper Hall",
+      "latitude": 34.022284953660105,
+      "longitude": -118.28458335771401,
+      "location": "123 ABC St Los Angeles, CA 90089",
+      "openHours":" Monday-Sunday 9-5pm",
+      "tags": "Quiet, Busy, Outlets"
+
+    },
+    {
+      "name": "Student Union",
+      "latitude": 34.02040924208375, 
+      "longitude": -118.28567498655768,
+      "location": "123 ABC St Los Angeles, CA 90089",
+      "openHours":" Monday-Sunday 9-5pm",
+      "tags": "Quiet, Outlets"
+
+    },
+    {
+      "name": "Social Work Center Courtyard",
+      "latitude": 34.02237746133262, 
+      "longitude": -118.28245181349253,
+      "location": "123 ABC St Los Angeles, CA 90089",
+      "openHours":" Monday-Sunday 9-5pm",
+      "tags": "Quiet"
+
+    },
+    {
+      "name": "Social Sciences Building",
+      "latitude": 34.02164033876117, 
+      "longitude": -118.28374127121445,
+      "location": "123 ABC St Los Angeles, CA 90089",
+      "openHours":" Monday-Sunday 9-5pm",
+      "tags": "Quiet, Outlets"
+
+    },
+    {
+      "name": "Science and Engineering Library",
+      "latitude": 34.01961945533156, 
+      "longitude": -118.2887198865585,
+      "location": "123 ABC St Los Angeles, CA 90089",
+      "openHours":" Monday-Sunday 9-5pm",
+      "tags": "Quiet, Outlets"
+
+    },
+    {
+      "name": "School of Cinematic Arts - SCI",
+      "latitude": 34.0238271795138, 
+      "longitude": -118.28753385052362,
+      "location": "123 ABC St Los Angeles, CA 90089",
+      "openHours":" Monday-Sunday 9-5pm",
+      "tags": "Quiet, Outlets"
+
+    },
+    {
+      "name": "School of Cinematic Arts - SCB",
+      "latitude": 34.02392499269164,
+      "longitude": -118.28709396824073,
+      "location": "123 ABC St Los Angeles, CA 90089",
+      "openHours":" Monday-Sunday 9-5pm",
+      "tags": "Quiet, Outlets"
+
+    },
+    {
+      "name": "School of Cinematic Arts",
+      "latitude": 34.02340480312171, 
+      "longitude": -118.28642609819302,
+      "location": "123 ABC St Los Angeles, CA 90089",
+      "openHours":" Monday-Sunday 9-5pm",
+      "tags": "Quiet, Outlets"
+
+    },
+    {
+      "name": "Salvatori Computer Science Center",
+      "latitude": 34.01952736282242, 
+      "longitude": -118.28948350003205,
+      "location": "123 ABC St Los Angeles, CA 90089",
+      "openHours":" Monday-Sunday 9-5pm",
+      "tags": "Loud, Busy, Outlets"
+
+    },
+    {
+      "name": "Ronald Tutor Hall Courtyard",
+      "latitude": 34.01995003661157,
+      "longitude": -118.28999580271037,
+      "location": "123 ABC St Los Angeles, CA 90089",
+      "openHours":" Monday-Sunday 9-5pm",
+      "tags": "Loud, Busy, Outlets"
+
+    },
+    {
+      "name": "Tutor Hall Cafe",
+      "latitude": 34.02004777687702,
+      "longitude": -118.29000214663823,
+      "location": "123 ABC St Los Angeles, CA 90089",
+      "openHours":" Monday-Sunday 9-5pm",
+      "tags": "Loud, Busy, Outlets"
+
+    },  
+    {
+      "name": "Ronald Tutor Hall",
+      "latitude": 34.02013225566353,
+      "longitude": -118.28982780305627,
+      "location": "123 ABC St Los Angeles, CA 90089",
+      "openHours":" Monday-Sunday 9-5pm",
+      "tags": "Quiet, Outlets"
+
+    }, 
+    {
+      "name": "Religious Center Courtyard",
+      "latitude": 34.02333967979506,
+      "longitude": -118.28479869209441,
+      "location": "123 ABC St Los Angeles, CA 90089",
+      "openHours":" Monday-Sunday 9-5pm",
+      "tags": "Quiet"
+
+    }, 
+    {
+      "name": "Price School of Public Policy",
+      "latitude": 34.01940378323925, 
+      "longitude": -118.2835739499304,
+      "location": "123 ABC St Los Angeles, CA 90089",
+      "openHours":" Monday-Sunday 9-5pm",
+      "tags": "Quiet, Busy, Outlets"
+
+    },
+    {
+      "name": "Popovich Hall Exterior",
+      "latitude": 34.01910016330756, 
+      "longitude": -118.2829230728244,
+      "location": "123 ABC St Los Angeles, CA 90089",
+      "openHours":" Monday-Sunday 9-5pm",
+      "tags": "Busy"
+
+    },
+    {
+      "name": "Verna and Peter Dauterive Hall",
+      "latitude": 34.01892302699427, 
+      "longitude": -118.28393336593578,
+      "location": "123 ABC St Los Angeles, CA 90089",
+      "openHours":" Monday-Sunday 9-5pm",
+      "tags": "Loud, Busy, Outlets"
+
+    },
+    {
+      "name": "Raubenheimer Music Faculty Building",
+      "latitude": 34.02292065222606, 
+      "longitude": -118.28519455437144,
+      "location": "123 ABC St Los Angeles, CA 90089",
+      "openHours":" Monday-Sunday 9-5pm",
+      "tags": "Quiet, Outlets"
+
+    },
+    {
+      "name": "Mudd Hall",
+      "latitude": 34.018704249557246,
+      "longitude": -118.28660395872159,
+      "location": "123 ABC St Los Angeles, CA 90089",
+      "openHours":" Monday-Sunday 9-5pm",
+      "tags": "Quiet, Busy"
+
+    },
+    {
+      "name": "McCarthy Quad",
+      "latitude": 34.0209355221779,
+      "longitude": -118.28316005658672,
+      "location": "123 ABC St Los Angeles, CA 90089",
+      "openHours":" Monday-Sunday 9-5pm",
+      "tags": "Loud"
+
+    },
+    {
+      "name": "Maudlin Patio",
+      "latitude": 34.01965810406894, 
+      "longitude": -118.28316559402491,
+      "location": "123 ABC St Los Angeles, CA 90089",
+      "openHours":" Monday-Sunday 9-5pm",
+      "tags": "Quiet"
+
+    },
+    {
+      "name": "Marks Tower",
+      "latitude": 34.01976672603655, 
+      "longitude": -118.28199029619456,
+      "location": "123 ABC St Los Angeles, CA 90089",
+      "openHours":" Monday-Sunday 9-5pm",
+      "tags": "Quiet"
+
+    },
+    {
+      "name": "Literatea",
+      "latitude": 34.02011574867208, 
+      "longitude": -118.28332031857813,
+      "location": "123 ABC St Los Angeles, CA 90089",
+      "openHours":" Monday-Sunday 9-5pm",
+      "tags": "Loud, Busy"
+
+    },
+    {
+      "name": "Leavey Library",
+      "latitude": 34.02172583191906,
+      "longitude": -118.28279460561359,
+      "location": "123 ABC St Los Angeles, CA 90089",
+      "openHours":" Monday-Sunday 9-5pm",
+      "tags": "Quiet, Busy, Outlets"
+
+    },
+    {
+      "name": "Gould School of Law",
+      "latitude": 34.018767609660586, 
+      "longitude": -118.28452792894139,
+      "location": "123 ABC St Los Angeles, CA 90089",
+      "openHours":" Monday-Sunday 9-5pm",
+      "tags": "Quiet, Busy, Outlets"
+    },
+    {
+      "name": "Law Cafe",
+      "latitude": 34.01870424955997,
+      "longitude": -118.28439448904595,
+      "location": "123 ABC St Los Angeles, CA 90089",
+      "openHours":" Monday-Sunday 9-5pm",
+      "tags": "Loud, Busy, Outlets"
+    },
+    {
+      "name": "King Hall",
+      "latitude": 34.024764716592486, 
+      "longitude": -118.28795010550753,
+      "location": "123 ABC St Los Angeles, CA 90089",
+      "openHours":" Monday-Sunday 9-5pm",
+      "tags": "Quiet, Outlets"
+    },
+    {
+      "name": "Kaprielian Hall",
+      "latitude": 34.02241653326163, 
+      "longitude": -118.29101678336662,
+      "location": "123 ABC St Los Angeles, CA 90089",
+      "openHours":" Monday-Sunday 9-5pm",
+      "tags": "Quiet, Outlets"
+    },
+    {
+      "name": "Hoffman Hall",
+      "latitude": 34.01857363867579, 
+      "longitude": -118.28534801434688,
+      "location": "123 ABC St Los Angeles, CA 90089",
+      "openHours":" Monday-Sunday 9-5pm",
+      "tags": "Quiet, Outlets"
+    },
+    {
+      "name": "Harris Hall Courtyard",
+      "latitude": 34.01889043919405,
+      "longitude": -118.28752127420285,
+      "location": "123 ABC St Los Angeles, CA 90089",
+      "openHours":" Monday-Sunday 9-5pm",
+      "tags": "Quiet"
+    },
+    {
+      "name": "Ground Zero Cafe",
+      "latitude": 34.019572793052994,
+      "longitude": -118.28229796740993,
+      "location": "123 ABC St Los Angeles, CA 90089",
+      "openHours":" Monday-Sunday 9-5pm",
+      "tags": "Quiet, Outlets"
+    },
+    {
+      "name": "Grace Ford Salvatori Hall",
+      "latitude": 34.021309549118065, 
+      "longitude": -118.28805479687016,
+      "location": "123 ABC St Los Angeles, CA 90089",
+      "openHours":" Monday-Sunday 9-5pm",
+      "tags": "Quiet, Busy, Outlets"
+    },
+    {
+      "name": "Galen Athletic Center",
+      "latitude": 34.02281211623853, 
+      "longitude": -118.28725272016078,
+      "location": "123 ABC St Los Angeles, CA 90089",
+      "openHours":" Monday-Sunday 9-5pm",
+      "tags": "Loud"
+    },
+    {
+      "name": "Frank Suryan Family Plaza",
+      "latitude": 34.01905757889574, 
+      "longitude": -118.28243006620573,
+      "tags": "Quiet"
+    },
+    {
+      "name": "Fischer Art Museum Courtyard",
+      "latitude": 34.01856530179934, 
+      "longitude": -118.28757558893504,
+      "location": "123 ABC St Los Angeles, CA 90089",
+      "openHours":" Monday-Sunday 9-5pm",
+      "tags": "Quiet"
+    },
+    {
+      "name": "Fertitta Hall",
+      "latitude": 34.01873883372266, 
+      "longitude": -118.28241025526775,
+      "location": "123 ABC St Los Angeles, CA 90089",
+      "openHours":" Monday-Sunday 9-5pm",
+      "tags": "Loud, Busy, Outlets"
+    },
+    {
+      "name": "Fertitta Hall Courtyard",
+      "latitude": 34.018730496867384, 
+      "longitude": -118.2827287675891,
+      "location": "123 ABC St Los Angeles, CA 90089",
+      "openHours":" Monday-Sunday 9-5pm",
+      "tags": "Quiet, Busy, Outlets"
+    },
+    {
+      "name": "Everybody's Kitchen Exterior",
+      "latitude": 34.02088431512817, 
+      "longitude": -118.28186353386381,
+      "location": "123 ABC St Los Angeles, CA 90089",
+      "openHours":" Monday-Sunday 9-5pm",
+      "tags": "Loud"
+    },
+    {
+      "name": "Epstein Family Plaza",
+      "latitude": 34.02046637034079, 
+      "longitude": -118.28912695586999,
+      "location": "123 ABC St Los Angeles, CA 90089",
+      "openHours":" Monday-Sunday 9-5pm",
+      "tags": "Quiet, Busy"
+    },
+    {
+      "name": "Doheny Memorial Library",
+      "latitude": 34.02021765495276,
+      "longitude": -118.28371485770491,
+      "location": "123 ABC St Los Angeles, CA 90089",
+      "openHours":" Monday-Sunday 9-5pm",
+      "tags": "Quiet, Busy, Outlets"
+    },
+    {
+      "name": "Gloria Kaufman School of Dance Courtyard",
+      "latitude": 34.02391789723202, 
+      "longitude": -118.28533706071471,
+      "location": "123 ABC St Los Angeles, CA 90089",
+      "openHours":" Monday-Sunday 9-5pm",
+      "tags": "Loud"
+    },
+    {
+      "name": "Center of International and Public Affairs",
+      "latitude": 34.02139083516557, 
+      "longitude": -118.28402076666356,
+      "location": "123 ABC St Los Angeles, CA 90089",
+      "openHours":" Monday-Sunday 9-5pm",
+      "tags": "Quiet, Outlets"
+    },
+    {
+      "name": "The Coffee Bean and Tea Leaf Exterior",
+      "latitude": 34.02356221239264,
+      "longitude": -118.28648303448266,
+      "location": "123 ABC St Los Angeles, CA 90089",
+      "openHours":" Monday-Sunday 9-5pm",
+      "tags": "Loud, Busy"
+    },
+    {
+      "name": "Annenberg Wallis Hall",
+      "latitude": 34.020796967412565,
+      "longitude": -118.28697929708427,
+      "location": "123 ABC St Los Angeles, CA 90089",
+      "openHours":" Monday-Sunday 9-5pm",
+      "tags": "Quiet, Busy, Outlets"
+    },
+    {
+      "name": "Annenberg Wallis Hall Courtyard",
+      "latitude": 34.02053019409175,
+      "longitude": -118.28745673028307,
+      "location": "123 ABC St Los Angeles, CA 90089",
+      "openHours":" Monday-Sunday 9-5pm",
+      "tags": "Quiet"
+    },
+    {
+      "name": "Annenberg School for Communication and Journalism",
+      "latitude": 34.02201966771356, 
+      "longitude": -118.2860592993917,
+      "location": "123 ABC St Los Angeles, CA 90089",
+      "openHours":" Monday-Sunday 9-5pm",
+      "tags": "Quiet, Outlets"
+    },
+    {
+      "name": "USC Amphitheater",
+      "latitude": 34.02175289823788,
+      "longitude": -118.28557381955515,
+      "location": "123 ABC St Los Angeles, CA 90089",
+      "openHours":" Monday-Sunday 9-5pm",
+      "tags": "Quiet"
+    }
+  ]
+}

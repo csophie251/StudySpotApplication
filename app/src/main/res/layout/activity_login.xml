@@ -4,22 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F8FCE1"
     tools:context=".LoginPageActivity">
-    <LinearLayout
+    <TextView android:id="@+id/sampleLoginPageText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_margin="10dp"
-        android:padding="10dp"
-        android:layout_centerInParent="true">
-        <EditText
-            android:id="@+id/welcome"
-            style="@style/Widget.AppCompat.EditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Welcome to the Login Page"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textSize="30sp"
-            android:visibility="visible" />
-    </LinearLayout>
+        android:text="Welcome to the Login Page"
+        android:textSize="30sp" />
 </RelativeLayout>

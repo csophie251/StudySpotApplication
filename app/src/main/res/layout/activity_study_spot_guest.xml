@@ -2,27 +2,20 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:background="#3BFFEB3B"
-tools:context=".StudySpotGuestActivity">
-
-     <EditText
-         android:id="@+id/Home"
+     xmlns:tools="http://schemas.android.com/tools"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+    android:background="#F8FCE1"
+     tools:context=".StudySpotGuestActivity">
+     <TextView android:id="@+id/TitleTextGuest"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
-         android:minHeight="48dp"
+         android:layout_centerHorizontal="true"
          android:text="StudyBuddy"
-         android:textColor="#6A62B7"
-         android:layout_marginStart="115dp"
          android:textSize="30sp"
-         android:background="@null"
-
-         android:visibility="visible"
-         tools:layout_centerHorizontal="true"
-         tools:textStyle="bold"
-         android:fontFamily="@font/miltoniantattooregular"/>
+         android:textColor="#6A62B7"
+         android:textStyle="bold"
+         android:fontFamily="@font/miltoniantattooregular" />
 
      <LinearLayout
          android:layout_width="450dp"
@@ -34,10 +27,7 @@ tools:context=".StudySpotGuestActivity">
          android:background="@drawable/rounded_edges"
          android:backgroundTint="#DBE5FF"
          android:orientation="vertical"
-         android:padding="10dp">
-
-
-     </LinearLayout>
+         android:padding="10dp"></LinearLayout>
 
      <LinearLayout
          android:layout_width="400dp"
@@ -49,25 +39,13 @@ tools:context=".StudySpotGuestActivity">
          android:background="@drawable/rounded_edges"
          android:backgroundTint="#D0CBFF"
          android:orientation="vertical"
-         android:padding="10dp">
-
-
-     </LinearLayout>
-
-     <EditText
+         android:padding="10dp"></LinearLayout>
+     <TextView android:id="@+id/StudySpotImageGuest"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
-         android:layout_marginStart="50dp"
+         android:layout_centerHorizontal="true"
          android:layout_marginTop="100dp"
-         android:layout_marginEnd="10dp"
-         android:layout_marginBottom="10dp"
-         android:minHeight="48dp"
-         android:background="@null"
-
-         android:text=" Insert picture here"
-         android:fontFamily="@font/miltoniantattooregular"
-         />
-
+         android:text=" Insert picture here" />
      <LinearLayout
          android:layout_width="400dp"
          android:layout_height="100dp"
@@ -76,163 +54,99 @@ tools:context=".StudySpotGuestActivity">
          android:layout_marginEnd="10dp"
          android:layout_marginBottom="10dp"
          android:background="@drawable/rounded_edges"
-         android:backgroundTint="#8267B5"
-         android:visibility="visible"></LinearLayout>
-
-     <EditText
-         android:id="@+id/name"
+         android:backgroundTint="#8267B5"></LinearLayout>
+     <TextView android:id="@+id/StudySpotNameGuest"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
          android:layout_marginStart="50dp"
          android:layout_marginTop="180dp"
-         android:layout_marginEnd="10dp"
-         android:layout_marginBottom="10dp"
-
-         android:fontFamily="@font/mochiypoponeregular"
          android:text=" Leavey Library"
-         android:textColor="#C1FFFFFF"
          android:textSize="20dp"
+         android:textColor="#C1FFFFFF"
          android:textStyle="bold"
-         android:background="@null"
-
-         android:visibility="visible" />
-     <EditText
-         android:id="@+id/avgRating"
+         android:fontFamily="@font/mochiypoponeregular" />
+     <TextView android:id="@+id/StudySpotRatingGuest"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
          android:layout_marginStart="55dp"
          android:layout_marginTop="210dp"
-         android:layout_marginEnd="10dp"
-         android:layout_marginBottom="10dp"
-         android:background="@null"
-
-         android:fontFamily="@font/mochiypoponeregular"
-
          android:text="4.5"
-         android:textColor="#C1FFFFFF"
          android:textSize="15dp"
-         android:textStyle="bold"
-         android:visibility="visible" />
-     <EditText
-         android:id="@+id/location"
-         android:background="@null"
-
+         android:textColor="#C1FFFFFF"
+         android:fontFamily="@font/mochiypoponeregular" />
+     <TextView android:id="@+id/StudySpotLocationGuest"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
          android:layout_marginStart="50dp"
          android:layout_marginTop="235dp"
-         android:layout_marginEnd="10dp"
-         android:layout_marginBottom="10dp"
          android:text=" 625 W Jefferson St,  Los Angeles, CA 90007"
-         android:fontFamily="@font/mochiypoponeregular"
-         android:textColor="#C1FFFFFF"
          android:textSize="12dp"
-         android:visibility="visible" />
-
-     <EditText
-         android:id="@+id/timesOpen"
+         android:textColor="#C1FFFFFF"
+         android:fontFamily="@font/mochiypoponeregular" />
+     <TextView android:id="@+id/StudySpotTimesOpenGuest"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
          android:layout_marginStart="50dp"
          android:layout_marginTop="255dp"
-         android:layout_marginEnd="10dp"
-         android:layout_marginBottom="10dp"
-         android:background="@null"
-
-         android:fontFamily="@font/mochiypoponeregular"
-         android:inputType="textNoSuggestions"
          android:text=" Times Open: MWF 9-5pm S-S 12-2pm"
-         android:textColor="#C1FFFFFF"
          android:textSize="12dp"
-         android:visibility="visible" />
-        <EditText
+         android:textColor="#C1FFFFFF"
+         android:fontFamily="@font/mochiypoponeregular" />
 
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="310dp"
-            android:orientation="vertical"
-            android:fontFamily="@font/mochiypoponeregular"
-            android:textColor="#FEFEFE"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:textSize="12dp"
-            android:background="@null"
-            android:text=" Sign In/Up to rate and view reviews!">
-
-        </EditText>
-
+     <TextView android:id="@+id/SignInUpText"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginTop="310dp"
+         android:layout_centerHorizontal="true"
+         android:text=" Sign In/Up to rate and view reviews!"
+         android:textSize="12dp"
+         android:textColor="#FEFEFE"
+         android:fontFamily="@font/mochiypoponeregular"></TextView>
 
      <LinearLayout
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
-         android:onClick="goToLoginPage"
          android:layout_centerHorizontal="true"
          android:layout_marginStart="200dp"
          android:layout_marginTop="360dp"
          android:layout_marginEnd="10dp"
-
          android:background="@drawable/dark_blue_oval"
-
-         android:orientation="horizontal"></LinearLayout>
-
-
-     <EditText
+         android:onClick="goToLoginPage"></LinearLayout>
+     <TextView android:id="@+id/LoginButtonGuest"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
-         android:backgroundTint="#699AFD"
-         android:id="@+id/loginBtn"
-         android:onClick="goToLoginPage"
-         android:text=" LogIn  "
          android:layout_centerHorizontal="true"
          android:layout_marginStart="50dp"
          android:layout_marginTop="365dp"
-         android:layout_marginEnd="10dp"
-         android:background="@null"
-         android:fontFamily="@font/mochiypoponeregular"
-         android:textFontWeight="400"
-         android:orientation="vertical"
+         android:backgroundTint="#699AFD"
          android:padding="8dp"
+         android:onClick="goToLoginPage"
+         android:text=" LogIn  "
          android:textSize="20dp"
-         android:textAllCaps="true"
          android:textColor="#FEFEFE"
-         ></EditText>
-
-
+         android:textAllCaps="true"
+         android:fontFamily="@font/mochiypoponeregular"></TextView>
 
      <LinearLayout
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
-         android:onClick="goToLoginPage"
-         android:backgroundTint="#69F4FD"
-
          android:layout_centerHorizontal="true"
          android:layout_marginStart="200dp"
          android:layout_marginTop="440dp"
          android:layout_marginEnd="10dp"
-
          android:background="@drawable/bright_blue_oval"
-
-         android:orientation="horizontal"></LinearLayout>
-     <EditText
+         android:backgroundTint="#69F4FD"
+         android:onClick="goToLoginPage"></LinearLayout>
+     <TextView android:id="@+id/SignUpButtonGuest"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
          android:layout_marginStart="200dp"
          android:layout_marginTop="445dp"
-         android:layout_marginEnd="10dp"
-         android:fontFamily="@font/mochiypoponeregular"
-         android:id="@+id/signUpBtn"
-
-         android:text=" Sign Up  "
          android:layout_centerHorizontal="true"
-
-         android:textFontWeight="400"
-         android:orientation="vertical"
          android:padding="8dp"
+         android:text=" Sign Up  "
          android:textSize="20dp"
+         android:textColor="#FEFEFE"
          android:textAllCaps="true"
-         android:background="@null"
-
-         android:textColor="#FEFEFE">
-
-     </EditText>
+         android:fontFamily="@font/mochiypoponeregular"></TextView>
 </RelativeLayout>
