@@ -52,9 +52,14 @@ public class ServerThread extends Thread {
         }
     }
 
-    // sends a message 
+    // TODO: sends a message
     public int sendMessage(JSONObject json) {
         return 0;
+    }
+
+    // TODO: gets a message
+    public JSONObject readMessage() {
+        return null;
     }
 
 }
