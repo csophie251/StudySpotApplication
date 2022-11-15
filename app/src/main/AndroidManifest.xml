@@ -17,11 +17,7 @@
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.StudySpotApplication.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
             <meta-data
                 android:name="android.app.lib_name"
@@ -32,12 +28,18 @@
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.StudySpotApplication.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <activity
+            android:name=".LoginPageActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.StudySpotApplication.NoActionBar">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -47,30 +49,24 @@
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.StudySpotApplication.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="${MAPS_API_KEY}" />
         <activity
-            android:name=".LandingPageActivity"
+            android:name=".MapsActivity"
             android:exported="true"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.StudySpotApplication.NoActionBar">
+            android:label="@string/title_activity_maps">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
         </activity>
     </application>
 
