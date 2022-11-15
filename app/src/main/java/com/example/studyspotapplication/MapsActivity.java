@@ -40,9 +40,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private ArrayList<StudySpot> generateStudySpots() {
         ArrayList<StudySpot> cur_spots = new ArrayList<StudySpot>();
-        StudySpot leavey = new StudySpot(34.02193, -118.28277, "Leavey Library", "Snippet");
-        StudySpot doheny = new StudySpot(34.02015, -118.28372, "Doheny Library", "Snippet");
-        StudySpot sidney = new StudySpot(34.02235, -118.28512, "Sydney Harman", "Snippet");
+        StudySpot leavey = new StudySpot(34.02193, -118.28277, "Leavey Library");
+        StudySpot doheny = new StudySpot(34.02015, -118.28372, "Doheny Library");
+        StudySpot sidney = new StudySpot(34.02235, -118.28512, "Sydney Harman");
         cur_spots.add(leavey);
         cur_spots.add(doheny);
         cur_spots.add(sidney);
@@ -56,7 +56,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             StudySpot cur = spots.get(i);
             Log.d("myTag", cur.getTitle());
             temp.put(cur.getTitle(), cur);
-            mMap.addMarker(new MarkerOptions().position(cur.getPosition()).title(cur.getTitle()).snippet(cur.getSnippet()));
+            mMap.addMarker(new MarkerOptions().position(cur.getPosition()).title(cur.getTitle()));
         }
         names_to_spots = temp;
     }
@@ -170,5 +170,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(34.0224, -118.2851), 15));
+        //Set Custom InfoWindow Adapter
+        CustomInfoWindowAdapter adapter = new CustomInfoWindowAdapter(MapsActivity.this);
+        mMap.setInfoWindowAdapter(adapter);
     }
 }

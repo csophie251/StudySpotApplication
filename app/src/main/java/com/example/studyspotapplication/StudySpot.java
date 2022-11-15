@@ -5,12 +5,10 @@ import com.google.android.gms.maps.model.LatLng;
 public class StudySpot {
     private final LatLng position;
     private final String title;
-    private final String snippet;
 
-    public StudySpot(double lat, double lng, String title, String snippet) {
+    public StudySpot(double lat, double lng, String title) {
         position = new LatLng(lat, lng);
         this.title = title;
-        this.snippet = snippet;
     }
 
     public LatLng getPosition() {
@@ -21,7 +19,7 @@ public class StudySpot {
         return title;
     }
 
-    public String getSnippet() {
-        return snippet;
-    }
+//    public String getSnippet() {
+//        return snippet;
+//    }
 }
