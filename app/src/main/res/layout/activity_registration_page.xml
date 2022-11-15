@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#3BFFEB3B"
+    tools:context=".RegistrationActivity">
+
+    <TextView
+        android:id="@+id/signuptitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="StuddyBuddy"
+        android:textColor="#6A62B7"
+        android:textSize="88px"
+        android:textStyle="bold"
+        android:layout_marginTop = "200px"
+        android:layout_marginLeft = "24px"
+        android:fontFamily="@font/miltoniantattooregular"
+        />
+
+    <LinearLayout
+        android:id="@+id/informationBlock"
+        android:layout_width="1030px"
+        android:layout_height="1000px"
+        android:layout_marginLeft = "24px"
+        android:layout_marginTop = "344px"
+        android:background="@drawable/rounded_edges"
+        android:backgroundTint="#D0CBFF"
+        android:radius="111dp">
+
+        <TextView
+            android:id="@+id/welcome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Welcome!"
+            android:textSize="72px"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_margin="25dp"
+            android:fontFamily="@font/miltoniantattooregular"
+            />
+    </LinearLayout>
+
+    <EditText
+        android:layout_width="712px"
+        android:layout_height="100px"
+        android:layout_marginLeft = "200px"
+        android:layout_marginTop = "612px"
+        android:id="@+id/firstName"
+        android:backgroundTint="#87a4fe"
+        android:hint="First Name"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
+        android:padding="5dp"
+        android:background="@drawable/rounded_edges"
+        android:textSize="32px"
+        android:fontFamily="@font/mochiypoponeregular"
+        />
+
+    <EditText
+        android:layout_width="712px"
+        android:layout_height="100px"
+        android:layout_marginLeft = "200px"
+        android:layout_marginTop = "768px"
+        android:id="@+id/lastName"
+        android:backgroundTint="#87a4fe"
+        android:hint="Last Name"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
+        android:background="@drawable/rounded_edges"
+        android:padding="5dp"
+        android:textSize="32px"
+        android:fontFamily="@font/mochiypoponeregular"
+        />
+
+    <EditText
+        android:layout_width="712px"
+        android:layout_height="100px"
+        android:layout_marginLeft = "200px"
+        android:layout_marginTop = "924px"
+        android:id="@+id/emailAddress"
+        android:backgroundTint="#87a4fe"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
+        android:background="@drawable/rounded_edges"
+        android:padding="5dp"
+        android:textSize="32px"
+        android:fontFamily="@font/mochiypoponeregular"/>
+
+    <EditText
+        android:layout_width="712px"
+        android:layout_height="100px"
+        android:layout_marginLeft = "200px"
+        android:layout_marginTop = "1086px"
+        android:inputType="textPassword"
+        android:id="@+id/password"
+        android:backgroundTint="#87a4fe"
+        android:hint="Password"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
+        android:background="@drawable/rounded_edges"
+        android:padding="5dp"
+        android:textSize="32px"
+        android:fontFamily="@font/mochiypoponeregular"
+        />
+
+    <Button
+        android:id="@+id/signUp"
+        android:layout_width="362px"
+        android:layout_height="150px"
+        android:layout_marginLeft = "368px"
+        android:onClick="goToLoginPage"
+        android:backgroundTint="#69F4FD"
+        android:layout_below="@id/informationBlock"
+        android:layout_marginTop = "181px"
+        android:text=" SIGN UP "
+        android:textColor="#FEFEFE"
+        tools:textSize="32px"
+        android:fontFamily="@font/mochiypoponeregular"
+        ></Button>
+
+    <TextView
+        android:gravity="center"
+        android:layout_below="@id/signUp"
+        android:id="@+id/message"
+        android:layout_width="362px"
+        android:layout_height="50px"
+        android:text="Already got an account?"
+        android:textSize="32px"
+        android:textColor="#3C79C1"
+        android:layout_marginLeft = "368px"
+        android:textStyle="bold"
+        ></TextView>
+
+    <TextView
+        android:gravity="center"
+        android:layout_below="@id/message"
+        android:id="@+id/signIn"
+        android:layout_width="362px"
+        android:layout_height="50px"
+        android:text="Sign in here."
+        android:textSize="32px"
+        android:textColor="#3C79C1"
+        android:layout_marginLeft = "368px"
+        android:textStyle="bold"
+        android:onClick="goToLoginPage"
+        ></TextView>
+
+
+</RelativeLayout>
