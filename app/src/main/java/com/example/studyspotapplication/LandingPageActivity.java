@@ -16,7 +16,7 @@ public class LandingPageActivity extends AppCompatActivity {
         startActivity(intent);
     }
     public void goToSignUpPage(android.view.View view){
-        Intent intent = new Intent (this, LoginPageActivity.class);
+        Intent intent = new Intent (this, RegistrationActivity.class);
         startActivity(intent);
     }
 }
