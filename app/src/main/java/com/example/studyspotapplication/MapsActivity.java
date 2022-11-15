@@ -3,6 +3,7 @@ package com.example.studyspotapplication;
 import androidx.fragment.app.FragmentActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -159,7 +160,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onInfoWindowClick(Marker marker) {
                 //switch page to studyspot page
+                // must have an if condition checking if the user is authenticated, must have an authenticated flag
                 //startActivity(new Intent(MainActivity.this, MyOtherActivity.class));
+                Intent myIntent = new Intent(MapsActivity.this, StudySpotAuthenticatedActivity.class);
+                myIntent.putExtra("name", marker.getTitle());
+                startActivity(myIntent);
+
+
             }
         });
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(34.0224, -118.2851), 15));

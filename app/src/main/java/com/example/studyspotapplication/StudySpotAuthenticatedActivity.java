@@ -4,6 +4,7 @@ import static java.lang.Float.parseFloat;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -21,6 +22,11 @@ public class StudySpotAuthenticatedActivity extends AppCompatActivity {
         protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_study_spot_authenticated);
+        Intent intent = getIntent();
+        String studySpotTitle = intent.getStringExtra("name");
+        Log.d("myTag", studySpotTitle);
+        // start new thread getting data with title
+
         try {
             String jsonString = "{"
                     + " \"study spots data\": ["

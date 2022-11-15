@@ -44,22 +44,17 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <activity
-            android:name=".LoginPageActivity"
-            android:exported="true"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.StudySpotApplication.NoActionBar">
-
-
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="${MAPS_API_KEY}" />
         <activity
             android:name=".MapsActivity"
+            android:exported="true"
+            android:label="@string/title_activity_maps">
+        </activity>
+
+        <activity
+            android:name=".GuestMapsActivity"
             android:exported="true"
             android:label="@string/title_activity_maps">
             <intent-filter>
