@@ -81,8 +81,11 @@ public class StudySpotAuthenticatedActivity extends AppCompatActivity {
             Intent intent = new Intent(this, LoginPageActivity.class);
             startActivity(intent);
         }
-        public void goToSignUpPage(android.view.View view){
-            Intent intent = new Intent (this, LandingPageActivity.class);
+        public void goToSignUpPage(android.view.View view) {
+            Intent intent = new Intent(this, LandingPageActivity.class);
+        }
+        public void rateLocation(android.view.View view){
+            Intent intent = new Intent (this, LoginPageActivity.class);
             startActivity(intent);
         }
 
