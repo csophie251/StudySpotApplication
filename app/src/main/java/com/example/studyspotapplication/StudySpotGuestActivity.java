@@ -31,7 +31,9 @@ public class StudySpotGuestActivity extends AppCompatActivity {
             JSONObject obj = new JSONObject(jsonString);
             JSONArray studySpotsData = obj.getJSONArray("study spots data");
             JSONObject studySpot = studySpotsData.getJSONObject(0);
-            String name = studySpot.getString("name");
+            String name = this.getTitle().toString();
+
+            //String name = studySpot.getString("name");
             String rating = studySpot.getString("rating");
             String location = studySpot.getString("location");
             String timesOpen = studySpot.getString("openHours");
