@@ -18,4 +18,5 @@
     <string name="people">\t People</string>
     <string name="search">Search Study Spots</string>
     <string name="title_activity_maps">MapsActivity</string>
+    <string name = "user_rating_label"/>
 </resources>
