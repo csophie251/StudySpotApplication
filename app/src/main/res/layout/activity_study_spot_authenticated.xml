@@ -54,7 +54,6 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:scaleType="fitXY"
-                android:scale="@drawable/rounded_edges"
                 app:srcCompat="@drawable/annenbergwallishall" />
         </androidx.cardview.widget.CardView>
 
