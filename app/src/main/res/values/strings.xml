@@ -9,4 +9,13 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+    <string name="filters">Filters</string>
+    <string name="lighting">\t Lighting</string>
+    <string name="vibes">\t Vibes</string>
+    <string name="quiet">\t Quiet</string>
+    <string name="apply_filters">Apply Filters</string>
+    <string name="people">\t People</string>
+    <string name="search">Search Study Spots</string>
+    <string name="title_activity_maps">MapsActivity</string>
 </resources>
