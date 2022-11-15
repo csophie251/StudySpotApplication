@@ -26,8 +26,7 @@ import java.util.HashMap;
 import java.util.List;
 
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
-    private GoogleMap mMap;
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {GoogleMap mMap;
     private List<Boolean> filter_status;
 
 

@@ -1,14 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!--<androidx.constraintlayout.widget.ConstraintLayout -->
+<!--   -->
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F8FCE1"
     tools:context=".LoginPageActivity">
-    <TextView android:id="@+id/sampleLoginPageText"
+
+    <TextView
+        android:id="@+id/TitleTextLanding"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="138dp"
+        android:fontFamily="@font/miltoniantattooregular"
+        android:text="StudyBuddy"
+        android:textColor="#6A62B7"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="111dp"
+        tools:layout_editor_absoluteY="89dp" />
+
+        <LinearLayout
+            android:id="@+id/informationBlock"
+            android:layout_width="1030px"
+            android:layout_height="1000px"
+            android:layout_marginLeft = "24px"
+            android:layout_marginTop = "344px"
+            android:background="@drawable/rounded_edges"
+            android:backgroundTint="#D0CBFF"
+            android:radius="111dp">
+
+            <TextView
+                android:id="@+id/welcome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="25dp"
+                android:fontFamily="@font/miltoniantattooregular"
+                android:gravity="center"
+                android:text="Welcome Back!"
+                android:textColor="#FFFFFF"
+                android:textSize="72px"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/signuptitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Welcome to the Login Page"
-        android:textSize="30sp" />
+        android:text="StuddyBuddy"
+        android:textColor="#6A62B7"
+        android:textSize="88px"
+        android:fontFamily="@font/miltoniantattooregular"
+        android:textStyle="bold"
+        android:layout_marginTop = "200px"
+        android:layout_marginLeft = "24px"
+        />
+
+    <EditText
+        android:id="@+id/userName"
+        android:layout_width="208dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="101dp"
+        android:layout_marginTop="222dp"
+        android:background="@drawable/rounded_edges"
+        android:backgroundTint="#87a4fe"
+        android:ems="10"
+        android:fontFamily="@font/mochiypoponeregular"
+        android:hint="Enter email:"
+        android:inputType="textEmailAddress"
+        android:minHeight="48dp"
+        android:padding="10dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.36" />
+
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="161dp"
+        android:layout_marginTop="553dp"
+        android:layout_marginEnd="162dp"
+        android:layout_marginBottom="130dp"
+        android:background="@drawable/bright_blue_oval"
+        android:backgroundTint="#69F4FD"
+        android:text="Login"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password"
+        app:layout_constraintVertical_bias="0.159" />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/userName"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="102dp"
+        android:layout_marginTop="51dp"
+        android:layout_marginEnd="99dp"
+        android:layout_marginBottom="365dp"
+        android:ems="10"
+        android:hint="Enter Password: "
+        android:inputType="textPassword"
+        android:textSize="15dp"
+        android:fontFamily="@font/mochiypoponeregular"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:padding="10dp"
+        android:backgroundTint="#87a4fe"
+        android:background="@drawable/rounded_edges"/>
+
+    <TextView
+        android:id="@+id/continueAsGuest"
+        android:layout_width="259dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="128dp"
+        android:layout_marginBottom="98dp"
+        android:fontFamily="@font/mochiypoponeregular"
+        android:text="In a Hurry? View as a guest!"
+        android:textColor="#3C79C1"
+        android:textSize="10dp" />
+
+    <!--</androidx.constraintlayout.widget.ConstraintLayout>-->
 </RelativeLayout>
+
