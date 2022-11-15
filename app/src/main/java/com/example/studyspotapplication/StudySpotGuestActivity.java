@@ -1,86 +1,58 @@
 package com.example.studyspotapplication;
 
+import static java.lang.Float.parseFloat;
+
 import android.content.Intent;
 import android.os.Bundle;
-
-import com.google.android.material.snackbar.Snackbar;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.view.View;
-
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
-
-
-import android.view.Menu;
-import android.view.MenuItem;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class StudySpotGuestActivity extends AppCompatActivity {
-
-    //private AppBarConfiguration appBarConfiguration;
-    //private ActivityMainBinding binding;
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_study_spot_guest);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_study_spot_guest);
+        try {
+            String jsonString = "{"
+                    + " \"study spots data\": ["
+                    + " {"
+                    + " \"name\": \"USC Village\","
+                    + " \"location\" : \"123 ABC St Los Angeles, CA 90089\","
+                    + " \"openHours\" : \"Monday-Sunday 9-5pm\","
+                    + " \"rating\" : \"4.5\""
+                    + " },"
+                    + " ]"
+                    + "}";
+            JSONObject obj = new JSONObject(jsonString);
+            JSONArray studySpotsData = obj.getJSONArray("study spots data");
+            JSONObject studySpot = studySpotsData.getJSONObject(0);
+            String name = studySpot.getString("name");
+            String rating = studySpot.getString("rating");
+            String location = studySpot.getString("location");
+            String timesOpen = studySpot.getString("openHours");
+            final TextView studySpotName = (TextView) findViewById(R.id.StudySpotNameGuest);
+            studySpotName.setText(name);
+            final TextView studySpotRating = (TextView) findViewById(R.id.StudySpotRatingGuest);
+            studySpotRating.setText(rating);
+            final TextView studySpotLocation = (TextView) findViewById(R.id.StudySpotLocationGuest);
+            studySpotLocation.setText(location);
+            final TextView studySpotTimesOpen = (TextView) findViewById(R.id.StudySpotTimesOpenGuest);
+            studySpotTimesOpen.setText(timesOpen);
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
-        public void goToLoginPage(android.view.View view){
-            Intent intent = new Intent (this, LoginPageActivity.class);
-            startActivity(intent);
-        }
-
-
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//
-//        binding = ActivityMainBinding.inflate(getLayoutInflater());
-//        setContentView(binding.getRoot());
-//
-//        setSupportActionBar(binding.toolbar);
-//
-//        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-//        appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
-//        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-//
-//        binding.fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
-//    }
-
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.menu_main, menu);
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//
-//        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
-//
-//    @Override
-//    public boolean onSupportNavigateUp() {
-//        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-//        return NavigationUI.navigateUp(navController, appBarConfiguration)
-//                || super.onSupportNavigateUp();
-//    }
+    }
+    public void goToLoginPage(android.view.View view) {
+        Intent intent = new Intent(this, LoginPageActivity.class);
+        startActivity(intent);
+    }
+    public void goToSignUpPage(android.view.View view){
+        Intent intent = new Intent (this, LandingPageActivity.class);
+        startActivity(intent);
+    }
 }

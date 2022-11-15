@@ -2,159 +2,152 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:background="#3BFFEB3B"
-tools:context=".StudySpotGuestActivity">
+     xmlns:tools="http://schemas.android.com/tools"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+    android:background="#F8FCE1"
+     tools:context=".StudySpotGuestActivity">
+     <TextView android:id="@+id/TitleTextGuest"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_centerHorizontal="true"
+         android:text="StudyBuddy"
+         android:textSize="30sp"
+         android:textColor="#6A62B7"
+         android:textStyle="bold"
+         android:fontFamily="@font/miltoniantattooregular" />
 
-<EditText
-    android:id="@+id/Home"
-    style="@android:style/Widget.Material.Light.EditText"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:minHeight="48dp"
-    android:text="StudyBuddy"
-    android:textAppearance="@style/TextAppearance.AppCompat.Large"
-    android:textColor="#5A0EE3"
-    android:textSize="30sp"
-    android:visibility="visible"
-    tools:layout_centerHorizontal="true"
-    tools:textStyle="bold" />
+     <LinearLayout
+         android:layout_width="450dp"
+         android:layout_height="770dp"
+         android:layout_marginStart="25dp"
+         android:layout_marginTop="100dp"
+         android:layout_marginEnd="10dp"
+         android:layout_marginBottom="10dp"
+         android:background="@drawable/rounded_edges"
+         android:backgroundTint="#DBE5FF"
+         android:orientation="vertical"
+         android:padding="10dp"></LinearLayout>
 
-<LinearLayout
-    android:layout_width="450dp"
-    android:layout_height="730dp"
-    android:layout_marginStart="25dp"
-    android:layout_marginTop="130dp"
-    android:layout_marginEnd="10dp"
-    android:layout_marginBottom="10dp"
-    android:background="@drawable/rounded_edges"
-    android:backgroundTint="#AD5F6EF6"
-    android:orientation="vertical"
-    android:padding="10dp">
+     <LinearLayout
+         android:layout_width="400dp"
+         android:layout_height="200dp"
+         android:layout_marginStart="50dp"
+         android:layout_marginTop="70dp"
+         android:layout_marginEnd="10dp"
+         android:layout_marginBottom="10dp"
+         android:background="@drawable/rounded_edges"
+         android:backgroundTint="#D0CBFF"
+         android:orientation="vertical"
+         android:padding="10dp"></LinearLayout>
+     <TextView android:id="@+id/StudySpotImageGuest"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_centerHorizontal="true"
+         android:layout_marginTop="100dp"
+         android:text=" Insert picture here" />
+     <LinearLayout
+         android:layout_width="400dp"
+         android:layout_height="100dp"
+         android:layout_marginStart="50dp"
+         android:layout_marginTop="180dp"
+         android:layout_marginEnd="10dp"
+         android:layout_marginBottom="10dp"
+         android:background="@drawable/rounded_edges"
+         android:backgroundTint="#8267B5"></LinearLayout>
+     <TextView android:id="@+id/StudySpotNameGuest"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginStart="50dp"
+         android:layout_marginTop="180dp"
+         android:text=" Leavey Library"
+         android:textSize="20dp"
+         android:textColor="#C1FFFFFF"
+         android:textStyle="bold"
+         android:fontFamily="@font/mochiypoponeregular" />
+     <TextView android:id="@+id/StudySpotRatingGuest"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginStart="55dp"
+         android:layout_marginTop="210dp"
+         android:text="4.5"
+         android:textSize="15dp"
+         android:textColor="#C1FFFFFF"
+         android:fontFamily="@font/mochiypoponeregular" />
+     <TextView android:id="@+id/StudySpotLocationGuest"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginStart="50dp"
+         android:layout_marginTop="235dp"
+         android:text=" 625 W Jefferson St,  Los Angeles, CA 90007"
+         android:textSize="12dp"
+         android:textColor="#C1FFFFFF"
+         android:fontFamily="@font/mochiypoponeregular" />
+     <TextView android:id="@+id/StudySpotTimesOpenGuest"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginStart="50dp"
+         android:layout_marginTop="255dp"
+         android:text=" Times Open: MWF 9-5pm S-S 12-2pm"
+         android:textSize="12dp"
+         android:textColor="#C1FFFFFF"
+         android:fontFamily="@font/mochiypoponeregular" />
 
+     <TextView android:id="@+id/SignInUpText"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginTop="310dp"
+         android:layout_centerHorizontal="true"
+         android:text=" Sign In/Up to rate and view reviews!"
+         android:textSize="12dp"
+         android:textColor="#FEFEFE"
+         android:fontFamily="@font/mochiypoponeregular"></TextView>
 
-</LinearLayout>
-<LinearLayout
-    android:layout_width="400dp"
-    android:layout_height="300dp"
-    android:layout_marginStart="50dp"
-    android:layout_marginTop="100dp"
-    android:layout_marginEnd="10dp"
-    android:layout_marginBottom="10dp"
-    android:background="@drawable/rounded_edges"
-    android:backgroundTint="#A882EC"
-    android:orientation="vertical"
-    android:padding="10dp">
+     <LinearLayout
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_centerHorizontal="true"
+         android:layout_marginStart="200dp"
+         android:layout_marginTop="360dp"
+         android:layout_marginEnd="10dp"
+         android:background="@drawable/dark_blue_oval"
+         android:onClick="goToLoginPage"></LinearLayout>
+     <TextView android:id="@+id/LoginButtonGuest"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_centerHorizontal="true"
+         android:layout_marginStart="50dp"
+         android:layout_marginTop="365dp"
+         android:backgroundTint="#699AFD"
+         android:padding="8dp"
+         android:onClick="goToLoginPage"
+         android:text=" LogIn  "
+         android:textSize="20dp"
+         android:textColor="#FEFEFE"
+         android:textAllCaps="true"
+         android:fontFamily="@font/mochiypoponeregular"></TextView>
 
-
-</LinearLayout>
-<EditText
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="50dp"
-    android:layout_marginTop="100dp"
-    android:layout_marginEnd="10dp"
-    android:layout_marginBottom="10dp"
-    android:text=" Insert picture here"
-    />
-
-<LinearLayout
-    android:layout_width="400dp"
-    android:layout_height="150dp"
-    android:layout_marginStart="50dp"
-    android:layout_marginTop="250dp"
-    android:layout_marginEnd="10dp"
-    android:layout_marginBottom="10dp"
-    android:background="@drawable/rounded_edges"
-    android:backgroundTint="#8369B3"
-    android:visibility="visible"     ></LinearLayout>
-
-<EditText
-    android:id="@+id/name"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="50dp"
-    android:layout_marginTop="250dp"
-    android:layout_marginEnd="10dp"
-    android:layout_marginBottom="10dp"
-
-    android:fontFamily="casual"
-
-    android:text=" Leavey Library"
-    android:textColor="#C1FFFFFF"
-    android:textSize="30sp"
-    android:textStyle="bold"
-    android:visibility="visible" />
-<EditText
-    android:id="@+id/location"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="50dp"
-    android:layout_marginTop="300dp"
-    android:layout_marginEnd="10dp"
-    android:layout_marginBottom="10dp"
-    android:text=" 625 W Jefferson St \n Los Angeles, CA 90007"
-    android:fontFamily="casual"
-    android:textColor="#C1FFFFFF"
-    android:textSize="20sp"
-    android:visibility="visible" />
-
-        <EditText
-            android:id="@+id/promptLogIn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="400dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
-            android:text=" Sign In/Up to see Reviews/Tags!"
-            android:fontFamily="casual"
-            android:textColor="#C1FFFFFF"
-            android:textSize="20sp"
-            android:visibility="visible" />
-
-        <Button
-            android:id="@+id/signUpBtn"
-            android:layout_width="300dp"
-            android:layout_height="75dp"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="450dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/rounded_edges"
-            android:backgroundTint="#A882EC"
-            android:fontFamily="casual"
-            android:orientation="vertical"
-            android:padding="10dp"
-            android:onClick="goToLoginPage"
-
-            android:text=" SIGN UP "
-            android:textColor="#FEFEFE"
-            tools:textSize="30sp"></Button>
-
-
-<Button
-    android:id="@+id/loginBtn"
-
-    android:layout_width="300dp"
-    android:layout_height="75dp"
-    android:layout_marginStart="50dp"
-    android:layout_marginTop="550dp"
-    android:layout_marginEnd="10dp"
-    android:layout_marginBottom="10dp"
-    android:background="@drawable/rounded_edges"
-    android:backgroundTint="#A882EC"
-    android:fontFamily="casual"
-    android:orientation="vertical"
-    android:padding="10dp"
-    android:onClick="goToLoginPage"
-
-    android:text=" Login: "
-    android:textColor="#FEFEFE"
-    tools:textSize="30sp"></Button>
-
-
-
+     <LinearLayout
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_centerHorizontal="true"
+         android:layout_marginStart="200dp"
+         android:layout_marginTop="440dp"
+         android:layout_marginEnd="10dp"
+         android:background="@drawable/bright_blue_oval"
+         android:backgroundTint="#69F4FD"
+         android:onClick="goToLoginPage"></LinearLayout>
+     <TextView android:id="@+id/SignUpButtonGuest"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginStart="200dp"
+         android:layout_marginTop="445dp"
+         android:layout_centerHorizontal="true"
+         android:padding="8dp"
+         android:onClick="goToSignUpPage"
+         android:text=" Sign Up  "
+         android:textSize="20dp"
+         android:textColor="#FEFEFE"
+         android:textAllCaps="true"
+         android:fontFamily="@font/mochiypoponeregular"></TextView>
 </RelativeLayout>

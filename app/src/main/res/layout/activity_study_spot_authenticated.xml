@@ -4,150 +4,276 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#3BFFEB3B"
+    android:background="#F8FCE1"
     tools:context=".StudySpotAuthenticatedActivity">
 
-    <EditText
-        android:id="@+id/Home"
-        style="@android:style/Widget.Material.Light.EditText"
+    <TextView android:id="@+id/TitleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:minHeight="48dp"
+        android:layout_centerHorizontal="true"
         android:text="StudyBuddy"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="#5A0EE3"
         android:textSize="30sp"
-        android:visibility="visible"
-        tools:layout_centerHorizontal="true"
-        tools:textStyle="bold" />
+        android:textColor="#6A62B7"
+        android:textStyle="bold"
+        android:fontFamily="@font/miltoniantattooregular" />
 
     <LinearLayout
         android:layout_width="450dp"
-        android:layout_height="730dp"
+        android:layout_height="770dp"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="130dp"
+        android:layout_marginTop="100dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
         android:background="@drawable/rounded_edges"
-        android:backgroundTint="#AD5F6EF6"
+        android:backgroundTint="#DBE5FF"
         android:orientation="vertical"
         android:padding="10dp">
 
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="400dp"
-        android:layout_height="300dp"
+        android:layout_height="200dp"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="70dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
         android:background="@drawable/rounded_edges"
-        android:backgroundTint="#A882EC"
+        android:backgroundTint="#D0CBFF"
         android:orientation="vertical"
-        android:padding="10dp">
-
-
-    </LinearLayout>
-
-    <EditText
+        android:padding="10dp"></LinearLayout>
+    <TextView android:id="@+id/StudySpotImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:minHeight="48dp"
         android:text=" Insert picture here" />
-
     <LinearLayout
         android:layout_width="400dp"
-        android:layout_height="150dp"
+        android:layout_height="100dp"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="250dp"
+        android:layout_marginTop="180dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
         android:background="@drawable/rounded_edges"
-        android:backgroundTint="#8369B3"
-        android:visibility="visible"     ></LinearLayout>
-
-    <EditText
-        android:id="@+id/name"
+        android:backgroundTint="#8267B5"></LinearLayout>
+    <TextView android:id="@+id/StudySpotName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="250dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-
-        android:fontFamily="casual"
-
-        android:text=" Leavey Library"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="180dp"
+        android:text=" Sample Study Spot"
+        android:textSize="20dp"
         android:textColor="#C1FFFFFF"
-        android:textSize="30sp"
         android:textStyle="bold"
-        android:visibility="visible" />
-    <EditText
-        android:id="@+id/location"
+        android:fontFamily="@font/mochiypoponeregular" />
+    <TextView android:id="@+id/StudySpotRating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="210dp"
+        android:text=" Sample Rating"
+        android:textSize="15dp"
+        android:textColor="#C1FFFFFF"
+        android:fontFamily="@font/mochiypoponeregular" />
+    <TextView android:id="@+id/StudySpotLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="235dp"
+        android:text=" Sample Location"
+        android:textSize="12dp"
+        android:textColor="#C1FFFFFF"
+        android:fontFamily="@font/mochiypoponeregular" />
+    <TextView android:id="@+id/StudySpotTimesOpen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="255dp"
+        android:text=" Sample Hours"
+        android:textSize="12dp"
+        android:textColor="#C1FFFFFF"
+        android:fontFamily="@font/mochiypoponeregular" />
+
+    <TextView android:id="@+id/RateThisSpotText"
+        android:layout_width="330dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="280dp"
+        android:text=" Rate this Spot!"
+        android:textSize="20dp"
+        android:textColor="#FEFEFE"
+        android:fontFamily="@font/mochiypoponeregular"></TextView>
+
+    <RatingBar
+        android:id="@+id/UserRating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="305dp"
+        android:contentDescription="@string/user_rating_label"
+        android:numStars="5"
+        android:saveEnabled="true"
+        android:scaleX=".65"
+        android:scaleY=".65"
+        android:theme="@style/RatingBar" />
+    <Button
+        android:id="@+id/SubmitRatingButton"
+        android:layout_width="75dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="215dp"
+        android:layout_marginTop="310dp"
+        android:backgroundTint="#D0CBFF"
+        android:fontFamily="@font/mochiypoponeregular"
+        android:onClick="saveRating"
+        android:padding="8dp"
+        android:text="submit"
+        android:textAllCaps="false"
+        android:textColor="#FEFEFE"
+        android:textSize="10dp"></Button>
+    <LinearLayout
+        android:layout_width="330dp"
+        android:layout_height="105dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="350dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/rounded_edges"
+        android:backgroundTint="#D0CBFF"></LinearLayout>
+    <TextView android:id="@+id/SelectYourTagsText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="300dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:text=" 625 W Jefferson St \n Los Angeles, CA 90007"
-        android:fontFamily="casual"
-        android:textColor="#C1FFFFFF"
-        android:textSize="20sp"
-        android:visibility="visible" />
-    <EditText
-        android:id="@+id/rate"
-        android:layout_width="330dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="450dp"
-        android:background="@drawable/rounded_edges"
-        android:backgroundTint="#A882EC"
-        android:orientation="vertical"
-        android:text=" Rate this Spot!"
-        android:fontFamily="casual"
-        android:textColor="#FEFEFE"
-        tools:textSize="25dp">
-    </EditText>
-
-
-    <EditText
-        android:id="@+id/tags"
-        android:layout_width="330dp"
-        android:layout_height="75dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="515dp"
-        android:background="@drawable/rounded_edges"
-        android:backgroundTint="#A882EC"
-        android:fontFamily="casual"
-        android:orientation="vertical"
+        android:layout_marginTop="350dp"
+        android:backgroundTint="#D0CBFF"
         android:padding="10dp"
         android:text=" Select Your Tags: "
+        android:textSize="13dp"
         android:textColor="#FEFEFE"
-        tools:textSize="30dp">></EditText>
+        android:fontFamily="@font/mochiypoponeregular"></TextView>
+
+    <CheckBox
+        android:id="@+id/BusyTag"
+        android:layout_width="80dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="65dp"
+        android:layout_marginTop="395dp"
+        android:background="@drawable/dark_blue_oval"
+        android:fontFamily="@font/mochiypoponeregular"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:onClick="onBusyClicked"
+        android:text="busy"
+        android:textSize="13dp"></CheckBox>
+
+    <CheckBox
+        android:id="@+id/OutletTag"
+        android:layout_width="90dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="165dp"
+        android:layout_marginTop="395dp"
+        android:background="@drawable/dark_blue_oval"
+        android:fontFamily="@font/mochiypoponeregular"
+        android:textAllCaps="false"
+        android:text="outlets"
+        android:textColor="@color/white"
+        android:onClick="onOutletClicked"
+        android:textSize="13dp"></CheckBox>
+
+    <CheckBox
+        android:id="@+id/QuietTag"
+        android:layout_width="80dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="265dp"
+        android:layout_marginTop="395dp"
+        android:background="@drawable/dark_blue_oval"
+        android:fontFamily="@font/mochiypoponeregular"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:text="quiet"
+        android:onClick="onQuietClicked"
+        android:textSize="13dp"></CheckBox>
+
+
+
+
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="330dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="470dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/rounded_edges"
+        android:backgroundTint="#D0CBFF"
+        android:verticalScrollbarPosition="right">
+
+        <LinearLayout
+            android:layout_width="314dp"
+            android:layout_height="236dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/ReviewsText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/mochiypoponeregular"
+                android:padding="10dp"
+                android:text="Reviews"
+                android:textColor="#FEFEFE"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/PlaceReviewsHere"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/mochiypoponeregular"
+                android:padding="10dp"
+                android:text="sample review... "
+                android:textColor="#FEFEFE"
+                android:textSize="15sp" />
+        </LinearLayout>
+    </ScrollView>
+
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="90dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="580dp"
+        android:layout_marginEnd="0dp"
+        android:background="@drawable/rounded_edges"
+        android:backgroundTint="#69ADFD"></LinearLayout>
 
     <EditText
-        android:id="@+id/reviews"
-        android:layout_width="330dp"
-        android:layout_height="65dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="600dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/rounded_edges"
-        android:backgroundTint="#A882EC"
-        android:fontFamily="casual"
-        android:orientation="vertical"
-        android:padding="10dp"
-        android:text=" Reviews: "
+        android:id="@+id/WriteAReviewText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="580dp"
+        android:background="@null"
+        android:fontFamily="@font/mochiypoponeregular"
+        android:minHeight="48dp"
+        android:padding="8dp"
+        android:text="write your review here: "
         android:textColor="#FEFEFE"
-        tools:textSize="30sp"></EditText>
+        android:textSize="15dp"></EditText>
 
+    <Button
+        android:id="@+id/SubmitReviewButton"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginStart="260dp"
+        android:layout_marginTop="625dp"
+        android:backgroundTint="#699AFD"
+        android:fontFamily="@font/mochiypoponeregular"
+        android:onClick="saveReview"
+        android:padding="8dp"
+        android:text="submit"
+        android:textAllCaps="false"
+        android:textColor="#FEFEFE"
+        android:textSize="11dp"></Button>
 
 
 
