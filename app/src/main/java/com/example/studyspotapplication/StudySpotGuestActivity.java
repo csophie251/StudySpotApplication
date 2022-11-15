@@ -1,34 +1,58 @@
 package com.example.studyspotapplication;
 
+import static java.lang.Float.parseFloat;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class StudySpotGuestActivity extends AppCompatActivity {
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            String name = " Leavey Library";
-            String rating = " 4.5";
-            String location = " 625 W Jefferson St,  Los Angeles, CA 90007";
-            String timesOpen =  "Times Open: MWF 9-5pm S-S 12-2pm";
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_study_spot_guest);
+public class StudySpotGuestActivity extends AppCompatActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_study_spot_guest);
+        try {
+            String jsonString = "{"
+                    + " \"study spots data\": ["
+                    + " {"
+                    + " \"name\": \"USC Village\","
+                    + " \"location\" : \"123 ABC St Los Angeles, CA 90089\","
+                    + " \"openHours\" : \"Monday-Sunday 9-5pm\","
+                    + " \"rating\" : \"4.5\""
+                    + " },"
+                    + " ]"
+                    + "}";
+            JSONObject obj = new JSONObject(jsonString);
+            JSONArray studySpotsData = obj.getJSONArray("study spots data");
+            JSONObject studySpot = studySpotsData.getJSONObject(0);
+            String name = studySpot.getString("name");
+            String rating = studySpot.getString("rating");
+            String location = studySpot.getString("location");
+            String timesOpen = studySpot.getString("openHours");
             final TextView studySpotName = (TextView) findViewById(R.id.StudySpotNameGuest);
             studySpotName.setText(name);
             final TextView studySpotRating = (TextView) findViewById(R.id.StudySpotRatingGuest);
             studySpotRating.setText(rating);
-            final TextView studySpotLocation= (TextView) findViewById(R.id.StudySpotLocationGuest);
+            final TextView studySpotLocation = (TextView) findViewById(R.id.StudySpotLocationGuest);
             studySpotLocation.setText(location);
-            final TextView studySpotTimesOpen= (TextView) findViewById(R.id.StudySpotTimesOpenGuest);
+            final TextView studySpotTimesOpen = (TextView) findViewById(R.id.StudySpotTimesOpenGuest);
             studySpotTimesOpen.setText(timesOpen);
-
-
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
-        public void goToLoginPage(android.view.View view) {
-            Intent intent = new Intent(this, LoginPageActivity.class);
-            startActivity(intent);
-        }
+    }
+    public void goToLoginPage(android.view.View view) {
+        Intent intent = new Intent(this, LoginPageActivity.class);
+        startActivity(intent);
+    }
+    public void goToSignUpPage(android.view.View view){
+        Intent intent = new Intent (this, LandingPageActivity.class);
+        startActivity(intent);
+    }
 }

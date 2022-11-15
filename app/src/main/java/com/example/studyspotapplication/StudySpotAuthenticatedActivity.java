@@ -1,30 +1,24 @@
 package com.example.studyspotapplication;
 
+import static java.lang.Float.parseFloat;
+
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.ToggleButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.*;
 import androidx.appcompat.app.AppCompatActivity;
-import android.util.Log;
 
-import java.io.File;
+import java.lang.reflect.Array;
 
 public class StudySpotAuthenticatedActivity extends AppCompatActivity {
+    public Float originalRating;
+    public JSONArray reviewsArray;
     @Override
         protected void onCreate(Bundle savedInstanceState) {
-        String fileName =  " /Users/sophiecisse/AndroidStudioProjects/StudySpotApplication/app/StudyBuddiesData.json";
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_study_spot_authenticated);
         try {
@@ -34,27 +28,34 @@ public class StudySpotAuthenticatedActivity extends AppCompatActivity {
                     + " \"name\": \"USC Village\","
                     + " \"location\" : \"123 ABC St Los Angeles, CA 90089\","
                     + " \"openHours\" : \"Monday-Sunday 9-5pm\","
-                    + " \"longitude\" : \"4.5\""
+                    +  " \"reviews\" : ["
+                    + " \"Amazing Spot!\","
+                    + " \"10 out of 10\","
+                    + " \"Loved it here!\" ],"
+                    + " \"rating\" : \"4.5\""
                     + " },"
                     + " ]"
                     + "}";
-            String result = jsonString;
-//            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-//                Log.d("str", "HERE");
-//                result = new String(Files.readAllBytes(Paths.get(fileName).toAbsolutePath()));
-//            }
-            System.out.println("result: " + result);
-            Log.d("str", result);
 
 
-
-            JSONObject obj = new JSONObject(result);
-            System.out.println("HERE 1");
-
+            JSONObject obj = new JSONObject(jsonString);
             JSONArray studySpotsData = obj.getJSONArray("study spots data");
             JSONObject studySpot = studySpotsData.getJSONObject(0);
+
+
+            reviewsArray =  studySpot.getJSONArray("reviews");
+            int arySize = reviewsArray.length();
+            final TextView studySpotReviews= (TextView) findViewById(R.id.PlaceReviewsHere);
+            String text = "";
+            for(int i =0; i < arySize; i++){
+                text += reviewsArray.get(i);
+                text += '\n';
+            }
+            studySpotReviews.setText(text);
+
             String name = studySpot.getString("name");
-            String rating = studySpot.getString("longitude");
+            String rating = studySpot.getString("rating");
+            originalRating =parseFloat(rating);
             String location = studySpot.getString("location");
             String timesOpen = studySpot.getString("openHours");
             final TextView studySpotName = (TextView) findViewById(R.id.StudySpotName);
@@ -65,27 +66,41 @@ public class StudySpotAuthenticatedActivity extends AppCompatActivity {
             studySpotLocation.setText(location);
             final TextView studySpotTimesOpen= (TextView) findViewById(R.id.StudySpotTimesOpen);
             studySpotTimesOpen.setText(timesOpen);
-            System.out.println("HERE 3");
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
 
-        final RatingBar ratingBar = findViewById(R.id.UserRating);
-            Float userRating =  ratingBar.getRating();
-            System.out.println("Review: " + userRating);
-            ToggleButton lightingTag = findViewById(R.id.LightingTag);
-            boolean lightTagOn = lightingTag.hasSelection();
-        }
+    }
         public void goToLoginPage(android.view.View view) {
             Intent intent = new Intent(this, LoginPageActivity.class);
             startActivity(intent);
         }
-        public void rateLocation(android.view.View view){
-            Intent intent = new Intent (this, LoginPageActivity.class);
+        public void goToSignUpPage(android.view.View view){
+            Intent intent = new Intent (this, LandingPageActivity.class);
             startActivity(intent);
+        }
+
+        public void saveRating(android.view.View view) {
+            final RatingBar ratingBar = findViewById(R.id.UserRating);
+            Float userRating =  ratingBar.getRating();
+            System.out.println("Review: " + userRating);
+            Float newRating = (originalRating + userRating)/2;
+            final TextView studySpotRating = (TextView) findViewById(R.id.StudySpotRating);
+            studySpotRating.setText(newRating.toString());
+        }
+
+        public void saveReview(android.view.View view){
+            final TextView studySpotNewReview = (TextView) findViewById(R.id.WriteAReviewText);
+            String newReview = (String) studySpotNewReview.getText();
+            int index = reviewsArray.length() + 1;
+        }
+        public void onQuietClicked(android.view.View view){
+
+        }
+        public void onBusyClicked(android.view.View view){
+
+        }
+        public void onOutletClicked(android.view.View view){
+
         }
 }
