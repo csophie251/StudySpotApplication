@@ -17,6 +17,7 @@
         android:textStyle="bold"
         android:layout_marginTop = "200px"
         android:layout_marginLeft = "24px"
+        android:fontFamily="@font/miltoniantattooregular"
         />
 
     <LinearLayout
@@ -39,6 +40,7 @@
             android:textStyle="bold"
             android:gravity="center"
             android:layout_margin="25dp"
+            android:fontFamily="@font/miltoniantattooregular"
             />
     </LinearLayout>
 
@@ -52,9 +54,10 @@
         android:hint="First Name"
         android:textColorHint="@color/white"
         android:textColor="@color/white"
-        android:textStyle="bold"
-        android:padding="10dp"
+        android:padding="5dp"
         android:background="@drawable/rounded_edges"
+        android:textSize="32px"
+        android:fontFamily="@font/mochiypoponeregular"
         />
 
     <EditText
@@ -67,9 +70,10 @@
         android:hint="Last Name"
         android:textColorHint="@color/white"
         android:textColor="@color/white"
-        android:textStyle="bold"
-        android:padding="10dp"
         android:background="@drawable/rounded_edges"
+        android:padding="5dp"
+        android:textSize="32px"
+        android:fontFamily="@font/mochiypoponeregular"
         />
 
     <EditText
@@ -80,25 +84,30 @@
         android:id="@+id/emailAddress"
         android:backgroundTint="#87a4fe"
         android:hint="Email"
+        android:inputType="textEmailAddress"
         android:textColorHint="@color/white"
         android:textColor="@color/white"
-        android:textStyle="bold"
-        android:padding="10dp"
-        android:background="@drawable/rounded_edges" />
+        android:background="@drawable/rounded_edges"
+        android:padding="5dp"
+        android:textSize="32px"
+        android:fontFamily="@font/mochiypoponeregular"/>
 
     <EditText
         android:layout_width="712px"
         android:layout_height="100px"
         android:layout_marginLeft = "200px"
         android:layout_marginTop = "1086px"
+        android:inputType="textPassword"
         android:id="@+id/password"
         android:backgroundTint="#87a4fe"
         android:hint="Password"
         android:textColorHint="@color/white"
         android:textColor="@color/white"
-        android:textStyle="bold"
-        android:padding="10dp"
-        android:background="@drawable/rounded_edges" />
+        android:background="@drawable/rounded_edges"
+        android:padding="5dp"
+        android:textSize="32px"
+        android:fontFamily="@font/mochiypoponeregular"
+        />
 
     <Button
         android:id="@+id/signUp"
@@ -111,7 +120,8 @@
         android:layout_marginTop = "181px"
         android:text=" SIGN UP "
         android:textColor="#FEFEFE"
-        tools:textSize="50px"
+        tools:textSize="32px"
+        android:fontFamily="@font/mochiypoponeregular"
         ></Button>
 
     <TextView
