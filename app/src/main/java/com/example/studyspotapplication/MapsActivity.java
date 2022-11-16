@@ -153,7 +153,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public boolean onMarkerClick(Marker marker) {
                 marker.showInfoWindow();
-                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(marker.getPosition(), 15));
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(marker.getPosition(), 18));
                 return true;
             }
         });

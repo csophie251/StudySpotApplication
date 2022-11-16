@@ -67,7 +67,7 @@ public class GuestMapsActivity extends FragmentActivity implements OnMapReadyCal
             @Override
             public boolean onMarkerClick(Marker marker) {
                 marker.showInfoWindow();
-                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(marker.getPosition(), 15));
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(marker.getPosition(), 18));
                 return false;
             }
         });
