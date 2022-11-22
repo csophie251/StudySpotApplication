@@ -26,7 +26,7 @@
         android:layout_height="1000px"
         android:layout_marginLeft = "24px"
         android:layout_marginTop = "344px"
-        android:background="@drawable/extraRoundEdges"
+        android:background="@drawable/extraroundedges"
         android:backgroundTint="#D0CBFF"
         android:radius="111dp">
 
@@ -55,7 +55,7 @@
         android:textColorHint="@color/white"
         android:textColor="@color/white"
         android:padding="5dp"
-        android:background="@drawable/extraRoundEdges"
+        android:background="@drawable/extraroundedges"
         android:textSize="32px"
         android:fontFamily="@font/mochiypoponeregular"
         />
@@ -70,7 +70,7 @@
         android:hint="Last Name"
         android:textColorHint="@color/white"
         android:textColor="@color/white"
-        android:background="@drawable/extraRoundEdges"
+        android:background="@drawable/extraroundedges"
         android:padding="5dp"
         android:textSize="32px"
         android:fontFamily="@font/mochiypoponeregular"
@@ -87,7 +87,7 @@
         android:inputType="textEmailAddress"
         android:textColorHint="@color/white"
         android:textColor="@color/white"
-        android:background="@drawable/extraRoundEdges"
+        android:background="@drawable/extraroundedges"
         android:padding="5dp"
         android:textSize="32px"
         android:fontFamily="@font/mochiypoponeregular"/>
@@ -103,7 +103,7 @@
         android:hint="Password"
         android:textColorHint="@color/white"
         android:textColor="@color/white"
-        android:background="@drawable/extraRoundEdges"
+        android:background="@drawable/extraroundedges"
         android:padding="5dp"
         android:textSize="32px"
         android:fontFamily="@font/mochiypoponeregular"

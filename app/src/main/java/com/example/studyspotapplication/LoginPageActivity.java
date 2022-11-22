@@ -1,5 +1,6 @@
 package com.example.studyspotapplication;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -77,10 +78,27 @@ public class LoginPageActivity extends AppCompatActivity {
     //VALIDATING USERNAME INPUT AND PASSWORD --> need to change to retrieve from database of user info
     private boolean userValidation(String username, String password){
         //for the database retrieval
+        ServerThread st = new ServerThread("helluar");
+        while (!st.done) {
+            Log.d("myTag", "");
+        }
+        Log.d("myTag", st.output);
+
         if(username.equals(TestUserName) && password.equals(TestPassword)){
             return true;
         }else{
             return false;
         }
     }
+
+    public String sendMessage(String input) {
+        ServerThread st = new ServerThread(input);
+        while (!st.done) {
+            Log.d("myTag", "");
+        }
+        Log.d("myTag", st.output);
+        return st.output;
+    }
+
+
 }
