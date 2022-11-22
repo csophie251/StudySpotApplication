@@ -7,6 +7,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 //https://www.youtube.com/watch?v=LCrhddpsgKU
 import android.content.Intent;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +23,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
+
+import org.json.JSONObject;
 
 
 public class LoginPageActivity extends AppCompatActivity {
@@ -57,18 +63,19 @@ public class LoginPageActivity extends AppCompatActivity {
                         Toast.makeText(LoginPageActivity.this, "The Username or Password you entered was incorrect. Please try again.", Toast.LENGTH_SHORT).show();
                     }else{//user input is found in database
                         Toast.makeText(LoginPageActivity.this, "Login Successful.", Toast.LENGTH_SHORT).show();
-                        //TODO: REDIRECT TO NEW ACTIVITY [HOME PAGE]
+                        //TODO: REDIRECT TO NEW ACTIVITY [AUTHENTICATED MAP PAGE]
                         Intent intent = new Intent(LoginPageActivity.this, MapsActivity.class);
+                        intent.putExtra("username", inputName); //send the username
                         startActivity(intent);
                     }
                 }
-
             }
         });
 
         eGuest.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                //TODO: REDIRECT TO NEW ACTIVITY [HOME PAGE]
+                //TODO: REDIRECT TO NEW ACTIVITY [GUEST MAP PAGE]
+
                 Intent intent = new Intent(LoginPageActivity.this, GuestMapsActivity.class);
                 startActivity(intent);
             }
@@ -77,6 +84,20 @@ public class LoginPageActivity extends AppCompatActivity {
     //VALIDATING USERNAME INPUT AND PASSWORD --> need to change to retrieve from database of user info
     private boolean userValidation(String username, String password){
         //for the database retrieval
+       // https://www.tutorialspoint.com/json/json_java_example.htm
+        try{
+            JSONObject json = new JSONObject();
+            json.put("username", username);
+            json.put("password", password);
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+        //convert to JSONObject
+        //Receive JSONObject that has a 0 or 1 bool for validation, parse and output result
         if(username.equals(TestUserName) && password.equals(TestPassword)){
             return true;
         }else{
