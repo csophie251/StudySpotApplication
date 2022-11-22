@@ -1,6 +1,9 @@
 package com.example.studyspotapplication;
 import android.util.Log;
 
+import com.google.gson.Gson;
+import com.google.gson.stream.JsonReader;
+
 import java.util.ArrayList;
 
 public class Util {
@@ -14,34 +17,136 @@ public class Util {
         return st.output;
     }
 
-    public String retrieveStudySpotAddress(String name) {
-        //Returns address of study spot name in json
+    public StudySpot retrieveStudySpot(String name) {
+        String json = String.format("{\n" +
+                "    \"type\": \"studySpot\",\n" +
+                "    \"data\": {\n" +
+                "        \"name\": \"%s\"\n" +
+                "    }\n" +
+                "}", name);
+        String ss = sendMessage(json);
+        if (ss.equals("") || ss == null) {
+            // handle error!
+            return null;
+        }
+        Gson gson = new Gson();
+        StudySpotData studySpot = gson.fromJson(ss, StudySpotData.class);
+        return new StudySpot(studySpot);
+    }
 
-        return "";
+    public String retrieveStudySpotAddress(String name) {
+        // Returns address of study spot name in json
+        StudySpot ss = retrieveStudySpot(name);
+        if (ss == null) {
+            // handle error!
+            return null;
+        }
+        return ss.location;
     }
 
     public String retrieveStudySpotTimesOpen(String name) {
-        //Returns open times of study spot name in json
-        return "";
+        // Returns open times of study spot name in json
+        StudySpot ss = retrieveStudySpot(name);
+        if (ss == null) {
+            // handle error!
+            return null;
+        }
+        return ss.openHours;
     }
 
     public Double retrieveStudySpotRating(String name) {
         //Returns average rating
-        return 0.0;
+        String json = String.format("{\n" +
+                "    \"type\": \"avgReview\",\n" +
+                "    \"data\": {\n" +
+                "        \"name\": \"%s\"\n" +
+                "    }\n" +
+                "}", name);
+        String ss = sendMessage(json);
+        if (ss.equals("") || ss == null) {
+            // handle error!!!!!!
+            return null;
+        }
+        Gson gson = new Gson();
+        return gson.fromJson(ss, double.class);
     }
 
-    public boolean sendTags(ArrayList<String> tags) {
+    public Boolean sendTags(String name, ArrayList<String> tags) {
 //        Stores tags in database
 //        Return true/false if successful
-        return false;
+        boolean busy = tags.contains("Busy");
+        boolean quiet = tags.contains("Quiet");
+        boolean outlets = tags.contains("Outlets");
+        String json = String.format(
+                "{\n" +
+                "    \"type\": \"tags\",\n" +
+                "    \"data\": {\n" +
+                "        \"name\": \"%s\",\n" +
+                "        \"busy\": %b,\n" +
+                "        \"quiet\": %b,\n" +
+                "        \"outlets\": %b\n" +
+                "    }\n" +
+                "}", name, busy, quiet, outlets);
+        String ss = sendMessage(json);
+        if (ss.equals("") || ss == null) {
+            // handle error!
+            return null;
+        }
+        Gson gson = new Gson();
+        return gson.fromJson(ss, boolean.class);
     }
-    public ArrayList<String> RetrieveReviews(String name) {
+    public ArrayList<String> retrieveReviews(String name) {
 //        Returns arraylist of all reviews for given study spot name
-        return new ArrayList<String>();
+        String json = String.format(
+                "{\n" +
+                "    \"type\": \"studySpot\",\n" +
+                "    \"data\": {\n" +
+                "        \"name\": \"%s\"\n" +
+                "    }\n" +
+                "}", name);
+        String ss = sendMessage(json);
+        if (ss.equals("") || ss == null) {
+            // handle error!
+            return null;
+        }
+        Gson gson = new Gson();
+        Reviews reviews = gson.fromJson(ss, Reviews.class);
+        return reviews.reviews;
     }
-    public boolean sendReview(String name) {
+    public Boolean sendReview(String name, String review) {
 //        Add review to the arraylist of reviews for given study spot
 //        Return true/false if successful
-        return false;
+        String json = String.format(
+                "{\n" +
+                "    \"type\": \"sendReview\",\n" +
+                "    \"data\": {\n" +
+                "        \"name\": \"%s\"\n" +
+                "        \"review\": \"%s\"\n" +
+                "    }\n" +
+                "}", name, review);
+        String ss = sendMessage(json);
+        if (ss.equals("") || ss == null) {
+            // handle error!
+            return null;
+        }
+        Gson gson = new Gson();
+        return gson.fromJson(ss, boolean.class);
     }
 }
+
+class Reviews {
+    ArrayList<String> reviews;
+}
+
+// Client Output
+
+
+// Server Output
+// Study Spot
+// Array of Study Spots
+// Double
+
+// POST
+// true/false
+
+//
