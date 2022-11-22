@@ -90,15 +90,4 @@ public class LoginPageActivity extends AppCompatActivity {
             return false;
         }
     }
-
-    public String sendMessage(String input) {
-        ServerThread st = new ServerThread(input);
-        while (!st.done) {
-            Log.d("myTag", "");
-        }
-        Log.d("myTag", st.output);
-        return st.output;
-    }
-
-
 }

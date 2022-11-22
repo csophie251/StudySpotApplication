@@ -34,6 +34,8 @@ public class ServerThread extends Thread {
             URL url = new URL("http://10.25.149.239:8080/StudySpotServer/FormServlet");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("POST");
+            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setRequestProperty("Accept", "application/json");
             conn.setDoOutput(true);
 
             OutputStream os = conn.getOutputStream();
