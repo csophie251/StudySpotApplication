@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class Util {
 
-    public String sendMessage(String input) {
+    public static String sendMessage(String input) {
         ServerThread st = new ServerThread(input);
         while (!st.done) {
             Log.d("myTag", "");
@@ -17,7 +17,7 @@ public class Util {
         return st.output;
     }
 
-    public StudySpot retrieveStudySpot(String name) {
+    public static StudySpot retrieveStudySpot(String name) {
         String json = String.format("{\n" +
                 "    \"type\": \"studySpot\",\n" +
                 "    \"data\": {\n" +
@@ -34,7 +34,7 @@ public class Util {
         return new StudySpot(studySpot);
     }
 
-    public String retrieveStudySpotAddress(String name) {
+    public static String retrieveStudySpotAddress(String name) {
         // Returns address of study spot name in json
         StudySpot ss = retrieveStudySpot(name);
         if (ss == null) {
@@ -44,7 +44,7 @@ public class Util {
         return ss.location;
     }
 
-    public String retrieveStudySpotTimesOpen(String name) {
+    public static String retrieveStudySpotTimesOpen(String name) {
         // Returns open times of study spot name in json
         StudySpot ss = retrieveStudySpot(name);
         if (ss == null) {
@@ -54,7 +54,7 @@ public class Util {
         return ss.openHours;
     }
 
-    public Double retrieveStudySpotRating(String name) {
+    public static Double retrieveStudySpotRating(String name) {
         //Returns average rating
         String json = String.format("{\n" +
                 "    \"type\": \"avgReview\",\n" +
@@ -70,8 +70,14 @@ public class Util {
         Gson gson = new Gson();
         return gson.fromJson(ss, double.class);
     }
+    public static Double sendRating(String name, Double rating) {
+        // TODO sends new user rating
+        // updates average rating in databse,
+        // sends back updated average rating
+        return 0.0;
+    }
 
-    public Boolean sendTags(String name, ArrayList<String> tags) {
+    public static Boolean sendTags(String name, ArrayList<String> tags) {
 //        Stores tags in database
 //        Return true/false if successful
         boolean busy = tags.contains("Busy");
@@ -95,7 +101,7 @@ public class Util {
         Gson gson = new Gson();
         return gson.fromJson(ss, boolean.class);
     }
-    public ArrayList<String> retrieveReviews(String name) {
+    public static ArrayList<String> retrieveReviews(String name) {
 //        Returns arraylist of all reviews for given study spot name
         String json = String.format(
                 "{\n" +
@@ -113,7 +119,7 @@ public class Util {
         Reviews reviews = gson.fromJson(ss, Reviews.class);
         return reviews.reviews;
     }
-    public Boolean sendReview(String name, String review) {
+    public static Boolean sendReview(String name, String review) {
 //        Add review to the arraylist of reviews for given study spot
 //        Return true/false if successful
         String json = String.format(
