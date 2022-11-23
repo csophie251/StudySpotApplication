@@ -3,23 +3,44 @@ package com.example.studyspotapplication;
 import com.google.android.gms.maps.model.LatLng;
 
 public class StudySpot {
-    private final LatLng position;
-    private final String title;
+    LatLng position;
+    String name;
+    String location;
+    String openHours;
+    boolean busy;
+    boolean quiet;
+    boolean outlets;
 
-    public StudySpot(double lat, double lng, String title) {
-        position = new LatLng(lat, lng);
-        this.title = title;
+    public StudySpot(StudySpotData data) {
+        position = new LatLng(data.latitude, data.longitude);
+        this.name = data.name;
+        this.location = data.location;
+        this.openHours = data.openHours;;
+        this.busy = data.busy;
+        this.quiet = data.quiet;
+        this.outlets = data.outlets;
     }
 
     public LatLng getPosition() {
         return position;
     }
 
-    public String getTitle() {
-        return title;
+    public String getName() {
+        return name;
     }
 
 //    public String getSnippet() {
 //        return snippet;
 //    }
+}
+
+class StudySpotData {
+    String name;
+    String location;
+    double latitude;
+    double longitude;
+    String openHours;
+    boolean busy;
+    boolean quiet;
+    boolean outlets;
 }
