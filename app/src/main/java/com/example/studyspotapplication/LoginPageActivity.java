@@ -34,8 +34,8 @@ public class LoginPageActivity extends AppCompatActivity {
     private Button eLogin;
     private TextView eGuest;
     //temp username and password
-    private String TestUserName = "Admin";
-    private String TestPassword = "12345678";
+//    private String TestUserName = "Admin";
+//    private String TestPassword = "12345678";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,18 +90,12 @@ public class LoginPageActivity extends AppCompatActivity {
             json.put("username", username);
             json.put("password", password);
 
+            String jsonStr = json.toString();
+            //sendMessage(jsonStr);
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-
-        //convert to JSONObject
-        //Receive JSONObject that has a 0 or 1 bool for validation, parse and output result
-        if(username.equals(TestUserName) && password.equals(TestPassword)){
-            return true;
-        }else{
-            return false;
-        }
+        return true;
     }
 }
