@@ -94,7 +94,8 @@ public class StudySpotAuthenticatedActivity extends AppCompatActivity {
 
         //Images TODO
         final ImageView studySpotImage = (ImageView)  findViewById(R.id.imageView);
-        studySpotImage.setImageResource(R.drawable.leaveylibrary);
+        int image = Images.getImage(studySpotName);
+        studySpotImage.setImageResource(image);
 
     }
     public void goToLoginPage(android.view.View view) {
@@ -141,9 +142,9 @@ public class StudySpotAuthenticatedActivity extends AppCompatActivity {
 //        }
     }
     public void saveReview(android.view.View view){
-       // final EditText studySpotNewReview = (EditText) findViewById(R.id.WriteAReviewText);
-        //String newReview = studySpotNewReview.getText().toString();
-        //Log.d("New Review", newReview);
+        final EditText studySpotNewReview = (EditText) findViewById(R.id.WriteAReviewText);
+        String newReview = studySpotNewReview.getText().toString();
+        Log.d("New Review", newReview);
 //        boolean sendReview = Util.sendReview(studySpotName, newReview);
 //        if (sendReview) {
 //            Log.d("true", "new review was successfully added to database");

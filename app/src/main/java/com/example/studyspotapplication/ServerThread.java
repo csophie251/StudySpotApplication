@@ -22,7 +22,7 @@ public class ServerThread extends Thread {
 
     public ServerThread(String input) {
         this.input = input;
-        this.output = null;
+        this.output = "";
         this.done = false;
         this.start();
     }
