@@ -39,12 +39,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private ArrayList<StudySpot> generateStudySpots() {
         ArrayList<StudySpot> cur_spots = new ArrayList<StudySpot>();
-        StudySpot leavey = new StudySpot(34.02193, -118.28277, "Leavey Library");
-        StudySpot doheny = new StudySpot(34.02015, -118.28372, "Doheny Library");
-        StudySpot sidney = new StudySpot(34.02235, -118.28512, "Sydney Harman");
-        cur_spots.add(leavey);
-        cur_spots.add(doheny);
-        cur_spots.add(sidney);
+//        StudySpot leavey = new StudySpot(34.02193, -118.28277, "Leavey Library");
+//        StudySpot doheny = new StudySpot(34.02015, -118.28372, "Doheny Library");
+//        StudySpot sidney = new StudySpot(34.02235, -118.28512, "Sydney Harman");
+//        cur_spots.add(leavey);
+//        cur_spots.add(doheny);
+//        cur_spots.add(sidney);
         return cur_spots;
     }
 
@@ -53,9 +53,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         HashMap<String, StudySpot> temp = new HashMap<String, StudySpot>();
         for (int i = 0; i < spots.size(); ++i) {
             StudySpot cur = spots.get(i);
-            Log.d("myTag", cur.getTitle());
-            temp.put(cur.getTitle(), cur);
-            mMap.addMarker(new MarkerOptions().position(cur.getPosition()).title(cur.getTitle()));
+            Log.d("myTag", cur.name);
+            temp.put(cur.name, cur);
+            mMap.addMarker(new MarkerOptions().position(cur.getPosition()).title(cur.name));
         }
         names_to_spots = temp;
     }
@@ -64,7 +64,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private ArrayList<String> get_dropDown_titles() {
         ArrayList<String> places = new ArrayList<String>();
         for (int i = 0; i < spots.size(); ++i) {
-            places.add(spots.get(i).getTitle());
+            places.add(spots.get(i).name);
         }
         return places;
     }

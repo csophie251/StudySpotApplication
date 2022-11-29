@@ -78,11 +78,8 @@ public class LoginPageActivity extends AppCompatActivity {
     //VALIDATING USERNAME INPUT AND PASSWORD --> need to change to retrieve from database of user info
     private boolean userValidation(String username, String password){
         //for the database retrieval
-        ServerThread st = new ServerThread("helluar");
-        while (!st.done) {
-            Log.d("myTag", "");
-        }
-        Log.d("myTag", st.output);
+        StudySpot res = Util.retrieveStudySpot("Annenberg School for Communication and Journalism");
+        Log.i("myTag", res.location);
 
         if(username.equals(TestUserName) && password.equals(TestPassword)){
             return true;
