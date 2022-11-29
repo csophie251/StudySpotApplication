@@ -1,10 +1,8 @@
 package com.example.studyspotapplication;
 
 import static java.lang.Double.parseDouble;
-import static java.lang.Float.parseFloat;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,15 +12,10 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.function.ToDoubleBiFunction;
+
 
 public class StudySpotAuthenticatedActivity extends AppCompatActivity {
     public String studySpotName;
@@ -39,6 +32,11 @@ public class StudySpotAuthenticatedActivity extends AppCompatActivity {
         Intent intent = getIntent();
         studySpotName = intent.getStringExtra("name");
         Log.d("Study Spot Name: ", studySpotName);
+
+//        String studySpotRating = "4.0";
+//        String studySpotAddress ="test address";
+//        String studySpotOpenTimes = "test open time";
+//        Log.d("Study Spot Information:", (studySpotRating + ", " +studySpotAddress  + ", " + studySpotOpenTimes));
 
         // Get data from database
         String studySpotRating = Util.retrieveStudySpotRating(studySpotName).toString();
@@ -65,7 +63,27 @@ public class StudySpotAuthenticatedActivity extends AppCompatActivity {
         Log.d("Tags:", "initialize tags lit");
 
         //Reviews
-        reviewsList = Util.retrieveReviews(studySpotName);
+        reviewsList = new ArrayList<String>();
+        reviewsList.add("Awesome spot!"); //comment out later
+        reviewsList.add("pretty!"); //comment out later
+        reviewsList.add("ahve fun!"); //comment out later
+        reviewsList.add("great!"); //comment out later
+        reviewsList.add("gerat 3!"); //comment out later
+        reviewsList.add("testing!"); //comment out later
+        reviewsList.add("yay!"); //comment out later
+        reviewsList.add("fun!"); //comment out later
+        reviewsList.add("aws!"); //comment out later
+        reviewsList.add("best!"); //comment out later
+        reviewsList.add("gerat hob !"); //comment out later
+        reviewsList.add("sdf!"); //comment out later
+        reviewsList.add("fs!"); //comment out later
+        reviewsList.add("sdf!"); //comment out later
+        reviewsList.add("prettdsfy!"); //comment out later
+        reviewsList.add("sdf!"); //comment out later
+        reviewsList.add("helo !"); //comment out later
+        reviewsList.add("etsgl!"); //comment out later
+
+        //reviewsList = Util.retrieveReviews(studySpotName);
         final TextView studySpotReviews= (TextView) findViewById(R.id.PlaceReviewsHere);
         String text = "";
         for(int i =0; i < (int) reviewsList.size(); i++){
@@ -76,6 +94,8 @@ public class StudySpotAuthenticatedActivity extends AppCompatActivity {
 
         //Images TODO
         final ImageView studySpotImage = (ImageView)  findViewById(R.id.imageView);
+        studySpotImage.setImageResource(R.drawable.leaveylibrary);
+
     }
     public void goToLoginPage(android.view.View view) {
         Intent intent = new Intent(this, LoginPageActivity.class);
@@ -113,22 +133,25 @@ public class StudySpotAuthenticatedActivity extends AppCompatActivity {
         for (String element : selectedTags) {
             Log.d("element", element);
         }
-        boolean isSaved = Util.sendTags(studySpotName, selectedTags);
-        if (isSaved) {
-            Log.d("true", "tags were successfully added to database");
-        } else {
-            Log.d("false", "some error occurred while adding tags to database");
-        }
+//        boolean isSaved = Util.sendTags(studySpotName, selectedTags);
+//        if (isSaved) {
+//            Log.d("true", "tags were successfully added to database");
+//        } else {
+//            Log.d("false", "some error occurred while adding tags to database");
+//        }
     }
     public void saveReview(android.view.View view){
-        final EditText studySpotNewReview = (EditText) findViewById(R.id.WriteAReviewText);
-        String newReview = studySpotNewReview.getText().toString();
-        Log.d("New Review", newReview);
-        boolean sendReview = Util.sendReview(studySpotName, newReview);
-        if (sendReview) {
-            Log.d("true", "new review was successfully added to database");
-        } else {
-            Log.d("false", "some error occurred while adding review to database");
-        }
+       // final EditText studySpotNewReview = (EditText) findViewById(R.id.WriteAReviewText);
+        //String newReview = studySpotNewReview.getText().toString();
+        //Log.d("New Review", newReview);
+//        boolean sendReview = Util.sendReview(studySpotName, newReview);
+//        if (sendReview) {
+//            Log.d("true", "new review was successfully added to database");
+//        } else {
+//            Log.d("false", "some error occurred while adding review to database");
+//        }
+    }
+    public void setImage(){
+
     }
 }
