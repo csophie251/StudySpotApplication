@@ -25,9 +25,9 @@ public class StudySpotAuthenticatedActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_study_spot_authenticated);
         Intent intent = getIntent();
-        String studySpotTitle = intent.getStringExtra("name");
-        Log.d("myTag", studySpotTitle);
-        // start new thread getting data with title
+        String name = intent.getStringExtra("name");
+        Log.d("myTag", name);
+        // start new thread getting data with name
 
         Button mButton = findViewById(R.id.logout);
         mButton.setOnClickListener(new View.OnClickListener() {
@@ -80,7 +80,6 @@ public class StudySpotAuthenticatedActivity extends AppCompatActivity {
             }
             studySpotReviews.setText(text);
 
-            String name = studySpot.getString("name");
             String rating = studySpot.getString("rating");
             originalRating =parseFloat(rating);
             String location = studySpot.getString("location");
@@ -103,7 +102,7 @@ public class StudySpotAuthenticatedActivity extends AppCompatActivity {
             startActivity(intent);
         }
         public void goToSignUpPage(android.view.View view){
-            Intent intent = new Intent (this, LandingPageActivity.class);
+            Intent intent = new Intent (this, RegistrationActivity.class);
             startActivity(intent);
         }
 
@@ -117,9 +116,9 @@ public class StudySpotAuthenticatedActivity extends AppCompatActivity {
         }
 
         public void saveReview(android.view.View view){
-            final TextView studySpotNewReview = (TextView) findViewById(R.id.WriteAReviewText);
-            String newReview = (String) studySpotNewReview.getText();
-            int index = reviewsArray.length() + 1;
+            //final TextView studySpotNewReview = (TextView) findViewById(R.id.WriteAReviewText);
+            //String newReview = (String) studySpotNewReview.getText();
+            //int index = reviewsArray.length() + 1;
         }
         public void onQuietClicked(android.view.View view){
 

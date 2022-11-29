@@ -28,9 +28,43 @@ public class GuestMapsActivity extends FragmentActivity implements OnMapReadyCal
 
     private ArrayList<StudySpot> generateStudySpots() {
         ArrayList<StudySpot> cur_spots = new ArrayList<StudySpot>();
-        StudySpot leavey = new StudySpot(34.02193, -118.28277, "Leavey Library");
-        StudySpot doheny = new StudySpot(34.02015, -118.28372, "Doheny Library");
-        StudySpot sidney = new StudySpot(34.02235, -118.28512, "Sydney Harman");
+        StudySpotData leaveyData = new StudySpotData();
+        leaveyData.name = "Leavey Library";
+        leaveyData.location = "testlocation";
+        leaveyData.latitude =34.02193;
+        leaveyData.longitude =-118.28277;
+        leaveyData.openHours = "test hours";
+        leaveyData.busy = true;
+        leaveyData.quiet = false;
+        leaveyData.outlets = true;
+
+        StudySpotData dohenyData = new StudySpotData();
+        dohenyData.name = "Doheny Library";
+        dohenyData.location = "testlocation";
+        dohenyData.latitude =34.02015;
+        dohenyData.longitude =-118.28372;
+        dohenyData.openHours = "test hours";
+        dohenyData.busy = false;
+        dohenyData.quiet = true;
+        dohenyData.outlets = true;
+
+        StudySpotData sidneyData = new StudySpotData();
+        sidneyData.name = "Sydney Harman";
+        sidneyData.location = "testlocation";
+        sidneyData.latitude =34.02235;
+        sidneyData.longitude =-118.28512;
+        sidneyData.openHours = "test hours";
+        sidneyData.busy = true;
+        sidneyData.quiet = false;
+        sidneyData.outlets = false;
+
+        StudySpot leavey = new StudySpot(leaveyData);
+        StudySpot doheny = new StudySpot(dohenyData);
+        StudySpot sidney = new StudySpot(sidneyData);
+
+        //StudySpot leavey = new StudySpot(34.02193, -118.28277, "Leavey Library", "testlocation", "testopenHours", true, false, true);
+        //StudySpot doheny = new StudySpot(34.02015, -118.28372, "Doheny Library");
+        // StudySpot sidney = new StudySpot(34.02235, -118.28512, "Sydney Harman");
         cur_spots.add(leavey);
         cur_spots.add(doheny);
         cur_spots.add(sidney);
@@ -43,9 +77,12 @@ public class GuestMapsActivity extends FragmentActivity implements OnMapReadyCal
         HashMap<String, StudySpot> temp = new HashMap<String, StudySpot>();
         for (int i = 0; i < spots.size(); ++i) {
             StudySpot cur = spots.get(i);
-            Log.d("myTag", cur.getTitle());
-            temp.put(cur.getTitle(), cur);
-            mMap.addMarker(new MarkerOptions().position(cur.getPosition()).title(cur.getTitle()));
+            Log.d("myTag", cur.getName());
+            temp.put(cur.getName(), cur);
+            mMap.addMarker(new MarkerOptions().position(cur.getPosition()).title(cur.getName()));
+            //Log.d("myTag", cur.getTitle());
+            //temp.put(cur.getTitle(), cur);
+            // mMap.addMarker(new MarkerOptions().position(cur.getPosition()).title(cur.getTitle()));
         }
         names_to_spots = temp;
     }
