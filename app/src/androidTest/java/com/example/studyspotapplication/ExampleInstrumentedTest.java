@@ -23,4 +23,10 @@ public class ExampleInstrumentedTest {
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
         assertEquals("com.example.studyspotapplication", appContext.getPackageName());
     }
+
+    // Tests ?
+    @Test
+    public void mapSearchInvalidOne() {
+
+    }
 }

@@ -3,7 +3,7 @@ package com.example.studyspotapplication;
 import java.util.ArrayList;
 
 public class Util {
-    public ArrayList<StudySpot> retrieveAllPages() {
+    public static ArrayList<StudySpot> retrieveAllPages() {
         // winston code!
     }
 

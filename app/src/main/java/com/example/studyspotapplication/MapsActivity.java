@@ -39,14 +39,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
     private ArrayList<StudySpot> generateStudySpots() {
-        ArrayList<StudySpot> cur_spots = new ArrayList<StudySpot>();
-        StudySpot leavey = new StudySpot(34.02193, -118.28277, "Leavey Library");
-        StudySpot doheny = new StudySpot(34.02015, -118.28372, "Doheny Library");
-        StudySpot sidney = new StudySpot(34.02235, -118.28512, "Sydney Harman");
-        cur_spots.add(leavey);
-        cur_spots.add(doheny);
-        cur_spots.add(sidney);
-        return cur_spots;
+//        ArrayList<StudySpot> cur_spots = new ArrayList<StudySpot>();
+//        StudySpot leavey = new StudySpot(34.02193, -118.28277, "Leavey Library");
+//        StudySpot doheny = new StudySpot(34.02015, -118.28372, "Doheny Library");
+//        StudySpot sidney = new StudySpot(34.02235, -118.28512, "Sydney Harman");
+//        cur_spots.add(leavey);
+//        cur_spots.add(doheny);
+//        cur_spots.add(sidney);
+//        return cur_spots;
+        return Util.retrieveAllPages();
     }
 
     private void place_markers() {
@@ -71,10 +72,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     public void sendFilterValues(List<Boolean> stuff) {
+        // remove all previous markers
         for (int i = 0; i < stuff.size(); ++i) {
             filter_status.set(i,stuff.get(i));
         }
         // update map to show markers that belong to filters
+        for (int i = 0; i < spots.size(); ++i) {
+            // match bool values of filters
+            // add marker if bool values are added properly
+        }
     }
 
     @Override
@@ -141,7 +147,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
         mapFragment.getMapAsync(this);
-
     }
 
     @SuppressLint("PotentialBehaviorOverride")
@@ -161,8 +166,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onInfoWindowClick(Marker marker) {
                 //switch page to studyspot page
-                // must have an if condition checking if the user is authenticated, must have an authenticated flag
-                //startActivity(new Intent(MainActivity.this, MyOtherActivity.class));
                 Intent myIntent = new Intent(MapsActivity.this, StudySpotAuthenticatedActivity.class);
                 myIntent.putExtra("name", marker.getTitle());
                 startActivity(myIntent);
