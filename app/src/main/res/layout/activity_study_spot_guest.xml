@@ -150,4 +150,32 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
          android:textColor="#FEFEFE"
          android:textAllCaps="true"
          android:fontFamily="@font/mochiypoponeregular"></TextView>
+
+     <Button
+         android:id="@+id/login"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:padding="10dp"
+         android:textColor="#ffffff"
+         android:bottomRightRadius="10dp"
+         android:bottomLeftRadius="10dp"
+         android:topLeftRadius="10dp"
+         android:topRightRadius="10dp"
+         android:layout_marginTop="770dp"
+         android:layout_marginLeft="20dp"
+         android:text="Login" />
+
+     <Button
+         android:id="@+id/mapBtn"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:padding="10dp"
+         android:textColor="#ffffff"
+         android:bottomRightRadius="10dp"
+         android:bottomLeftRadius="10dp"
+         android:topLeftRadius="10dp"
+         android:topRightRadius="10dp"
+         android:layout_marginTop="770dp"
+         android:layout_marginLeft="330dp"
+         android:text="Map" />
 </RelativeLayout>

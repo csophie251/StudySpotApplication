@@ -6,6 +6,8 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -25,15 +27,15 @@ public class GuestMapsActivity extends FragmentActivity implements OnMapReadyCal
     private HashMap<String, StudySpot> names_to_spots;
 
     private ArrayList<StudySpot> generateStudySpots() {
-//        ArrayList<StudySpot> cur_spots = new ArrayList<StudySpot>();
-//        StudySpot leavey = new StudySpot(34.02193, -118.28277, "Leavey Library");
-//        StudySpot doheny = new StudySpot(34.02015, -118.28372, "Doheny Library");
-//        StudySpot sidney = new StudySpot(34.02235, -118.28512, "Sydney Harman");
-//        cur_spots.add(leavey);
-//        cur_spots.add(doheny);
-//        cur_spots.add(sidney);
-//        return cur_spots;
-        return Util.retrieveAllPages();
+        ArrayList<StudySpot> cur_spots = new ArrayList<StudySpot>();
+        StudySpot leavey = new StudySpot(34.02193, -118.28277, "Leavey Library");
+        StudySpot doheny = new StudySpot(34.02015, -118.28372, "Doheny Library");
+        StudySpot sidney = new StudySpot(34.02235, -118.28512, "Sydney Harman");
+        cur_spots.add(leavey);
+        cur_spots.add(doheny);
+        cur_spots.add(sidney);
+        return cur_spots;
+//        return Util.retrieveAllPages();
     }
 
     private void place_markers() {
@@ -57,6 +59,15 @@ public class GuestMapsActivity extends FragmentActivity implements OnMapReadyCal
         // Synchronize on study spots arraylist?
         mapFragment.getMapAsync(this);
 
+        Button mButton = findViewById(R.id.login);
+        mButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                Intent myIntent = new Intent(GuestMapsActivity.this, LoginPageActivity.class);
+                startActivity(myIntent);
+            }
+        });
     }
 
     @SuppressLint("PotentialBehaviorOverride")

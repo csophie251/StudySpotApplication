@@ -39,15 +39,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
     private ArrayList<StudySpot> generateStudySpots() {
-//        ArrayList<StudySpot> cur_spots = new ArrayList<StudySpot>();
-//        StudySpot leavey = new StudySpot(34.02193, -118.28277, "Leavey Library");
-//        StudySpot doheny = new StudySpot(34.02015, -118.28372, "Doheny Library");
-//        StudySpot sidney = new StudySpot(34.02235, -118.28512, "Sydney Harman");
-//        cur_spots.add(leavey);
-//        cur_spots.add(doheny);
-//        cur_spots.add(sidney);
-//        return cur_spots;
-        return Util.retrieveAllPages();
+        ArrayList<StudySpot> cur_spots = new ArrayList<StudySpot>();
+        StudySpot leavey = new StudySpot(34.02193, -118.28277, "Leavey Library");
+        StudySpot doheny = new StudySpot(34.02015, -118.28372, "Doheny Library");
+        StudySpot sidney = new StudySpot(34.02235, -118.28512, "Sydney Harman");
+        cur_spots.add(leavey);
+        cur_spots.add(doheny);
+        cur_spots.add(sidney);
+        return cur_spots;
+//        return Util.retrieveAllPages();
     }
 
     private void place_markers() {
@@ -88,6 +88,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
         this.spots = generateStudySpots();
+
+        Button mButton = findViewById(R.id.logout);
+        mButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                Intent myIntent = new Intent(MapsActivity.this, LoginPageActivity.class);
+                startActivity(myIntent);
+            }
+        });
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         // Synchronize on study spots arraylist?

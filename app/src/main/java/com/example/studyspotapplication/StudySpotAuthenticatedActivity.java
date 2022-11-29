@@ -5,6 +5,8 @@ import static java.lang.Float.parseFloat;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -26,6 +28,25 @@ public class StudySpotAuthenticatedActivity extends AppCompatActivity {
         String studySpotTitle = intent.getStringExtra("name");
         Log.d("myTag", studySpotTitle);
         // start new thread getting data with title
+
+        Button mButton = findViewById(R.id.logout);
+        mButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                Intent myIntent = new Intent(StudySpotAuthenticatedActivity.this, LoginPageActivity.class);
+                startActivity(myIntent);
+            }
+        });
+        Button mButton2 = findViewById(R.id.mapBtn);
+        mButton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                Intent myIntent = new Intent(StudySpotAuthenticatedActivity.this, MapsActivity.class);
+                startActivity(myIntent);
+            }
+        });
 
         try {
             String jsonString = "{"
