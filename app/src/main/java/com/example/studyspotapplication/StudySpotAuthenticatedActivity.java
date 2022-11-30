@@ -33,13 +33,13 @@ public class StudySpotAuthenticatedActivity extends AppCompatActivity {
         studySpotName = intent.getStringExtra("name");
         Log.d("Study Spot Name: ", studySpotName);
 
-//        String studySpotRating = "4.0";
-//        String studySpotAddress ="test address";
-//        String studySpotOpenTimes = "test open time";
-//        Log.d("Study Spot Information:", (studySpotRating + ", " +studySpotAddress  + ", " + studySpotOpenTimes));
+       String studySpotRating = "4.0";
+//        String studySpotAddress ="test address"; //remove later
+//        String studySpotOpenTimes = "test open time";  //remove later
+//        Log.d("Study Spot Information:", (studySpotRating + ", " +studySpotAddress  + ", " + studySpotOpenTimes)); // remove
 
         // Get data from database
-        String studySpotRating = Util.retrieveStudySpotRating(studySpotName).toString();
+        // String studySpotRating = Util.retrieveStudySpotRating(studySpotName).toString(); // uncomment out later
         String studySpotAddress = Util.retrieveStudySpotAddress(studySpotName);
         String studySpotOpenTimes = Util.retrieveStudySpotTimesOpen(studySpotName);
         Log.d("Study Spot Information:", (studySpotRating + ", " +studySpotAddress  + ", " + studySpotOpenTimes));
@@ -83,7 +83,7 @@ public class StudySpotAuthenticatedActivity extends AppCompatActivity {
         reviewsList.add("helo !"); //comment out later
         reviewsList.add("etsgl!"); //comment out later
 
-        //reviewsList = Util.retrieveReviews(studySpotName);
+        //reviewsList = Util.retrieveReviews(studySpotName); //uncomment out later
         final TextView studySpotReviews= (TextView) findViewById(R.id.PlaceReviewsHere);
         String text = "";
         for(int i =0; i < (int) reviewsList.size(); i++){
@@ -92,7 +92,6 @@ public class StudySpotAuthenticatedActivity extends AppCompatActivity {
         }
         studySpotReviews.setText(text);
 
-        //Images TODO
         final ImageView studySpotImage = (ImageView)  findViewById(R.id.imageView);
         int image = Images.getImage(studySpotName);
         studySpotImage.setImageResource(image);
@@ -134,25 +133,24 @@ public class StudySpotAuthenticatedActivity extends AppCompatActivity {
         for (String element : selectedTags) {
             Log.d("element", element);
         }
-//        boolean isSaved = Util.sendTags(studySpotName, selectedTags);
-//        if (isSaved) {
-//            Log.d("true", "tags were successfully added to database");
-//        } else {
-//            Log.d("false", "some error occurred while adding tags to database");
-//        }
+        boolean isSaved = true;
+        //boolean isSaved = Util.sendTags(studySpotName, selectedTags); // uncomment out later
+        if (isSaved) {
+            Log.d("true", "tags were successfully added to database");
+        } else {
+            Log.d("false", "some error occurred while adding tags to database");
+        }
     }
     public void saveReview(android.view.View view){
         final EditText studySpotNewReview = (EditText) findViewById(R.id.WriteAReviewText);
         String newReview = studySpotNewReview.getText().toString();
         Log.d("New Review", newReview);
-//        boolean sendReview = Util.sendReview(studySpotName, newReview);
-//        if (sendReview) {
-//            Log.d("true", "new review was successfully added to database");
-//        } else {
-//            Log.d("false", "some error occurred while adding review to database");
-//        }
-    }
-    public void setImage(){
-
+        boolean sendReview = true; //remove later
+        //boolean sendReview = Util.sendReview(studySpotName, newReview); //uncomment out later
+        if (sendReview) {
+            Log.d("true", "new review was successfully added to database");
+        } else {
+            Log.d("false", "some error occurred while adding review to database");
+        }
     }
 }
