@@ -50,7 +50,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         leaveyData.outlets = true;
 
         StudySpotData dohenyData = new StudySpotData();
-        dohenyData.name = "Doheny Library";
+        dohenyData.name = "Doheny Memorial Library";
         dohenyData.location = "testlocation";
         dohenyData.latitude =34.02015;
         dohenyData.longitude =-118.28372;

@@ -32,7 +32,7 @@ public class ServerThread extends Thread {
 
         try {
             //TODO: input IP address here:
-            URL url = new URL("http://192.168.1.171:8080/StudySpotServer/FormServlet");
+            URL url = new URL("https://mythic-tenure-340409.wn.r.appspot.com/form");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("POST");
             conn.setRequestProperty("Content-Type", "application/json");

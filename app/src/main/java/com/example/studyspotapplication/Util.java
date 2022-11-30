@@ -11,9 +11,7 @@ public class Util {
 
     public static String sendMessage(String input) {
         ServerThread st = new ServerThread(input);
-        while (!st.done) {
-            Log.d("myTag", "");
-        }
+        while (!st.done) {}
         Log.d("myTag", st.output);
         return st.output;
     }
@@ -71,9 +69,9 @@ public class Util {
         Gson gson = new Gson();
         return gson.fromJson(ss, double.class);
     }
-    public static Double sendRating(String name, Double rating) {
+    public static Double sendRating(String username, String name, Double rating) {
         // TODO sends new user rating
-        // updates average rating in databse,
+        // updates average rating in database,
         // sends back updated average rating
         return 0.0;
     }

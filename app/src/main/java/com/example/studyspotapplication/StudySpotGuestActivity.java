@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class StudySpotGuestActivity extends AppCompatActivity {
     public String studySpotName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

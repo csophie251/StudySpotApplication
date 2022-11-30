@@ -24,6 +24,7 @@ public class StudySpotAuthenticatedActivity extends AppCompatActivity {
     CheckBox busy;
     CheckBox outlets;
     CheckBox quiet;
+    public String username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +32,7 @@ public class StudySpotAuthenticatedActivity extends AppCompatActivity {
         setContentView(R.layout.activity_study_spot_authenticated);
         Intent intent = getIntent();
         studySpotName = intent.getStringExtra("name");
+        this.username = intent.getStringExtra("username");
         Log.d("Study Spot Name: ", studySpotName);
 
        String studySpotRating = "4.0";
@@ -40,6 +42,11 @@ public class StudySpotAuthenticatedActivity extends AppCompatActivity {
 
         // Get data from database
         // String studySpotRating = Util.retrieveStudySpotRating(studySpotName).toString(); // uncomment out later
+        if(Util.retrieveStudySpotRating(studySpotName).toString() == null){
+            studySpotRating = "No rating.";
+        } else {
+            studySpotRating = Util.retrieveStudySpotRating(studySpotName).toString();
+        }
         String studySpotAddress = Util.retrieveStudySpotAddress(studySpotName);
         String studySpotOpenTimes = Util.retrieveStudySpotTimesOpen(studySpotName);
         Log.d("Study Spot Information:", (studySpotRating + ", " +studySpotAddress  + ", " + studySpotOpenTimes));
@@ -63,27 +70,27 @@ public class StudySpotAuthenticatedActivity extends AppCompatActivity {
         Log.d("Tags:", "initialize tags lit");
 
         //Reviews
-        reviewsList = new ArrayList<String>();
-        reviewsList.add("Awesome spot!"); //comment out later
-        reviewsList.add("pretty!"); //comment out later
-        reviewsList.add("ahve fun!"); //comment out later
-        reviewsList.add("great!"); //comment out later
-        reviewsList.add("gerat 3!"); //comment out later
-        reviewsList.add("testing!"); //comment out later
-        reviewsList.add("yay!"); //comment out later
-        reviewsList.add("fun!"); //comment out later
-        reviewsList.add("aws!"); //comment out later
-        reviewsList.add("best!"); //comment out later
-        reviewsList.add("gerat hob !"); //comment out later
-        reviewsList.add("sdf!"); //comment out later
-        reviewsList.add("fs!"); //comment out later
-        reviewsList.add("sdf!"); //comment out later
-        reviewsList.add("prettdsfy!"); //comment out later
-        reviewsList.add("sdf!"); //comment out later
-        reviewsList.add("helo !"); //comment out later
-        reviewsList.add("etsgl!"); //comment out later
+//        reviewsList = new ArrayList<String>();
+//        reviewsList.add("Awesome spot!"); //comment out later
+//        reviewsList.add("pretty!"); //comment out later
+//        reviewsList.add("ahve fun!"); //comment out later
+//        reviewsList.add("great!"); //comment out later
+//        reviewsList.add("gerat 3!"); //comment out later
+//        reviewsList.add("testing!"); //comment out later
+//        reviewsList.add("yay!"); //comment out later
+//        reviewsList.add("fun!"); //comment out later
+//        reviewsList.add("aws!"); //comment out later
+//        reviewsList.add("best!"); //comment out later
+//        reviewsList.add("gerat hob !"); //comment out later
+//        reviewsList.add("sdf!"); //comment out later
+//        reviewsList.add("fs!"); //comment out later
+//        reviewsList.add("sdf!"); //comment out later
+//        reviewsList.add("prettdsfy!"); //comment out later
+//        reviewsList.add("sdf!"); //comment out later
+//        reviewsList.add("helo !"); //comment out later
+//        reviewsList.add("etsgl!"); //comment out later
 
-        //reviewsList = Util.retrieveReviews(studySpotName); //uncomment out later
+        reviewsList = Util.retrieveReviews(studySpotName); //uncomment out later
         final TextView studySpotReviews= (TextView) findViewById(R.id.PlaceReviewsHere);
         String text = "";
         for(int i =0; i < (int) reviewsList.size(); i++){
@@ -111,7 +118,7 @@ public class StudySpotAuthenticatedActivity extends AppCompatActivity {
         Float rating =  ratingBar.getRating();
         Double userRating = parseDouble(rating.toString());
         Log.d("User Rating: ",  userRating.toString());
-        Double newRating = Util.sendRating(studySpotName, userRating);
+        Double newRating = Util.sendRating(this.username, studySpotName, userRating);
         Log.d("Updated Rating: ",  newRating.toString());
         final TextView studySpotRating = (TextView) findViewById(R.id.StudySpotRating);
         studySpotRating.setText(newRating.toString());
@@ -133,8 +140,8 @@ public class StudySpotAuthenticatedActivity extends AppCompatActivity {
         for (String element : selectedTags) {
             Log.d("element", element);
         }
-        boolean isSaved = true;
-        //boolean isSaved = Util.sendTags(studySpotName, selectedTags); // uncomment out later
+//        boolean isSaved = true;
+        boolean isSaved = Util.sendTags(studySpotName, selectedTags); // uncomment out later
         if (isSaved) {
             Log.d("true", "tags were successfully added to database");
         } else {
@@ -145,8 +152,8 @@ public class StudySpotAuthenticatedActivity extends AppCompatActivity {
         final EditText studySpotNewReview = (EditText) findViewById(R.id.WriteAReviewText);
         String newReview = studySpotNewReview.getText().toString();
         Log.d("New Review", newReview);
-        boolean sendReview = true; //remove later
-        //boolean sendReview = Util.sendReview(studySpotName, newReview); //uncomment out later
+//        boolean sendReview = true; //remove later
+        boolean sendReview = Util.sendReview(studySpotName, newReview); //uncomment out later
         if (sendReview) {
             Log.d("true", "new review was successfully added to database");
         } else {

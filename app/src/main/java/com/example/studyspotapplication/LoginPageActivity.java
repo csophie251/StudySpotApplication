@@ -86,8 +86,8 @@ public class LoginPageActivity extends AppCompatActivity {
     public boolean userValidation(String username, String password){
         //for the database retrieval
        // https://www.tutorialspoint.com/json/json_java_example.htm
-        Util util = new Util();
-        return util.validateUser(username, password);
+        Boolean b = Util.validateUser(username, password);
+        return b;
 
 //        try{
 //            JSONObject json = new JSONObject();
