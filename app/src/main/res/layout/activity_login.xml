@@ -26,28 +26,28 @@
         tools:layout_editor_absoluteX="111dp"
         tools:layout_editor_absoluteY="89dp" />
 
-        <LinearLayout
-            android:id="@+id/informationBlock"
-            android:layout_width="1030px"
-            android:layout_height="1000px"
-            android:layout_marginLeft = "24px"
-            android:layout_marginTop = "344px"
-            android:background="@drawable/rounded_edges"
-            android:backgroundTint="#D0CBFF"
-            android:radius="111dp">
+    <LinearLayout
+        android:id="@+id/informationBlock"
+        android:layout_width="1030px"
+        android:layout_height="1000px"
+        android:layout_marginLeft="24px"
+        android:layout_marginTop="344px"
+        android:background="@drawable/rounded_edges"
+        android:backgroundTint="#D0CBFF"
+        android:radius="111dp">
 
-            <TextView
-                android:id="@+id/welcome"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="25dp"
-                android:fontFamily="@font/miltoniantattooregular"
-                android:gravity="center"
-                android:text="Welcome Back!"
-                android:textColor="#FFFFFF"
-                android:textSize="72px"
-                android:textStyle="bold" />
-        </LinearLayout>
+        <TextView
+            android:id="@+id/welcome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="25dp"
+            android:fontFamily="@font/miltoniantattooregular"
+            android:gravity="center"
+            android:text="Welcome Back!"
+            android:textColor="#FFFFFF"
+            android:textSize="72px"
+            android:textStyle="bold" />
+    </LinearLayout>
 
 
     <TextView
@@ -79,17 +79,17 @@
 
     <Button
         android:id="@+id/btnLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/continueAsGuest"
+        android:layout_width="712px"
+        android:layout_height="130px"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="365dp"
-        android:layout_marginBottom="110dp"
+        android:layout_marginLeft="200px"
+        android:layout_marginTop="500px"
+        android:layout_marginBottom="250dp"
         android:background="@drawable/dark_blue_oval"
         android:fontFamily="@font/mochiypoponeregular"
         android:onClick="goToLoginPage"
-        android:padding="8dp"
+        android:padding="5dp"
         android:text=" LogIn  "
         android:textAllCaps="true"
         android:textColor="#FEFEFE"

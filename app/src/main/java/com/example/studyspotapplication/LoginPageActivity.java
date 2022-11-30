@@ -1,5 +1,6 @@
 package com.example.studyspotapplication;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -82,20 +83,27 @@ public class LoginPageActivity extends AppCompatActivity {
         });
     }
     //VALIDATING USERNAME INPUT AND PASSWORD --> need to change to retrieve from database of user info
-    private boolean userValidation(String username, String password){
+    public boolean userValidation(String username, String password){
         //for the database retrieval
        // https://www.tutorialspoint.com/json/json_java_example.htm
-        try{
-            JSONObject json = new JSONObject();
-            json.put("username", username);
-            json.put("password", password);
+        Util util = new Util();
+        return util.validateUser(username, password);
 
-            String jsonStr = json.toString();
-            //sendMessage(jsonStr);
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return true;
+//        try{
+//            JSONObject json = new JSONObject();
+//            json.put("username", username);
+//            json.put("password", password);
+//
+//            String jsonStr = json.toString();
+//            String jsonResultStr = Util.sendMessage(jsonStr); //sending to server and retrieving result as a string
+//            //assuming we are receiving a JSON object from the server
+//            JSONObject jsonResult = new JSONObject(jsonResultStr);
+//            if(jsonResult.getString("valid") == "1"){
+//                return true;
+//            }
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//        return false;
     }
 }
