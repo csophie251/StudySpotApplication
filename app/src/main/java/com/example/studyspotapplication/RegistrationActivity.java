@@ -59,7 +59,7 @@ public class RegistrationActivity extends AppCompatActivity {
                     Toast.makeText(RegistrationActivity.this, "Please enter an email that is not associated with an already registered user!", Toast.LENGTH_SHORT).show();
                 }
 
-                if(passWord.length() < 8 || passWord.length() > 32){
+                if(passWord.length() > 32){
                     reDirect = false;
                     Toast.makeText(RegistrationActivity.this, "Password entered was in the wrong format!", Toast.LENGTH_SHORT).show();
                 }

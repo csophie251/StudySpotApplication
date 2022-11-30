@@ -9,24 +9,24 @@ public class RegistrationActivityTest {
     @Test
 
     public void inputAlreadyInDatabase(){
-        String firstName = "Suna";
-        String lastName = "Yimer";
+        String firstName = "Testing";
+        String lastName = "Testing";
         String email = "admin@usc.edu";
         String password = "123456";
 
-        LoginPageActivity testClass = new LoginPageActivity();
-        Boolean result = testClass.userValidation(email, password);
+        RegistrationActivity testClass = new RegistrationActivity();
+        Boolean result = testClass.userValidation(firstName, lastName, email, password);
         assertEquals(false, result);
     }
 
     public void newValidInput(){
-        String firstName = "Suna";
-        String lastName = "Yimer";
-        String email = "admin@usc.edu";
-        String password = "password";
+        String firstName = "Testing";
+        String lastName = "Testing";
+        String email = "newemail@usc.edu";
+        String password = "123456";
 
-        LoginPageActivity testClass = new LoginPageActivity();
-        Boolean result = testClass.userValidation(email, password);
+        RegistrationActivity testClass = new RegistrationActivity();
+        Boolean result = testClass.userValidation(firstName, lastName, email, password);
         assertEquals(true, result);
     }
 }
