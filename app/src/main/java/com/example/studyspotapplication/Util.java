@@ -1,5 +1,6 @@
 package com.example.studyspotapplication;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
