@@ -35,6 +35,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private AutoCompleteTextView autocomplete_searchField;
     private ArrayList<String> places;
     private ArrayList<StudySpot> spots;
+    public String username;
+
 
 
     private ArrayList<StudySpot> generateStudySpots() {
@@ -214,10 +216,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public void onInfoWindowClick(Marker marker) {
                 //switch page to studyspot page
                 Intent myIntent = new Intent(MapsActivity.this, StudySpotAuthenticatedActivity.class);
+                username = myIntent.getStringExtra("username");
                 myIntent.putExtra("name", marker.getTitle());
+                myIntent.putExtra("username", username);
                 startActivity(myIntent);
-
-
             }
         });
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(34.0224, -118.2851), 15));
