@@ -38,15 +38,24 @@ public class StudySpotAuthenticatedActivity extends AppCompatActivity {
         String studySpotRating = "No Rating";
         String studySpotAddress = "No Address";
         String studySpotOpenTimes = "No Openings";
-        if(Util.retrieveStudySpotRating(studySpotName) != null){
-            studySpotRating = Util.retrieveStudySpotRating(studySpotName).toString(); // uncomment out later
-        }
+//      if(Util.retrieveStudySpotRating(studySpotName) != null){
+//          studySpotRating = Util.retrieveStudySpotRating(studySpotName).toString();
+//      }
+//      else{
+//          Log.d("null:", "null rating");
+//      }
         if(Util.retrieveStudySpotAddress(studySpotName) != null){
-            studySpotAddress = Util.retrieveStudySpotAddress(studySpotName).toString(); // uncomment out later
+            studySpotAddress = Util.retrieveStudySpotAddress(studySpotName).toString();
         }
-        if(Util.retrieveStudySpotTimesOpen(studySpotName) != null){
-            studySpotOpenTimes = Util.retrieveStudySpotTimesOpen(studySpotName).toString(); // uncomment out later
+        else{
+            Log.d("null:", "null address");
         }
+//        if(Util.retrieveStudySpotTimesOpen(studySpotName) != null){
+//           studySpotOpenTimes = Util.retrieveStudySpotTimesOpen(studySpotName).toString();
+//        }
+//        else{
+//          Log.d("null:", "null times open");
+//        }
         Log.d("Study Spot Information:", (studySpotRating + ", " +studySpotAddress  + ", " + studySpotOpenTimes));
 
         //Set text
@@ -66,12 +75,15 @@ public class StudySpotAuthenticatedActivity extends AppCompatActivity {
         outlets = findViewById(R.id.OutletTag);
         quiet = findViewById(R.id.QuietTag);
 
-        if(Util.retrieveReviews(studySpotName) == null || Util.retrieveReviews(studySpotName).isEmpty()){
-            reviewsList.add("No Reviews Yet!");
-        }
-        else{
-            reviewsList = Util.retrieveReviews(studySpotName);
-        }
+        reviewsList = new ArrayList<String>();
+
+//        if(Util.retrieveReviews(studySpotName) == null || Util.retrieveReviews(studySpotName).isEmpty()){
+//            reviewsList.add("No Reviews Yet!");
+//        }
+//        else{
+//            reviewsList = Util.retrieveReviews(studySpotName);
+//        }
+
         final TextView studySpotReviews= findViewById(R.id.PlaceReviewsHere);
         String text = "";
         for(int i =0; i < (int) reviewsList.size(); i++){
@@ -104,7 +116,7 @@ public class StudySpotAuthenticatedActivity extends AppCompatActivity {
         });
     }
 
-    public void saveRating() {
+    public void saveRating(android.view.View view) {
         final RatingBar ratingBar = findViewById(R.id.UserRating);
         Float rating =  ratingBar.getRating();
         Double userRating = parseDouble(rating.toString());
@@ -114,7 +126,7 @@ public class StudySpotAuthenticatedActivity extends AppCompatActivity {
         final TextView studySpotRating = findViewById(R.id.StudySpotRating);
         studySpotRating.setText(newRating.toString());
     }
-    public ArrayList<String> saveTags()  {
+    public ArrayList<String> saveTags(android.view.View view)  {
         ArrayList<String> selectedTags = new ArrayList<String>();
         if (busy.isChecked()) {
             selectedTags.add("Busy");
@@ -139,7 +151,7 @@ public class StudySpotAuthenticatedActivity extends AppCompatActivity {
         }
         return selectedTags;
     }
-    public void saveReview(){
+    public void saveReview(android.view.View view){
         final EditText studySpotNewReview = findViewById(R.id.WriteAReviewText);
         String newReview = studySpotNewReview.getText().toString();
         Log.d("New Review", newReview);

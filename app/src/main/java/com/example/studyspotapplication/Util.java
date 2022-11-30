@@ -38,7 +38,7 @@ public class Util {
         StudySpot ss = retrieveStudySpot(name);
         if (ss == null) {
             // handle error!
-            return "null";
+            return null;
         }
         return ss.location;
     }
