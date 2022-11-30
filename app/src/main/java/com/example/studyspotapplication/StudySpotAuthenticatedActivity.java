@@ -1,6 +1,6 @@
 package com.example.studyspotapplication;
 
-import static java.lang.Float.parseFloat;
+import static java.lang.Double.parseDouble;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,39 +13,39 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 public class StudySpotAuthenticatedActivity extends AppCompatActivity {
-    public Float originalRating;
-    public JSONArray reviewsArray;
+    public String studySpotName;
+    public ArrayList<String> selectedTags;
+    public ArrayList<String> reviewsList;
+    public String username;
+    CheckBox busy;
+    CheckBox outlets;
+    CheckBox quiet;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_study_spot_authenticated);
         Intent intent = getIntent();
+
         studySpotName = intent.getStringExtra("name");
+        username = intent.getStringExtra("username");
         Log.d("Study Spot Name: ", studySpotName);
 
-        String studySpotRating = "4.0";
-        // String studySpotRating = Util.retrieveStudySpotRating(studySpotName).toString(); // uncomment out later
-        String studySpotAddress ="test address"; //remove later
-        String studySpotOpenTimes = "test open time";  //remove later
-        if(Util.retrieveStudySpotAddress(studySpotName).equalsIgnoreCase(null)){
-            Log.d("Address Null:", "address is null");
+        String studySpotRating = "No Rating";
+        String studySpotAddress = "No Address";
+        String studySpotOpenTimes = "No Openings";
+        if(Util.retrieveStudySpotRating(studySpotName) != null){
+            studySpotRating = Util.retrieveStudySpotRating(studySpotName).toString(); // uncomment out later
         }
-        else{
-            studySpotAddress = Util.retrieveStudySpotAddress(studySpotName);
+        if(Util.retrieveStudySpotAddress(studySpotName) != null){
+            studySpotAddress = Util.retrieveStudySpotAddress(studySpotName).toString(); // uncomment out later
         }
-        if(Util.retrieveStudySpotTimesOpen(studySpotName) == null){
-            Log.d("Open Times is Null:", "open times is null");
-        }
-        else{
-            studySpotOpenTimes = Util.retrieveStudySpotTimesOpen(studySpotName);
+        if(Util.retrieveStudySpotTimesOpen(studySpotName) != null){
+            studySpotOpenTimes = Util.retrieveStudySpotTimesOpen(studySpotName).toString(); // uncomment out later
         }
         Log.d("Study Spot Information:", (studySpotRating + ", " +studySpotAddress  + ", " + studySpotOpenTimes));
 
@@ -65,30 +65,13 @@ public class StudySpotAuthenticatedActivity extends AppCompatActivity {
         busy = findViewById(R.id.BusyTag);
         outlets = findViewById(R.id.OutletTag);
         quiet = findViewById(R.id.QuietTag);
-        Log.d("Tags:", "initialize tags lit");
 
-        //Reviews
-//        reviewsList = new ArrayList<String>();
-//        reviewsList.add("Awesome spot!"); //comment out later
-//        reviewsList.add("pretty!"); //comment out later
-//        reviewsList.add("ahve fun!"); //comment out later
-//        reviewsList.add("great!"); //comment out later
-//        reviewsList.add("gerat 3!"); //comment out later
-//        reviewsList.add("testing!"); //comment out later
-//        reviewsList.add("yay!"); //comment out later
-//        reviewsList.add("fun!"); //comment out later
-//        reviewsList.add("aws!"); //comment out later
-//        reviewsList.add("best!"); //comment out later
-//        reviewsList.add("gerat hob !"); //comment out later
-//        reviewsList.add("sdf!"); //comment out later
-//        reviewsList.add("fs!"); //comment out later
-//        reviewsList.add("sdf!"); //comment out later
-//        reviewsList.add("prettdsfy!"); //comment out later
-//        reviewsList.add("sdf!"); //comment out later
-//        reviewsList.add("helo !"); //comment out later
-//        reviewsList.add("etsgl!"); //comment out later
-
-        reviewsList = Util.retrieveReviews(studySpotName); //uncomment out later
+        if(Util.retrieveReviews(studySpotName) == null || Util.retrieveReviews(studySpotName).isEmpty()){
+            reviewsList.add("No Reviews Yet!");
+        }
+        else{
+            reviewsList = Util.retrieveReviews(studySpotName);
+        }
         final TextView studySpotReviews= findViewById(R.id.PlaceReviewsHere);
         String text = "";
         for(int i =0; i < (int) reviewsList.size(); i++){
@@ -126,7 +109,7 @@ public class StudySpotAuthenticatedActivity extends AppCompatActivity {
         Float rating =  ratingBar.getRating();
         Double userRating = parseDouble(rating.toString());
         Log.d("User Rating: ",  userRating.toString());
-        Double newRating = Util.sendRating(studySpotName, userRating);
+        Double newRating = Util.sendRating(username, studySpotName, userRating);
         Log.d("Updated Rating: ",  newRating.toString());
         final TextView studySpotRating = findViewById(R.id.StudySpotRating);
         studySpotRating.setText(newRating.toString());
@@ -148,8 +131,7 @@ public class StudySpotAuthenticatedActivity extends AppCompatActivity {
         for (String element : selectedTags) {
             Log.d("element", element);
         }
-        //boolean isSaved = true; //remove
-        boolean isSaved = Util.sendTags(studySpotName, selectedTags); // uncomment out later
+        boolean isSaved = Util.sendTags(studySpotName, selectedTags);
         if (isSaved) {
             Log.d("true", "tags were successfully added to database");
         } else {
@@ -161,8 +143,7 @@ public class StudySpotAuthenticatedActivity extends AppCompatActivity {
         final EditText studySpotNewReview = findViewById(R.id.WriteAReviewText);
         String newReview = studySpotNewReview.getText().toString();
         Log.d("New Review", newReview);
-        //boolean sendReview = true; //remove later
-        boolean sendReview = Util.sendReview(studySpotName, newReview); //uncomment out later
+        boolean sendReview = Util.sendReview(studySpotName, newReview);
         if (sendReview) {
             Log.d("true", "new review was successfully added to database");
         } else {

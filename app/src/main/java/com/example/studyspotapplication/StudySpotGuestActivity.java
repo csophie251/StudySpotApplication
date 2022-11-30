@@ -21,14 +21,18 @@ public class StudySpotGuestActivity extends AppCompatActivity {
         studySpotName = intent.getStringExtra("name");
         Log.d("Study Spot Name: ", studySpotName);
 
-        String studySpotRating = "4.0";
-//      String studySpotAddress ="test address";
-//      String studySpotOpenTimes = "test open time";
-
-        // Get data from database
-//      String studySpotRating = Util.retrieveStudySpotRating(studySpotName).toString();
-        String studySpotAddress = Util.retrieveStudySpotAddress(studySpotName);
-        String studySpotOpenTimes = Util.retrieveStudySpotTimesOpen(studySpotName);
+        String studySpotRating = "No Rating";
+        String studySpotAddress = "No Address";
+        String studySpotOpenTimes = "No Openings";
+        if(Util.retrieveStudySpotRating(studySpotName) != null){
+            studySpotRating = Util.retrieveStudySpotRating(studySpotName).toString(); // uncomment out later
+        }
+        if(Util.retrieveStudySpotAddress(studySpotName) != null){
+            studySpotAddress = Util.retrieveStudySpotAddress(studySpotName).toString(); // uncomment out later
+        }
+        if(Util.retrieveStudySpotTimesOpen(studySpotName) != null){
+            studySpotOpenTimes = Util.retrieveStudySpotTimesOpen(studySpotName).toString(); // uncomment out later
+        }
         Log.d("Study Spot Information:", (studySpotRating + ", " +studySpotAddress  + ", " + studySpotOpenTimes));
 
         //Set text
