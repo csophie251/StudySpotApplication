@@ -80,6 +80,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         cur_spots.add(doheny);
         cur_spots.add(sidney);
         return cur_spots;
+//        return Util.retrieveAllPages();
     }
 
     private void place_markers() {
@@ -108,10 +109,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     public void sendFilterValues(List<Boolean> stuff) {
+        // remove all previous markers
         for (int i = 0; i < stuff.size(); ++i) {
             filter_status.set(i,stuff.get(i));
         }
         // update map to show markers that belong to filters
+        for (int i = 0; i < spots.size(); ++i) {
+            // match bool values of filters
+            // add marker if bool values are added properly
+        }
     }
 
     @Override
@@ -119,6 +125,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
         this.spots = generateStudySpots();
+
+        Button mButton = findViewById(R.id.logout);
+        mButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                Intent myIntent = new Intent(MapsActivity.this, LoginPageActivity.class);
+                startActivity(myIntent);
+            }
+        });
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         // Synchronize on study spots arraylist?
@@ -178,7 +194,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
         mapFragment.getMapAsync(this);
-
     }
 
     @SuppressLint("PotentialBehaviorOverride")
@@ -190,7 +205,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public boolean onMarkerClick(Marker marker) {
                 marker.showInfoWindow();
-                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(marker.getPosition(), 15));
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(marker.getPosition(), 18));
                 return true;
             }
         });
@@ -198,8 +213,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onInfoWindowClick(Marker marker) {
                 //switch page to studyspot page
-                // must have an if condition checking if the user is authenticated, must have an authenticated flag
-                //startActivity(new Intent(MainActivity.this, MyOtherActivity.class));
                 Intent myIntent = new Intent(MapsActivity.this, StudySpotAuthenticatedActivity.class);
                 myIntent.putExtra("name", marker.getTitle());
                 startActivity(myIntent);
