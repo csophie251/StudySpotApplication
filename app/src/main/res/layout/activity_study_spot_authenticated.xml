@@ -48,11 +48,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:cardCornerRadius="37dp">
+
             <ImageView
                 android:id="@+id/imageView"
+                android:layout_width="331dp"
+                android:layout_height="match_parent"
                 android:adjustViewBounds="true"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
                 android:scaleType="fitXY"
                 app:srcCompat="@drawable/annenbergwallishall" />
 
@@ -293,4 +294,31 @@
         android:textAllCaps="false"
         android:textColor="#FEFEFE"
         android:textSize="11dp"></Button>
+
+    <Button
+        android:id="@+id/logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#ECEFC2"
+        android:fontFamily="@font/mochiypoponeregular"
+        android:padding="0dp"
+        android:text="Log-out"
+        android:textAllCaps="false"
+        android:layout_marginLeft="305dp"
+        android:textColor="#6A62B7"   />
+
+    <Button
+        android:id="@+id/mapBtn"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:padding="0dp"
+        android:textColor="#6A62B7"
+        android:fontFamily="@font/mochiypoponeregular"
+        android:textAllCaps="false"
+        android:bottomRightRadius="10dp"
+        android:bottomLeftRadius="10dp"
+        android:topLeftRadius="10dp"
+        android:topRightRadius="10dp"
+        android:backgroundTint="#ECEFC2"
+        android:text="Map" />
 </RelativeLayout>
