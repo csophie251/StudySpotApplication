@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F8FCE1"
+    tools:context=".StudySpotAuthenticatedActivity">
+
+    <TextView android:id="@+id/TitleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="StudyBuddy"
+        android:textSize="30sp"
+        android:textColor="#6A62B7"
+        android:textStyle="bold"
+        android:fontFamily="@font/miltoniantattooregular" />
+    <TextView android:id="@+id/Profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="200dp"
+        android:layout_marginTop="130dp"
+        android:text="Profile"
+        android:textSize="20dp"
+        android:textColor="#FEFEFE"
+        android:visibility="visible"
+        android:fontFamily="@font/mochiypoponeregular"></TextView>
+
+
+    <LinearLayout
+        android:layout_width="450dp"
+        android:layout_height="770dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="80dp"
+        android:background="@drawable/rounded_edges"
+        android:backgroundTint="#CBDAFF"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            app:srcCompat="@drawable/profilepic" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="356dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="380dp"
+        android:layout_marginEnd="0dp"
+        android:background="@drawable/rounded_edges"
+        android:backgroundTint="#69ADFD"></LinearLayout>
+    <EditText
+        android:id="@+id/ProfileEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="380dp"
+        android:background="@null"
+        android:fontFamily="@font/mochiypoponeregular"
+        android:minHeight="48dp"
+        android:padding="8dp"
+        android:text="Email: example@gmail.com"
+        android:textColor="#FEFEFE"
+        android:textSize="15dp"></EditText>
+
+    <LinearLayout
+        android:layout_width="356dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="275dp"
+        android:layout_marginEnd="0dp"
+        android:background="@drawable/rounded_edges"
+        android:backgroundTint="#69ADFD"></LinearLayout>
+
+    <EditText
+        android:id="@+id/ProfileName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="275dp"
+        android:background="@null"
+        android:fontFamily="@font/mochiypoponeregular"
+        android:minHeight="48dp"
+        android:padding="8dp"
+        android:text="Name: Jane Doe"
+        android:textColor="#FEFEFE"
+        android:textSize="15dp"></EditText>
+
+</RelativeLayout>
