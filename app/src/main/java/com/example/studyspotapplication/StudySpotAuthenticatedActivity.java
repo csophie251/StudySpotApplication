@@ -1,6 +1,6 @@
 package com.example.studyspotapplication;
 
-import static java.lang.Double.parseDouble;
+import static java.lang.Float.parseFloat;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,19 +13,16 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.ArrayList;
-
+import java.lang.reflect.Array;
 
 public class StudySpotAuthenticatedActivity extends AppCompatActivity {
-    public String studySpotName;
-    public ArrayList<String> selectedTags;
-    public ArrayList<String> reviewsList;
-    CheckBox busy;
-    CheckBox outlets;
-    CheckBox quiet;
-
+    public Float originalRating;
+    public JSONArray reviewsArray;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

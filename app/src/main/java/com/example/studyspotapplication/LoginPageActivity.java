@@ -8,6 +8,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 //https://www.youtube.com/watch?v=LCrhddpsgKU
 import android.content.Intent;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +25,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
+import org.json.JSONObject;
+
 
 public class LoginPageActivity extends AppCompatActivity {
     //define UI elements
@@ -29,8 +35,8 @@ public class LoginPageActivity extends AppCompatActivity {
     private Button eLogin;
     private TextView eGuest;
     //temp username and password
-    private String TestUserName = "Admin";
-    private String TestPassword = "12345678";
+//    private String TestUserName = "Admin";
+//    private String TestPassword = "12345678";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,36 +64,46 @@ public class LoginPageActivity extends AppCompatActivity {
                         Toast.makeText(LoginPageActivity.this, "The Username or Password you entered was incorrect. Please try again.", Toast.LENGTH_SHORT).show();
                     }else{//user input is found in database
                         Toast.makeText(LoginPageActivity.this, "Login Successful.", Toast.LENGTH_SHORT).show();
-                        //TODO: REDIRECT TO NEW ACTIVITY [HOME PAGE]
+                        //TODO: REDIRECT TO NEW ACTIVITY [AUTHENTICATED MAP PAGE]
                         Intent intent = new Intent(LoginPageActivity.this, MapsActivity.class);
+                        intent.putExtra("username", inputName); //send the username
                         startActivity(intent);
                     }
                 }
-
             }
         });
 
         eGuest.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                //TODO: REDIRECT TO NEW ACTIVITY [HOME PAGE]
+                //TODO: REDIRECT TO NEW ACTIVITY [GUEST MAP PAGE]
+
                 Intent intent = new Intent(LoginPageActivity.this, GuestMapsActivity.class);
                 startActivity(intent);
             }
         });
     }
     //VALIDATING USERNAME INPUT AND PASSWORD --> need to change to retrieve from database of user info
-    private boolean userValidation(String username, String password){
+    public boolean userValidation(String username, String password){
         //for the database retrieval
-        ServerThread st = new ServerThread("helluar");
-        while (!st.done) {
-            Log.d("myTag", "");
-        }
-        Log.d("myTag", st.output);
+       // https://www.tutorialspoint.com/json/json_java_example.htm
+        Boolean b = Util.loginUser(username, password);
+        return b;
 
-        if(username.equals(TestUserName) && password.equals(TestPassword)){
-            return true;
-        }else{
-            return false;
-        }
+//        try{
+//            JSONObject json = new JSONObject();
+//            json.put("username", username);
+//            json.put("password", password);
+//
+//            String jsonStr = json.toString();
+//            String jsonResultStr = Util.sendMessage(jsonStr); //sending to server and retrieving result as a string
+//            //assuming we are receiving a JSON object from the server
+//            JSONObject jsonResult = new JSONObject(jsonResultStr);
+//            if(jsonResult.getString("valid") == "1"){
+//                return true;
+//            }
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//        return false;
     }
 }

@@ -11,9 +11,7 @@ public class Util {
 
     public static String sendMessage(String input) {
         ServerThread st = new ServerThread(input);
-        while (!st.done) {
-            Log.d("myTag", "");
-        }
+        while (!st.done) {}
         Log.d("myTag", st.output);
         return st.output;
     }
@@ -71,9 +69,9 @@ public class Util {
         Gson gson = new Gson();
         return gson.fromJson(ss, double.class);
     }
-    public static Double sendRating(String name, Double rating) {
+    public static Double sendRating(String username, String name, Double rating) {
         // TODO sends new user rating
-        // updates average rating in databse,
+        // updates average rating in database,
         // sends back updated average rating
         return 0.0;
     }
@@ -127,7 +125,7 @@ public class Util {
                 "{\n" +
                 "    \"type\": \"sendReview\",\n" +
                 "    \"data\": {\n" +
-                "        \"name\": \"%s\"\n" +
+                "        \"name\": \"%s\",\n" +
                 "        \"review\": \"%s\"\n" +
                 "    }\n" +
                 "}", name, review);
@@ -139,7 +137,45 @@ public class Util {
         Gson gson = new Gson();
         return gson.fromJson(ss, boolean.class);
     }
+    public static Boolean registerUser(String firstName, String lastName, String email, String password){
+        String json = String.format(
+                "{\n" +
+                        "    \"type\": \"validate\",\n" +
+                        "    \"data\": {\n" +
+                        "        \"firstName\": \"%s\",\n" +
+                        "        \"lastName\": \"%s\",\n" +
+                        "        \"email\": \"%s\",\n" +
+                        "        \"password\": \"%s\"\n" +
+                        "    }\n" +
+                        "}", firstName, lastName, email, password);
+
+        String ss = sendMessage(json);
+        if(ss.equals("") || ss == null){
+            System.out.println("An error occurred in sending message: Null or empty value");
+            return null;
+        }
+        Gson gson = new Gson();
+        return gson.fromJson(ss, boolean.class);
+    }
+    public static Boolean loginUser(String email, String password){
+        String json = String.format(
+                "{\n" +
+                        "    \"type\": \"validate\",\n" +
+                        "    \"data\": {\n" +
+                        "        \"email\": \"%s\",\n" +
+                        "        \"password\": \"%s\"\n" +
+                        "    }\n" +
+                        "}", email, password);
+        String ss = sendMessage(json);
+        if(ss.equals("") || ss == null){
+            System.out.println("An error occurred in sending message: Null or empty value");
+            return null;
+        }
+        Gson gson = new Gson();
+        return gson.fromJson(ss, boolean.class);
+    }
 }
+
 
 class Reviews {
     ArrayList<String> reviews;
