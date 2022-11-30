@@ -306,7 +306,6 @@
         android:textAllCaps="false"
         android:textColor="#FEFEFE"
         android:textSize="11dp"></Button>
-<<<<<<< HEAD
 
     <Button
         android:id="@+id/logout"
@@ -336,7 +335,4 @@
         android:layout_marginLeft="330dp"
         android:text="Map" />
 
-
-=======
->>>>>>> master
 </RelativeLayout>

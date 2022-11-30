@@ -125,7 +125,7 @@ public class Util {
                 "{\n" +
                 "    \"type\": \"sendReview\",\n" +
                 "    \"data\": {\n" +
-                "        \"name\": \"%s\"\n" +
+                "        \"name\": \"%s\",\n" +
                 "        \"review\": \"%s\"\n" +
                 "    }\n" +
                 "}", name, review);
@@ -142,9 +142,9 @@ public class Util {
                 "{\n" +
                         "    \"type\": \"validate\",\n" +
                         "    \"data\": {\n" +
-                        "        \"firstName\": \"%s\"\n" +
-                        "        \"lastName\": \"%s\"\n" +
-                        "        \"email\": \"%s\"\n" +
+                        "        \"firstName\": \"%s\",\n" +
+                        "        \"lastName\": \"%s\",\n" +
+                        "        \"email\": \"%s\",\n" +
                         "        \"password\": \"%s\"\n" +
                         "    }\n" +
                         "}", firstName, lastName, email, password);
@@ -157,17 +157,15 @@ public class Util {
         Gson gson = new Gson();
         return gson.fromJson(ss, boolean.class);
     }
-    public static Boolean registerUser(String firstName, String lastName, String email, String password){
+    public static Boolean loginUser(String email, String password){
         String json = String.format(
                 "{\n" +
                         "    \"type\": \"validate\",\n" +
                         "    \"data\": {\n" +
-                        "        \"firstName\": \"%s\"\n" +
-                        "        \"lastName\": \"%s\"\n" +
-                        "        \"email\": \"%s\"\n" +
+                        "        \"email\": \"%s\",\n" +
                         "        \"password\": \"%s\"\n" +
                         "    }\n" +
-                        "}", firstName, lastName, email, password);
+                        "}", email, password);
         String ss = sendMessage(json);
         if(ss.equals("") || ss == null){
             System.out.println("An error occurred in sending message: Null or empty value");

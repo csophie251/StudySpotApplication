@@ -19,6 +19,9 @@ public class ServerThread extends Thread {
     String input;
     String output;
     boolean done;
+    private static String SERVER = "https://mythic-tenure-340409.wn.r.appspot.com/form";
+    private static String LOCAL = "http://10.25.149.239:8080/StudySpotServer/form";
+    private static String API_POINT = SERVER;
 
     public ServerThread(String input) {
         this.input = input;
@@ -31,8 +34,7 @@ public class ServerThread extends Thread {
         InputStream is = null;
 
         try {
-            //TODO: input IP address here:
-            URL url = new URL("https://mythic-tenure-340409.wn.r.appspot.com/form");
+            URL url = new URL(API_POINT);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("POST");
             conn.setRequestProperty("Content-Type", "application/json");
