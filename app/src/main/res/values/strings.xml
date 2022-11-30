@@ -9,7 +9,7 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
-
+    <string name="underlinedText"><u>save!</u></string>
     <string name="filters">Filters</string>
     <string name="lighting">\t Lighting</string>
     <string name="vibes">\t Vibes</string>

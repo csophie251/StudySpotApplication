@@ -5,6 +5,8 @@ import static java.lang.Float.parseFloat;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -19,13 +21,32 @@ public class StudySpotAuthenticatedActivity extends AppCompatActivity {
     public Float originalRating;
     public JSONArray reviewsArray;
     @Override
-        protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_study_spot_authenticated);
         Intent intent = getIntent();
         String name = intent.getStringExtra("name");
         Log.d("myTag", name);
         // start new thread getting data with name
+
+        Button mButton = findViewById(R.id.logout);
+        mButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                Intent myIntent = new Intent(StudySpotAuthenticatedActivity.this, LoginPageActivity.class);
+                startActivity(myIntent);
+            }
+        });
+        Button mButton2 = findViewById(R.id.mapBtn);
+        mButton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                Intent myIntent = new Intent(StudySpotAuthenticatedActivity.this, MapsActivity.class);
+                startActivity(myIntent);
+            }
+        });
 
         try {
             String jsonString = "{"
@@ -76,36 +97,36 @@ public class StudySpotAuthenticatedActivity extends AppCompatActivity {
         }
 
     }
-        public void goToLoginPage(android.view.View view) {
-            Intent intent = new Intent(this, LoginPageActivity.class);
-            startActivity(intent);
-        }
-        public void goToSignUpPage(android.view.View view){
-            Intent intent = new Intent (this, RegistrationActivity.class);
-            startActivity(intent);
-        }
+    public void goToLoginPage(android.view.View view) {
+        Intent intent = new Intent(this, LoginPageActivity.class);
+        startActivity(intent);
+    }
+    public void goToSignUpPage(android.view.View view){
+        Intent intent = new Intent (this, RegistrationActivity.class);
+        startActivity(intent);
+    }
 
-        public void saveRating(android.view.View view) {
-            final RatingBar ratingBar = findViewById(R.id.UserRating);
-            Float userRating =  ratingBar.getRating();
-            System.out.println("Review: " + userRating);
-            Float newRating = (originalRating + userRating)/2;
-            final TextView studySpotRating = (TextView) findViewById(R.id.StudySpotRating);
-            studySpotRating.setText(newRating.toString());
-        }
+    public void saveRating(android.view.View view) {
+        final RatingBar ratingBar = findViewById(R.id.UserRating);
+        Float userRating =  ratingBar.getRating();
+        System.out.println("Review: " + userRating);
+        Float newRating = (originalRating + userRating)/2;
+        final TextView studySpotRating = (TextView) findViewById(R.id.StudySpotRating);
+        studySpotRating.setText(newRating.toString());
+    }
 
-        public void saveReview(android.view.View view){
-            //final TextView studySpotNewReview = (TextView) findViewById(R.id.WriteAReviewText);
-            //String newReview = (String) studySpotNewReview.getText();
-            //int index = reviewsArray.length() + 1;
-        }
-        public void onQuietClicked(android.view.View view){
+    public void saveReview(android.view.View view){
+        //final TextView studySpotNewReview = (TextView) findViewById(R.id.WriteAReviewText);
+        //String newReview = (String) studySpotNewReview.getText();
+        //int index = reviewsArray.length() + 1;
+    }
+    public void onQuietClicked(android.view.View view){
 
-        }
-        public void onBusyClicked(android.view.View view){
+    }
+    public void onBusyClicked(android.view.View view){
 
-        }
-        public void onOutletClicked(android.view.View view){
+    }
+    public void onOutletClicked(android.view.View view){
 
-        }
+    }
 }

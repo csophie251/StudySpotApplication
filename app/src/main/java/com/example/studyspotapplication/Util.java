@@ -1,5 +1,6 @@
 package com.example.studyspotapplication;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
@@ -149,6 +150,26 @@ public class Util {
                         "        \"password\": \"%s\"\n" +
                         "    }\n" +
                         "}", firstName, lastName, email, password);
+
+        String ss = sendMessage(json);
+        if(ss.equals("") || ss == null){
+            System.out.println("An error occurred in sending message: Null or empty value");
+            return null;
+        }
+        Gson gson = new Gson();
+        return gson.fromJson(ss, boolean.class);
+    }
+    public static Boolean registerUser(String firstName, String lastName, String email, String password){
+        String json = String.format(
+                "{\n" +
+                        "    \"type\": \"validate\",\n" +
+                        "    \"data\": {\n" +
+                        "        \"firstName\": \"%s\"\n" +
+                        "        \"lastName\": \"%s\"\n" +
+                        "        \"email\": \"%s\"\n" +
+                        "        \"password\": \"%s\"\n" +
+                        "    }\n" +
+                        "}", firstName, lastName, email, password);
         String ss = sendMessage(json);
         if(ss.equals("") || ss == null){
             System.out.println("An error occurred in sending message: Null or empty value");
@@ -158,6 +179,7 @@ public class Util {
         return gson.fromJson(ss, boolean.class);
     }
 }
+
 
 class Reviews {
     ArrayList<String> reviews;

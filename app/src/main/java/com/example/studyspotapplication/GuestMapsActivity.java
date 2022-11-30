@@ -6,6 +6,8 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -67,6 +69,7 @@ public class GuestMapsActivity extends FragmentActivity implements OnMapReadyCal
         cur_spots.add(doheny);
         cur_spots.add(sidney);
         return cur_spots;
+//        return Util.retrieveAllPages();
     }
 
     private void place_markers() {
@@ -93,6 +96,15 @@ public class GuestMapsActivity extends FragmentActivity implements OnMapReadyCal
         // Synchronize on study spots arraylist?
         mapFragment.getMapAsync(this);
 
+        Button mButton = findViewById(R.id.login);
+        mButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                Intent myIntent = new Intent(GuestMapsActivity.this, LoginPageActivity.class);
+                startActivity(myIntent);
+            }
+        });
     }
 
     @SuppressLint("PotentialBehaviorOverride")
@@ -108,13 +120,17 @@ public class GuestMapsActivity extends FragmentActivity implements OnMapReadyCal
                 return false;
             }
         });
+
         mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
             @Override
             public void onInfoWindowClick(Marker marker) {
                 //switch page to studyspot page
+<<<<<<< HEAD
+=======
                 // must have an if condition checking if the user is authenticated, must have an authenticated flag
                 //startActivity(new Intent(MainActivity.this, MyOtherActivity.class));
-                Intent myIntent = new Intent(GuestMapsActivity.this, StudySpotAuthenticatedActivity.class);
+>>>>>>> master
+                Intent myIntent = new Intent(GuestMapsActivity.this, StudySpotGuestActivity.class);
                 myIntent.putExtra("name", marker.getTitle());
                 startActivity(myIntent);
             }
