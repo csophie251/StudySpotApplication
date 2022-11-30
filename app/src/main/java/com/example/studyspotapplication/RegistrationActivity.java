@@ -16,9 +16,8 @@ import java.util.regex.Pattern;
 public class RegistrationActivity extends AppCompatActivity {
     Pattern pattern;
     Matcher emailMatcher;
-    Matcher passwordMatcher;
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-    String passwordPattern = "^(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\\S+$).{4,}$";
+
     private EditText firstName;
     private EditText lastName;
     private EditText emailAddress;
@@ -37,9 +36,6 @@ public class RegistrationActivity extends AppCompatActivity {
         passWord = findViewById(R.id.password);
         singUp = findViewById(R.id.signUp);
 
-        pattern = Pattern.compile(passwordPattern);
-        passwordMatcher = pattern.matcher(passWord.toString());
-
         pattern = Pattern.compile(emailPattern);
         emailMatcher = pattern.matcher(emailAddress.toString());
 
@@ -49,18 +45,25 @@ public class RegistrationActivity extends AppCompatActivity {
                 boolean reDirect = true;
                 if(firstName.toString().isEmpty() || lastName.toString().isEmpty() || emailAddress.toString().isEmpty() || passWord.toString().isEmpty()){
                     reDirect = false;
-                    Toast.makeText(RegistrationActivity.this, "Please complete all fields!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegistrationActivity.this, "Please complete all fields before submitting!", Toast.LENGTH_SHORT).show();
                 }
-                //need to also ensure that email doesn't already exists in the database
-               Util util = new Util();
-                if(!emailMatcher.matches() && util.registerUser(firstName.toString(), lastName.toString(), emailAddress.toString(), passWord.toString())){
+
+                if(!emailMatcher.matches()){
                     reDirect = false;
-                    Toast.makeText(RegistrationActivity.this, "Email entered was in the wrong format!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegistrationActivity.this, "Please enter a correct email before before submitting!", Toast.LENGTH_SHORT).show();
                 }
-                if(!passwordMatcher.matches() || passWord.length() < 8 || passWord.length() > 32){
+
+                Util util = new Util();
+                if(util.registerUser(firstName.toString(), lastName.toString(), emailAddress.toString(), passWord.toString())){
+                    reDirect = false;
+                    Toast.makeText(RegistrationActivity.this, "Please enter an email that is not associated with an already registered user!", Toast.LENGTH_SHORT).show();
+                }
+
+                if(passWord.length() > 32){
                     reDirect = false;
                     Toast.makeText(RegistrationActivity.this, "Password entered was in the wrong format!", Toast.LENGTH_SHORT).show();
                 }
+
                 if(reDirect){
                     goToLoginPage(view);
                 }
@@ -72,5 +75,10 @@ public class RegistrationActivity extends AppCompatActivity {
     public void goToLoginPage(android.view.View view){
         Intent intent = new Intent (this, LoginPageActivity.class);
         startActivity(intent);
+    }
+
+    public Boolean userValidation(String firstName, String lastName, String email, String password) {
+        Util util = new Util();
+        return !(util.registerUser(firstName.toString(), lastName.toString(), emailAddress.toString(), passWord.toString()));
     }
 }
