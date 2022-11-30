@@ -14,4 +14,16 @@
         android:layout_height="match_parent"
         tools:context=".MapsActivity" />
 
+    <Button
+        android:id="@+id/login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:textColor="#ffffff"
+        android:bottomRightRadius="10dp"
+        android:bottomLeftRadius="10dp"
+        android:topLeftRadius="10dp"
+        android:topRightRadius="10dp"
+        android:layout_marginTop="200dp"
+        android:text="Login" />
 </RelativeLayout>

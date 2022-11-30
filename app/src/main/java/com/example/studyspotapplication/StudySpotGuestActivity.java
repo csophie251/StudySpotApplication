@@ -3,8 +3,13 @@ package com.example.studyspotapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
+<<<<<<< HEAD
+import android.view.View;
+import android.widget.Button;
+=======
 import android.util.Log;
 import android.widget.ImageView;
+>>>>>>> master
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,9 +21,46 @@ public class StudySpotGuestActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_study_spot_guest);
+<<<<<<< HEAD
+
+        Button mButton = findViewById(R.id.login);
+        mButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                Intent myIntent = new Intent(StudySpotGuestActivity.this, LoginPageActivity.class);
+                startActivity(myIntent);
+            }
+        });
+        Button mButton2 = findViewById(R.id.mapBtn);
+        mButton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                Intent myIntent = new Intent(StudySpotGuestActivity.this, GuestMapsActivity.class);
+                startActivity(myIntent);
+            }
+        });
+        try {
+            String jsonString = "{"
+                    + " \"study spots data\": ["
+                    + " {"
+                    + " \"name\": \"USC Village\","
+                    + " \"location\" : \"123 ABC St Los Angeles, CA 90089\","
+                    + " \"openHours\" : \"Monday-Sunday 9-5pm\","
+                    + " \"rating\" : \"4.5\""
+                    + " },"
+                    + " ]"
+                    + "}";
+            JSONObject obj = new JSONObject(jsonString);
+            JSONArray studySpotsData = obj.getJSONArray("study spots data");
+            JSONObject studySpot = studySpotsData.getJSONObject(0);
+            String name = this.getTitle().toString();
+=======
         Intent intent = getIntent();
         studySpotName = intent.getStringExtra("name");
         Log.d("Study Spot Name: ", studySpotName);
+>>>>>>> master
 
         String studySpotRating = "4.0";
         String studySpotAddress ="test address";

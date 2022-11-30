@@ -46,5 +46,18 @@
             android:layout_marginTop="2dp"
             android:color="@color/grey"
             android:text="@string/filters" />
+
     </LinearLayout>
+    <Button
+        android:id="@+id/logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:textColor="#ffffff"
+        android:bottomRightRadius="10dp"
+        android:bottomLeftRadius="10dp"
+        android:topLeftRadius="10dp"
+        android:topRightRadius="10dp"
+        android:layout_marginTop="770dp"
+        android:text="Logout" />
 </RelativeLayout>

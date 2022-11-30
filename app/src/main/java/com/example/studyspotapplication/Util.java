@@ -137,15 +137,37 @@ public class Util {
         Gson gson = new Gson();
         return gson.fromJson(ss, boolean.class);
     }
-    public static Boolean validateUser(String username, String password){
+    public static Boolean registerUser(String firstName, String lastName, String email, String password){
         String json = String.format(
                 "{\n" +
-                "    \"type\": \"validate\",\n" +
-                "    \"data\": {\n" +
-                "        \"username\": \"%s\"\n" +
-                "        \"password\": \"%s\"\n" +
-                "    }\n" +
-                "}", username, password);
+                        "    \"type\": \"validate\",\n" +
+                        "    \"data\": {\n" +
+                        "        \"firstName\": \"%s\"\n" +
+                        "        \"lastName\": \"%s\"\n" +
+                        "        \"email\": \"%s\"\n" +
+                        "        \"password\": \"%s\"\n" +
+                        "    }\n" +
+                        "}", firstName, lastName, email, password);
+
+        String ss = sendMessage(json);
+        if(ss.equals("") || ss == null){
+            System.out.println("An error occurred in sending message: Null or empty value");
+            return null;
+        }
+        Gson gson = new Gson();
+        return gson.fromJson(ss, boolean.class);
+    }
+    public static Boolean registerUser(String firstName, String lastName, String email, String password){
+        String json = String.format(
+                "{\n" +
+                        "    \"type\": \"validate\",\n" +
+                        "    \"data\": {\n" +
+                        "        \"firstName\": \"%s\"\n" +
+                        "        \"lastName\": \"%s\"\n" +
+                        "        \"email\": \"%s\"\n" +
+                        "        \"password\": \"%s\"\n" +
+                        "    }\n" +
+                        "}", firstName, lastName, email, password);
         String ss = sendMessage(json);
         if(ss.equals("") || ss == null){
             System.out.println("An error occurred in sending message: Null or empty value");

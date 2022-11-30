@@ -52,7 +52,8 @@ public class RegistrationActivity extends AppCompatActivity {
                     Toast.makeText(RegistrationActivity.this, "Please complete all fields!", Toast.LENGTH_SHORT).show();
                 }
                 //need to also ensure that email doesn't already exists in the database
-                if(!emailMatcher.matches()){
+               Util util = new Util();
+                if(!emailMatcher.matches() && util.registerUser(firstName.toString(), lastName.toString(), emailAddress.toString(), passWord.toString())){
                     reDirect = false;
                     Toast.makeText(RegistrationActivity.this, "Email entered was in the wrong format!", Toast.LENGTH_SHORT).show();
                 }
