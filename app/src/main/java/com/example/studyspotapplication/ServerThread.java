@@ -22,7 +22,7 @@ public class ServerThread extends Thread {
 
     public ServerThread(String input) {
         this.input = input;
-        this.output = null;
+        this.output = "";
         this.done = false;
         this.start();
     }
@@ -31,7 +31,8 @@ public class ServerThread extends Thread {
         InputStream is = null;
 
         try {
-            URL url = new URL("http://10.25.149.239:8080/StudySpotServer/FormServlet");
+            //TODO: input IP address here:
+            URL url = new URL("http://192.168.1.171:8080/StudySpotServer/FormServlet");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("POST");
             conn.setRequestProperty("Content-Type", "application/json");

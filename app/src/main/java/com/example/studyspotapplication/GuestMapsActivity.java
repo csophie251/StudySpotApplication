@@ -114,7 +114,7 @@ public class GuestMapsActivity extends FragmentActivity implements OnMapReadyCal
                 //switch page to studyspot page
                 // must have an if condition checking if the user is authenticated, must have an authenticated flag
                 //startActivity(new Intent(MainActivity.this, MyOtherActivity.class));
-                Intent myIntent = new Intent(GuestMapsActivity.this, StudySpotAuthenticatedActivity.class);
+                Intent myIntent = new Intent(GuestMapsActivity.this, StudySpotGuestActivity.class);
                 myIntent.putExtra("name", marker.getTitle());
                 startActivity(myIntent);
             }
