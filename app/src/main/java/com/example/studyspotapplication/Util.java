@@ -27,19 +27,40 @@ public class Util {
     private static String API_POINT = LOCAL;
 
     public static String sendMessage(String input) {
-        ServerThread st = new ServerThread(input);
-        while (!st.done) {}
-        Log.d("myTag", "done");
-        return st.output;
+        String output = "";
+        try {
+            URL url = new URL(API_POINT);
+            Log.i("myTag", "Start better API call");
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            Log.i("myTag", "Connection started with input:\n" + input);
+            conn.setRequestMethod("POST");
+            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setRequestProperty("Accept", "application/json");
+            conn.setDoOutput(true);
+
+            OutputStreamWriter out = new OutputStreamWriter(conn.getOutputStream());
+            out.write(input);
+            out.flush();
+            out.close();
+
+            Log.d("myTag", "Before connection.");
+            conn.connect();
+            Log.d("myTag", "Connected. The response is: " + conn.getResponseCode());
+            BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            String line;
+            while ((line = br.readLine()) != null) {
+                output += line;
+            }
+            conn.disconnect();
+            Log.d("myTag", "Disconnect with output:\n" + output);
+        } catch (Exception e) {
+            Log.e("myTag", "Http connection failed: " + e, e);
+        }
+        return output;
     }
 
     public static StudySpot retrieveStudySpot(String name) {
         Log.d("myTag", ">> retrieveStudySpot start");
-//        if (ssMap.containsKey(name)) {
-//            return ssMap.get(name);
-//        }
-        Log.d("myTag", ">> retrieveStudySpot check key");
-
         String json = String.format("{\n" +
                 "    \"type\": \"studySpot\",\n" +
                 "    \"data\": {\n" +
@@ -55,6 +76,7 @@ public class Util {
         Gson gson = new Gson();
         StudySpotData studySpot = gson.fromJson(ss, StudySpotData.class);
         StudySpot newSS = new StudySpot(studySpot);
+        Log.d("myTag", ">> retrieveStudySpot after gson");
 //        ssMap.put(name, newSS);
         return newSS;
     }
@@ -90,7 +112,7 @@ public class Util {
         boolean outlets = tags.contains("Outlets");
         String json = String.format(
                 "{\n" +
-                "    \"type\": \"tags\",\n" +
+                "    \"type\": \"sendTags\",\n" +
                 "    \"data\": {\n" +
                 "        \"name\": \"%s\",\n" +
                 "        \"busy\": %b,\n" +
@@ -110,7 +132,7 @@ public class Util {
 //        Returns arraylist of all reviews for given study spot name
         String json = String.format(
                 "{\n" +
-                "    \"type\": \"studySpot\",\n" +
+                "    \"type\": \"getReviews\",\n" +
                 "    \"data\": {\n" +
                 "        \"name\": \"%s\"\n" +
                 "    }\n" +
@@ -120,10 +142,10 @@ public class Util {
             // handle error!
             return null;
         }
-        Gson gson = new Gson();
-        Reviews reviews = gson.fromJson(ss, Reviews.class);
-        return reviews.reviews;
+        ArrayList<String> reviews = new Gson().fromJson(ss, new TypeToken<List<String>>() {}.getType());
+        return reviews;
     }
+
     public static Boolean sendReview(String name, String review) {
 //        Add review to the arraylist of reviews for given study spot
 //        Return true/false if successful
@@ -143,17 +165,17 @@ public class Util {
         Gson gson = new Gson();
         return gson.fromJson(ss, boolean.class);
     }
-    public static Boolean registerUser(String firstName, String lastName, String email, String password){
+    public static Boolean registerUser(String firstName, String lastName, String email, String password) {
         String json = String.format(
                 "{\n" +
-                        "    \"type\": \"validate\",\n" +
-                        "    \"data\": {\n" +
-                        "        \"firstName\": \"%s\",\n" +
-                        "        \"lastName\": \"%s\",\n" +
-                        "        \"email\": \"%s\",\n" +
-                        "        \"password\": \"%s\"\n" +
-                        "    }\n" +
-                        "}", firstName, lastName, email, password);
+                "    \"type\": \"register\",\n" +
+                "    \"data\": {\n" +
+                "        \"firstName\": \"%s\",\n" +
+                "        \"lastName\": \"%s\",\n" +
+                "        \"email\": \"%s\",\n" +
+                "        \"password\": \"%s\"\n" +
+                "    }\n" +
+                "}", firstName, lastName, email, password);
 
         String ss = sendMessage(json);
         if(ss.equals("null") || ss == null){
@@ -166,7 +188,7 @@ public class Util {
     public static Boolean loginUser(String email, String password) {
         String json = String.format(
                 "{\n" +
-                        "    \"type\": \"validate\",\n" +
+                        "    \"type\": \"login\",\n" +
                         "    \"data\": {\n" +
                         "        \"email\": \"%s\",\n" +
                         "        \"password\": \"%s\"\n" +
@@ -181,62 +203,12 @@ public class Util {
         return gson.fromJson(ss, boolean.class);
     }
 
-    public static String sendMessageBetter(String input) {
-        String output = "";
-        try {
-            URL url = new URL(API_POINT);
-            Log.i("myTag", "Start better API call");
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            Log.i("myTag", "Connection started with input:\n" + input);
-            conn.setRequestMethod("POST");
-            conn.setRequestProperty("Content-Type", "application/json");
-            conn.setRequestProperty("Accept", "application/json");
-            conn.setDoOutput(true);
-
-            OutputStreamWriter out = new OutputStreamWriter(conn.getOutputStream());
-            out.write(input);
-            out.flush();
-            out.close();
-
-            Log.d("myTag", "Before connection.");
-            conn.connect();
-            Log.d("myTag", "Connected. The response is: " + conn.getResponseCode());
-            BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-            String line;
-            while ((line = br.readLine()) != null) {
-                output += line;
-            }
-            conn.disconnect();
-            Log.d("myTag", "Disconnect with output:\n" + output);
-        } catch (Exception e) {
-            Log.e("myTag", "Http connection failed: " + e, e);
-        }
-        return output;
-    }
-
-    public static boolean validateUser(String username, String password) {
-        String json = String.format(
-                "{\n" +
-                        "    \"type\": \"validate\",\n" +
-                        "    \"data\": {\n" +
-                        "        \"email\": \"%s\",\n" +
-                        "        \"password\": \"%s\"\n" +
-                        "    }\n" +
-                        "}", username, password);
-        String ss = sendMessageBetter(json);
-        if(ss.equals("null") || ss == null){
-            System.out.println("An error occurred in sending message: Null or empty value");
-            return false;
-        }
-        return new Gson().fromJson(ss, boolean.class);
-    }
-
     public static ArrayList<StudySpot> retrieveAllStudySpots() {
         String json = String.format("{\n" +
                 "    \"type\": \"allStudySpots\",\n" +
                 "    \"data\": {}\n" +
                 "}");
-        String ss = sendMessageBetter(json);
+        String ss = sendMessage(json);
         if (ss.equals("null") || ss == null) {
             // handle error!
             return null;
@@ -255,16 +227,3 @@ public class Util {
 class Reviews {
     ArrayList<String> reviews;
 }
-
-// Client Output
-
-
-// Server Output
-// Study Spot
-// Array of Study Spots
-// Double
-
-// POST
-// true/false
-
-//

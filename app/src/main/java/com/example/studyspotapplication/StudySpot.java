@@ -12,6 +12,7 @@ public class StudySpot {
     boolean busy;
     boolean quiet;
     boolean outlets;
+    String rating;
 
     public StudySpot(StudySpotData data) {
         position = new LatLng(data.latitude, data.longitude);
@@ -21,6 +22,7 @@ public class StudySpot {
         this.busy = data.busy;
         this.quiet = data.quiet;
         this.outlets = data.outlets;
+        this.rating = data.rating;
     }
 
     public LatLng getPosition() {
@@ -41,6 +43,7 @@ public class StudySpot {
                 ", busy=" + busy +
                 ", quiet=" + quiet +
                 ", outlets=" + outlets +
+                ", rating=" + rating +
                 '}';
     }
 }
@@ -54,6 +57,7 @@ class StudySpotData {
     boolean busy;
     boolean quiet;
     boolean outlets;
+    String rating;
 }
 
 class StudySpotsData {

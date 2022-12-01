@@ -20,6 +20,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.ArrayRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -36,6 +37,7 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 
 
 public class LoginPageActivity extends AppCompatActivity {
@@ -94,7 +96,19 @@ public class LoginPageActivity extends AppCompatActivity {
         new Thread() {
             @Override
             public void run() {
-                boolean res = Util.validateUser(username, password);
+                StudySpot ss = Util.retrieveStudySpot("Doheny Memorial Library");
+                Log.d("myTag", ss.toString());
+                ArrayList<String> tags = new ArrayList<>();
+                tags.add("Busy"); tags.add("Quiet"); tags.add("Outlets");
+                Util.sendTags("Doheny Memorial Library", tags);
+
+                Util.sendReview("Doheny Memorial Library", "This is a review");
+                ArrayList<String> reviews = Util.retrieveReviews("Doheny Memorial Library");
+                Log.d("myTag", "reviews");
+                for (String r : reviews)
+                    Log.d("myTag", "review: " + r);
+
+                boolean res = Util.loginUser(username, password);
                 if (!res) {
                     runOnUiThread(() -> Toast.makeText(LoginPageActivity.this, "The Username or Password you entered was incorrect. Please try again.", Toast.LENGTH_SHORT).show());
                 } else {
