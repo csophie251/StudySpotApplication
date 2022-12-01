@@ -101,7 +101,7 @@ public class GuestMapsActivity extends FragmentActivity implements OnMapReadyCal
             @Override
             public void onClick(View view)
             {
-                Intent myIntent = new Intent(GuestMapsActivity.this, LoginPageActivity.class);
+                Intent myIntent = new Intent(GuestMapsActivity.this, LandingPageActivity.class);
                 startActivity(myIntent);
             }
         });

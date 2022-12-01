@@ -30,6 +30,16 @@ public class StudySpotGuestActivity extends AppCompatActivity {
         int image = Images.getImage(name);
         studySpotImage.setImageResource(image);
 
+        Button mButton = findViewById(R.id.login);
+        mButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                Intent myIntent = new Intent(StudySpotGuestActivity.this, LandingPageActivity.class);
+                startActivity(myIntent);
+            }
+        });
+
         Button mButton2 = findViewById(R.id.mapBtn);
         mButton2.setOnClickListener(new View.OnClickListener() {
             @Override

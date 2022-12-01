@@ -178,6 +178,18 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
          android:fontFamily="@font/mochiypoponeregular"></TextView>
 
      <Button
+         android:id="@+id/login"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:backgroundTint="#ECEFC2"
+         android:fontFamily="@font/mochiypoponeregular"
+         android:padding="0dp"
+         android:text="Login"
+         android:textAllCaps="false"
+         android:layout_marginLeft="305dp"
+         android:textColor="#6A62B7"   />
+
+     <Button
          android:id="@+id/mapBtn"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"

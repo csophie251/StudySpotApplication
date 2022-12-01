@@ -11,6 +11,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -37,50 +39,42 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private ArrayList<StudySpot> spots;
     public String username;
 
-    private ArrayList<StudySpot> generateStudySpots() {
-        ArrayList<StudySpot> cur_spots = new ArrayList<StudySpot>();
-        StudySpotData leaveyData = new StudySpotData();
-        leaveyData.name = "Leavey Library";
-        leaveyData.location = "testlocation";
-        leaveyData.latitude =34.02193;
-        leaveyData.longitude =-118.28277;
-        leaveyData.hours = "test hours";
-        leaveyData.busy = true;
-        leaveyData.quiet = false;
-        leaveyData.outlets = true;
 
-        StudySpotData dohenyData = new StudySpotData();
-        dohenyData.name = "Doheny Memorial Library";
-        dohenyData.location = "testlocation";
-        dohenyData.latitude =34.02015;
-        dohenyData.longitude =-118.28372;
-        dohenyData.hours = "test hours";
-        dohenyData.busy = false;
-        dohenyData.quiet = true;
-        dohenyData.outlets = true;
 
-        StudySpotData sidneyData = new StudySpotData();
-        sidneyData.name = "Sydney Harman";
-        sidneyData.location = "testlocation";
-        sidneyData.latitude =34.02235;
-        sidneyData.longitude =-118.28512;
-        sidneyData.hours = "test hours";
-        sidneyData.busy = true;
-        sidneyData.quiet = false;
-        sidneyData.outlets = false;
-
-        StudySpot leavey = new StudySpot(leaveyData);
-        StudySpot doheny = new StudySpot(dohenyData);
-        StudySpot sidney = new StudySpot(sidneyData);
-
-        //StudySpot leavey = new StudySpot(34.02193, -118.28277, "Leavey Library", "testlocation", "testopenHours", true, false, true);
-        //StudySpot doheny = new StudySpot(34.02015, -118.28372, "Doheny Library");
-        // StudySpot sidney = new StudySpot(34.02235, -118.28512, "Sydney Harman");
-        cur_spots.add(leavey);
-        cur_spots.add(doheny);
-        cur_spots.add(sidney);
-        return cur_spots;
-//        return Util.retrieveAllStudySpots();
+    public void grabStudySpots() {
+        new Thread() {
+            @Override
+            public void run() {
+                ArrayList<StudySpot> res = Util.retrieveAllStudySpots();
+                if (res == null) {
+                    runOnUiThread(() -> Toast.makeText(MapsActivity.this, "No Study Spots Available", Toast.LENGTH_SHORT).show());
+                } else {
+                    runOnUiThread(() -> {
+                        spots = res;
+                        places = get_dropDown_titles();
+                        ArrayAdapter<String> adapter = new ArrayAdapter<String>(MapsActivity.this, android.R.layout.simple_dropdown_item_1line, places);
+                        autocomplete_searchField.setAdapter(adapter);
+                        autocomplete_searchField.setThreshold(1);
+                        autocomplete_searchField.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                autocomplete_searchField.showDropDown();
+                            }
+                        });
+                        autocomplete_searchField.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id){
+                                String selected_Place = autocomplete_searchField.getText().toString();
+                                Log.d("myTag", "Clicked Dropdown Item " + selected_Place);
+                                StudySpot cur_spot = names_to_spots.get(selected_Place);
+                                mMap.addMarker(new MarkerOptions().position(cur_spot.getPosition()).title(selected_Place));
+                                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(cur_spot.getPosition(), 18));
+                            }
+                        });
+                        placeMarkers();
+                    });
+                }
+            }
+        }.start();
     }
 
     private void placeMarkers() {
@@ -107,6 +101,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     public void sendFilterValues(List<Boolean> stuff) {
         // remove all previous markers
+        mMap.clear();
         for (int i = 0; i < stuff.size(); ++i) {
             filter_status.set(i,stuff.get(i));
         }
@@ -114,6 +109,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         for (int i = 0; i < spots.size(); ++i) {
             // match bool values of filters
             // add marker if bool values are added properly
+            StudySpot cur = spots.get(i);
+            boolean accepted = true;
+            if (filter_status.get(0) && !cur.busy) {
+                accepted = false;
+            }
+            if (filter_status.get(1) && !cur.quiet) {
+                accepted = false;
+            }
+            if (filter_status.get(2) && !cur.outlets) {
+                accepted = false;
+            }
+            if (accepted) {
+                mMap.addMarker(new MarkerOptions().position(cur.getPosition()).title(cur.getName()));
+            }
         }
     }
 
@@ -121,20 +130,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
-        this.spots = generateStudySpots();
+        this.spots = new ArrayList<StudySpot>();
+//        this.spots = generateStudySpots();
+//        grabStudySpots();
+
+
 
         Button mButton = findViewById(R.id.logout);
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)
             {
-                Intent myIntent = new Intent(MapsActivity.this, LoginPageActivity.class);
+                Intent myIntent = new Intent(MapsActivity.this, LandingPageActivity.class);
                 startActivity(myIntent);
             }
         });
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
-        // Synchronize on study spots arraylist?
 
         //Filters
         // https://www.geeksforgeeks.org/modal-bottom-sheet-in-android-with-examples/
@@ -169,27 +181,27 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //        displayField = (TextView) findViewById(R.id.dropdown_item);
 
         // Gets the string array
-        places = get_dropDown_titles();
+
 
         // Creates the adapter and set it to the AutoCompleteTextView
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, places);
-        autocomplete_searchField.setAdapter(adapter);
-        autocomplete_searchField.setThreshold(1);
-        autocomplete_searchField.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                autocomplete_searchField.showDropDown();
-            }
-        });
-        autocomplete_searchField.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id){
-                String selected_Place = autocomplete_searchField.getText().toString();
-                Log.d("myTag", "Clicked Dropdown Item " + selected_Place);
-                StudySpot cur_spot = names_to_spots.get(selected_Place);
-                mMap.addMarker(new MarkerOptions().position(cur_spot.getPosition()).title(selected_Place));
-                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(cur_spot.getPosition(), 18));
-            }
-        });
+//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, places);
+//        autocomplete_searchField.setAdapter(adapter);
+//        autocomplete_searchField.setThreshold(1);
+//        autocomplete_searchField.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                autocomplete_searchField.showDropDown();
+//            }
+//        });
+//        autocomplete_searchField.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id){
+//                String selected_Place = autocomplete_searchField.getText().toString();
+//                Log.d("myTag", "Clicked Dropdown Item " + selected_Place);
+//                StudySpot cur_spot = names_to_spots.get(selected_Place);
+//                mMap.addMarker(new MarkerOptions().position(cur_spot.getPosition()).title(selected_Place));
+//                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(cur_spot.getPosition(), 18));
+//            }
+//        });
         mapFragment.getMapAsync(this);
     }
 
@@ -197,7 +209,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        placeMarkers();
+//        placeMarkers();
+        grabStudySpots();
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {

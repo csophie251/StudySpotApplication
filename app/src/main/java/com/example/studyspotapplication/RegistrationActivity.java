@@ -84,7 +84,8 @@ public class RegistrationActivity extends AppCompatActivity {
                 } else {
                     runOnUiThread(() -> {
                         Toast.makeText(RegistrationActivity.this, "Registration Successful.", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(RegistrationActivity.this, LoginPageActivity.class);
+                        Intent intent = new Intent(RegistrationActivity.this, MapsActivity.class);
+                        intent.putExtra("username", username); //send the username
                         startActivity(intent);
                     });
                 }

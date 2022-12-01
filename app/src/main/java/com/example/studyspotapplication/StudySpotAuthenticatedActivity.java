@@ -59,7 +59,7 @@ public class StudySpotAuthenticatedActivity extends AppCompatActivity {
 
         Button mButton = findViewById(R.id.logout);
         mButton.setOnClickListener(view -> {
-            Intent myIntent = new Intent(StudySpotAuthenticatedActivity.this, LoginPageActivity.class);
+            Intent myIntent = new Intent(StudySpotAuthenticatedActivity.this, LandingPageActivity.class);
             startActivity(myIntent);
         });
 
