@@ -51,45 +51,44 @@ public class RegistrationActivity extends AppCompatActivity {
                 emailMatcher = pattern.matcher(emailAddress.toString());
 
                 if(firstName.toString().isEmpty() || lastName.toString().isEmpty() || emailAddress.toString().isEmpty() || passWord.toString().isEmpty()){
-                    reDirect = false;
                     Toast.makeText(RegistrationActivity.this, "Please complete all fields before submitting!", Toast.LENGTH_SHORT).show();
+                    return;
                 }
 
                 if(!emailMatcher.matches()){
-                    reDirect = false;
                     Toast.makeText(RegistrationActivity.this, "Please enter a correct email before before submitting!", Toast.LENGTH_SHORT).show();
+                    return;
                 }
 
                 if(passWord.length() < 8 || passWord.length() > 32){
-                    reDirect = false;
                     Toast.makeText(RegistrationActivity.this, "Password entered was in the wrong format!", Toast.LENGTH_SHORT).show();
+                    return;
                 }
 
 //                userValidation returns true only when given the same email and password
 //                but user can still register with an email that exists in our database if they enter a different
 //                password
-                if(!userValidation(firstName, lastName, emailAddress, passWord)){
-                    Toast.makeText(RegistrationActivity.this, "Please enter an email that is not associated with an already registered user!", Toast.LENGTH_SHORT).show();
-                    reDirect = false;
-                }
-
-//                need to capture user input into our database before directing user to log in page so that they can log in
-                if(reDirect){
-                    goToLoginPage(view);
-                }
-
+                validateUser(firstName, lastName, emailAddress, passWord);
             }
         });
         
     }
 
-    public void goToLoginPage(android.view.View view){
-        Intent intent = new Intent (this, LoginPageActivity.class);
-        startActivity(intent);
-    }
-
-    public Boolean userValidation(String firstName, String lastName, String email, String password) {
-        Util util = new Util();
-        return !(util.registerUser(firstName, lastName, email, password));
+    public void validateUser(String firstname, String lastname, String username, String password) {
+        new Thread() {
+            @Override
+            public void run() {
+                boolean res = Util.registerUser(firstname, lastname, username, password);
+                if (!res) {
+                    runOnUiThread(() -> Toast.makeText(RegistrationActivity.this, "Please enter an email that is not associated with an already registered user!", Toast.LENGTH_SHORT).show());
+                } else {
+                    runOnUiThread(() -> {
+                        Toast.makeText(RegistrationActivity.this, "Registration Successful.", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(RegistrationActivity.this, LoginPageActivity.class);
+                        startActivity(intent);
+                    });
+                }
+            }
+        }.start();
     }
 }

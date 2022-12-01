@@ -69,15 +69,6 @@ public class LoginPageActivity extends AppCompatActivity {
                     Toast.makeText(LoginPageActivity.this, "Username or Password is missing. Please try again.", Toast.LENGTH_SHORT).show();
                 }else{//otherwise, validate against database
                     validateUser(inputName, inputPass);
-//                    if(!userValidation(inputName, inputPass)){ //incorrect/cant find in database
-//                        Toast.makeText(LoginPageActivity.this, "The Username or Password you entered was incorrect. Please try again.", Toast.LENGTH_SHORT).show();
-//                    }else{//user input is found in database
-//                        Toast.makeText(LoginPageActivity.this, "Login Successful.", Toast.LENGTH_SHORT).show();
-//                        //TODO: REDIRECT TO NEW ACTIVITY [AUTHENTICATED MAP PAGE]
-//                        Intent intent = new Intent(LoginPageActivity.this, MapsActivity.class);
-//                        intent.putExtra("username", inputName); //send the username
-//                        startActivity(intent);
-//                    }
                 }
             }
         });
@@ -96,18 +87,6 @@ public class LoginPageActivity extends AppCompatActivity {
         new Thread() {
             @Override
             public void run() {
-                StudySpot ss = Util.retrieveStudySpot("Doheny Memorial Library");
-                Log.d("myTag", ss.toString());
-                ArrayList<String> tags = new ArrayList<>();
-                tags.add("Busy"); tags.add("Quiet"); tags.add("Outlets");
-                Util.sendTags("Doheny Memorial Library", tags);
-
-                Util.sendReview("Doheny Memorial Library", "This is a review");
-                ArrayList<String> reviews = Util.retrieveReviews("Doheny Memorial Library");
-                Log.d("myTag", "reviews");
-                for (String r : reviews)
-                    Log.d("myTag", "review: " + r);
-
                 boolean res = Util.loginUser(username, password);
                 if (!res) {
                     runOnUiThread(() -> Toast.makeText(LoginPageActivity.this, "The Username or Password you entered was incorrect. Please try again.", Toast.LENGTH_SHORT).show());
@@ -122,10 +101,5 @@ public class LoginPageActivity extends AppCompatActivity {
                 }
             }
         }.start();
-    }
-
-    public boolean userValidation(String username, String password){
-        Boolean b = Util.loginUser(username, password);
-        return b;
     }
 }
