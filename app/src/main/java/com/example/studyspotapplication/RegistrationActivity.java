@@ -60,21 +60,24 @@ public class RegistrationActivity extends AppCompatActivity {
                     Toast.makeText(RegistrationActivity.this, "Please enter a correct email before before submitting!", Toast.LENGTH_SHORT).show();
                 }
 
-//                person who already has an account attempts to register
-//                Util util = new Util();
-//                if(util.registerUser(firstName.toString(), lastName.toString(), emailAddress.toString(), passWord.toString())){
-//                    reDirect = false;
-//                    Toast.makeText(RegistrationActivity.this, "Please enter an email that is not associated with an already registered user!", Toast.LENGTH_SHORT).show();
-//                }
-
-                if(passWord.length() < 8 && passWord.length() > 32){
+                if(passWord.length() < 8 || passWord.length() > 32){
                     reDirect = false;
                     Toast.makeText(RegistrationActivity.this, "Password entered was in the wrong format!", Toast.LENGTH_SHORT).show();
                 }
 
+//                userValidation returns true only when given the same email and password
+//                but user can still register with an email that exists in our database if they enter a different
+//                password
+                if(!userValidation(firstName, lastName, emailAddress, passWord)){
+                    Toast.makeText(RegistrationActivity.this, "Please enter an email that is not associated with an already registered user!", Toast.LENGTH_SHORT).show();
+                    reDirect = false;
+                }
+
+//                need to capture user input into our database before directing user to log in page so that they can log in
                 if(reDirect){
                     goToLoginPage(view);
                 }
+
             }
         });
         
