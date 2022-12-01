@@ -67,13 +67,13 @@ public class StudySpotGuestActivity extends AppCompatActivity {
                     runOnUiThread(() -> Toast.makeText(StudySpotGuestActivity.this, "Invalid Study Spot.", Toast.LENGTH_SHORT).show());
                 }else {
                     runOnUiThread(() -> {
-                        final TextView studySpotName = findViewById(R.id.StudySpotNameGuest);
+                        final TextView studySpotName = findViewById(R.id.StudySpotName);
                         studySpotName.setText(name);
-                        final TextView studySpotRating = findViewById(R.id.StudySpotRatingGuest);
+                        final TextView studySpotRating = findViewById(R.id.StudySpotRating);
                         studySpotRating.setText(rating);
-                        final TextView studySpotLocation = findViewById(R.id.StudySpotLocationGuest);
+                        final TextView studySpotLocation = findViewById(R.id.StudySpotLocation);
                         studySpotLocation.setText(location);
-                        final TextView studySpotTimesOpen= findViewById(R.id.StudySpotTimesOpenGuest);
+                        final TextView studySpotTimesOpen= findViewById(R.id.StudySpotTimesOpen);
                         studySpotTimesOpen.setText(hours);
                     });
                 }
