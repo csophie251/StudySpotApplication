@@ -21,10 +21,9 @@ public class StudySpotAuthenticatedTest {
 //        Double oldRating = Util.retrieveStudySpotRating("Leavey Library");
 //        Double userRating = 4.5;
 //        Double expectedRating = (oldRating + userRating)/ 2;
-//        Double newRating = Util.sendRating("Leavey Library", userRating);
+//        Double newRating = Util.sendRating("admin@usc.edu", "Leavey Library", userRating);
 //        assertEquals(expectedRating, newRating);
 //    }
-//
 //    @Test
 //    public void testSaveTags(){
 //        StudySpotAuthenticatedActivity StudySpotAuthenticatedClass = new StudySpotAuthenticatedActivity();

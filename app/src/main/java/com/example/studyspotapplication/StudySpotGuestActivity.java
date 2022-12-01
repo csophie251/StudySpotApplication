@@ -8,46 +8,27 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class StudySpotGuestActivity extends AppCompatActivity {
-    public String studySpotName;
+    public String name;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_study_spot_guest);
         Intent intent = getIntent();
-        studySpotName = intent.getStringExtra("name");
-        Log.d("Study Spot Name: ", studySpotName);
+        name = intent.getStringExtra("name");
+        Log.d("Study Spot Name: ", name);
 
-        String studySpotRating = "No Rating";
-        String studySpotAddress = "No Address";
-        String studySpotOpenTimes = "No Openings";
-        StudySpot ss = Util.retrieveStudySpot(studySpotName);
-        if(Util.retrieveStudySpotRating(studySpotName) != null){
-            studySpotRating = Util.retrieveStudySpotRating(studySpotName).toString(); // uncomment out later
-        }
-        if(ss != null){
-            studySpotAddress = ss.location;
-            studySpotOpenTimes = ss.hours;
-        }
+        //Display name, location, rating ,open times
+        displayStudySpotInfo();
 
-        Log.d("Study Spot Information:", (studySpotRating + ", " +studySpotAddress  + ", " + studySpotOpenTimes));
-
-        //Set text
-        final TextView name = findViewById(R.id.StudySpotNameGuest);
-        name.setText(studySpotName);
-        final TextView rating = findViewById(R.id.StudySpotRatingGuest);
-        rating.setText(studySpotRating);
-        final TextView location = findViewById(R.id.StudySpotLocationGuest);
-        location.setText(studySpotAddress);
-        final TextView timesOpen = findViewById(R.id.StudySpotTimesOpenGuest);
-        timesOpen.setText(studySpotOpenTimes);
+        //Display study spot image
         final ImageView studySpotImage = findViewById(R.id.imageView);
-        int image = Images.getImage(studySpotName);
+        int image = Images.getImage(name);
         studySpotImage.setImageResource(image);
-        Log.d("Set Study Info:", "finished");
 
         Button mButton2 = findViewById(R.id.mapBtn);
         mButton2.setOnClickListener(new View.OnClickListener() {
@@ -58,6 +39,46 @@ public class StudySpotGuestActivity extends AppCompatActivity {
                 startActivity(myIntent);
             }
         });
+    }
+    public void displayStudySpotInfo() {
+        new Thread() {
+            @Override
+            public void run() {
+                StudySpotData testData = new StudySpotData();
+                testData.name = "Doheny Memorial Library";
+                testData.location = "testlocation";
+                testData.latitude =34.02015;
+                testData.rating = "4.4";
+                testData.longitude =-118.28372;
+                testData.hours = "test hours";
+                testData.busy = false;
+                testData.quiet = true;
+                testData.outlets = true;
+                StudySpot ss = new StudySpot(testData);
+
+                //StudySpot ss = Util.retrieveStudySpot(name);
+                String rating = "No Rating";
+                String location = "No Address";
+                String hours = "No Openings";
+                if (ss == null ) {
+                    runOnUiThread(() -> Toast.makeText(StudySpotGuestActivity.this, "Invalid Study Spot", Toast.LENGTH_SHORT).show());
+                }
+                else if (ss.rating == null || ss.location == null || ss.hours == null){
+                    runOnUiThread(() -> Toast.makeText(StudySpotGuestActivity.this, "Invalid Study Spot.", Toast.LENGTH_SHORT).show());
+                }else {
+                    runOnUiThread(() -> {
+                        final TextView studySpotName = findViewById(R.id.StudySpotName);
+                        studySpotName.setText(name);
+                        final TextView studySpotRating = findViewById(R.id.StudySpotRating);
+                        studySpotRating.setText(rating);
+                        final TextView studySpotLocation = findViewById(R.id.StudySpotLocation);
+                        studySpotLocation.setText(location);
+                        final TextView studySpotTimesOpen= findViewById(R.id.StudySpotTimesOpen);
+                        studySpotTimesOpen.setText(hours);
+                    });
+                }
+            }
+        }.start();
     }
     public void goToLoginPage(android.view.View view) {
         Intent intent = new Intent(this, LoginPageActivity.class);

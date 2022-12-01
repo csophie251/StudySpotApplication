@@ -97,14 +97,14 @@ public class Util {
         Gson gson = new Gson();
         return gson.fromJson(ss, double.class);
     }
-    public static Double sendRating(String username, String name, Double rating) {
+    public static String sendRating(String username, String name, Double rating) {
         // TODO sends new user rating
         // updates average rating in database,
         // sends back updated average rating
-        return 0.0;
+        return "0.0";
     }
 
-    public static Boolean sendTags(String name, ArrayList<String> tags) {
+    public static Boolean sendTags(String username, String name, ArrayList<String> tags) {
 //        Stores tags in database
 //        Return true/false if successful
         boolean busy = tags.contains("Busy");
