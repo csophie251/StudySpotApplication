@@ -25,7 +25,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
+import com.google.gson.Gson;
+
 import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 
 public class LoginPageActivity extends AppCompatActivity {
@@ -34,9 +44,6 @@ public class LoginPageActivity extends AppCompatActivity {
     private EditText ePassword;
     private Button eLogin;
     private TextView eGuest;
-    //temp username and password
-//    private String TestUserName = "Admin";
-//    private String TestPassword = "12345678";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,16 +66,16 @@ public class LoginPageActivity extends AppCompatActivity {
                     //display error message
                     Toast.makeText(LoginPageActivity.this, "Username or Password is missing. Please try again.", Toast.LENGTH_SHORT).show();
                 }else{//otherwise, validate against database
-                    //TEST USING ADMIN
-                    if(!userValidation(inputName, inputPass)){ //incorrect/cant find in database
-                        Toast.makeText(LoginPageActivity.this, "The Username or Password you entered was incorrect. Please try again.", Toast.LENGTH_SHORT).show();
-                    }else{//user input is found in database
-                        Toast.makeText(LoginPageActivity.this, "Login Successful.", Toast.LENGTH_SHORT).show();
-                        //TODO: REDIRECT TO NEW ACTIVITY [AUTHENTICATED MAP PAGE]
-                        Intent intent = new Intent(LoginPageActivity.this, MapsActivity.class);
-                        intent.putExtra("username", inputName); //send the username
-                        startActivity(intent);
-                    }
+                    validateUser(inputName, inputPass);
+//                    if(!userValidation(inputName, inputPass)){ //incorrect/cant find in database
+//                        Toast.makeText(LoginPageActivity.this, "The Username or Password you entered was incorrect. Please try again.", Toast.LENGTH_SHORT).show();
+//                    }else{//user input is found in database
+//                        Toast.makeText(LoginPageActivity.this, "Login Successful.", Toast.LENGTH_SHORT).show();
+//                        //TODO: REDIRECT TO NEW ACTIVITY [AUTHENTICATED MAP PAGE]
+//                        Intent intent = new Intent(LoginPageActivity.this, MapsActivity.class);
+//                        intent.putExtra("username", inputName); //send the username
+//                        startActivity(intent);
+//                    }
                 }
             }
         });
@@ -83,25 +90,28 @@ public class LoginPageActivity extends AppCompatActivity {
         });
     }
 
+    public void validateUser(String username, String password) {
+        new Thread() {
+            @Override
+            public void run() {
+                boolean res = Util.validateUser(username, password);
+                if (!res) {
+                    runOnUiThread(() -> Toast.makeText(LoginPageActivity.this, "The Username or Password you entered was incorrect. Please try again.", Toast.LENGTH_SHORT).show());
+                } else {
+                    runOnUiThread(() -> {
+                        Toast.makeText(LoginPageActivity.this, "Login Successful.", Toast.LENGTH_SHORT).show();
+                        //TODO: REDIRECT TO NEW ACTIVITY [AUTHENTICATED MAP PAGE]
+                        Intent intent = new Intent(LoginPageActivity.this, MapsActivity.class);
+                        intent.putExtra("username", username); //send the username
+                        startActivity(intent);
+                    });
+                }
+            }
+        }.start();
+    }
+
     public boolean userValidation(String username, String password){
         Boolean b = Util.loginUser(username, password);
-//        String name = "Doheny Memorial Library";
-//        StudySpot ss = Util.retrieveStudySpot(name);
-//        Double ratingNum = Util.retrieveStudySpotRating(name);
-//        String data = "{\n" +
-//                "    \"type\": \"boo\",\n" +
-//                "    \"data\": null" +
-//                "}";
-//        String s1 = Util.sendMessage(data);
-//        String s2 = Util.sendMessage(data);
-//        String s3 = Util.sendMessage(data);
-//        Log.d("myTag", ">>>> TESTING UTILS");
-//        Log.d("myTag", name);
-//        Log.d("myTag", ss.toString());
-//        Log.d("myTag", "");
-//        Log.d("myTag", "Rating: ");
-//        Log.d("myTag", String.valueOf(ratingNum));
-//        Log.d("myTag", "<<<< END TESTING");
         return b;
     }
 }

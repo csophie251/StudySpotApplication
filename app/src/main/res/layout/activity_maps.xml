@@ -58,6 +58,6 @@
         android:bottomLeftRadius="10dp"
         android:topLeftRadius="10dp"
         android:topRightRadius="10dp"
-        android:layout_marginTop="400dp"
+        android:layout_marginTop="720dp"
         android:text="Logout" />
 </RelativeLayout>

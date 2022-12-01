@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:gravity="left"
-            android:text="@string/vibes" />
+            android:text="@string/busy" />
 
         <RadioButton
             android:id="@+id/filter_2"
@@ -53,15 +53,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="@string/lighting" />
+            android:text="@string/outlets" />
 
-        <RadioButton
-            android:id="@+id/filter_4"
-            style="@style/radionbutton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:text="@string/people" />
 
     </LinearLayout>
 
