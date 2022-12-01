@@ -20,8 +20,8 @@ public class ServerThread extends Thread {
     String output;
     boolean done;
     private static String SERVER = "https://mythic-tenure-340409.wn.r.appspot.com/form";
-    private static String LOCAL = "http://10.25.149.239:8080/StudySpotServer/form";
-    private static String API_POINT = SERVER;
+    private static String LOCAL = "http://10.26.1.222:8080/StudySpotServer/form";
+    private static String API_POINT = LOCAL;
 
     public ServerThread(String input) {
         this.input = input;
@@ -35,6 +35,7 @@ public class ServerThread extends Thread {
 
         try {
             URL url = new URL(API_POINT);
+            Log.i("myTag", "Start API call");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("POST");
             conn.setRequestProperty("Content-Type", "application/json");
@@ -47,8 +48,10 @@ public class ServerThread extends Thread {
             osw.flush();
             osw.close();
             os.close();  //don't forget to close the OutputStream
+            Log.i("myTag", "Write call data");
+            Log.i("myTag", input);
             conn.connect();
-            Log.d("myTag", "connected");
+            Log.d("myTag", "Connect to server");
 
             int code = conn.getResponseCode();
             Log.d("myTag", "The response is: " + code);
@@ -58,7 +61,11 @@ public class ServerThread extends Thread {
                 output += line;
             }
             conn.disconnect();
+            Log.d("myTag", "Disconnect");
+            Log.d("myTag", output);
             this.done = true;
+            Log.d("myTag", String.valueOf(this.done));
+            Log.d("myTag", "");
         } catch (Exception e) {
             Log.e("myTag", "Http connection failed: ", e);
         }

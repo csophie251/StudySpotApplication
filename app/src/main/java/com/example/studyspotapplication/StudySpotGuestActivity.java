@@ -24,15 +24,15 @@ public class StudySpotGuestActivity extends AppCompatActivity {
         String studySpotRating = "No Rating";
         String studySpotAddress = "No Address";
         String studySpotOpenTimes = "No Openings";
-//        if(Util.retrieveStudySpotRating(studySpotName) != null){
-//            studySpotRating = Util.retrieveStudySpotRating(studySpotName).toString(); // uncomment out later
-//        }
-        if(Util.retrieveStudySpotAddress(studySpotName) != null){
-            studySpotAddress = Util.retrieveStudySpotAddress(studySpotName).toString(); // uncomment out later
+        StudySpot ss = Util.retrieveStudySpot(studySpotName);
+        if(Util.retrieveStudySpotRating(studySpotName) != null){
+            studySpotRating = Util.retrieveStudySpotRating(studySpotName).toString(); // uncomment out later
         }
-//        if(Util.retrieveStudySpotTimesOpen(studySpotName) != null){
-//            studySpotOpenTimes = Util.retrieveStudySpotTimesOpen(studySpotName).toString(); // uncomment out later
-//        }
+        if(ss != null){
+            studySpotAddress = ss.location;
+            studySpotOpenTimes = ss.hours;
+        }
+
         Log.d("Study Spot Information:", (studySpotRating + ", " +studySpotAddress  + ", " + studySpotOpenTimes));
 
         //Set text

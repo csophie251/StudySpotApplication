@@ -6,7 +6,7 @@ public class StudySpot {
     LatLng position;
     String name;
     String location;
-    String openHours;
+    String hours;
     boolean busy;
     boolean quiet;
     boolean outlets;
@@ -15,7 +15,7 @@ public class StudySpot {
         position = new LatLng(data.latitude, data.longitude);
         this.name = data.name;
         this.location = data.location;
-        this.openHours = data.openHours;;
+        this.hours = data.hours;;
         this.busy = data.busy;
         this.quiet = data.quiet;
         this.outlets = data.outlets;
@@ -29,9 +29,18 @@ public class StudySpot {
         return name;
     }
 
-//    public String getSnippet() {
-//        return snippet;
-//    }
+    @Override
+    public String toString() {
+        return "StudySpot{" +
+                "position=" + position +
+                ", name='" + name + '\'' +
+                ", location='" + location + '\'' +
+                ", hours='" + hours + '\'' +
+                ", busy=" + busy +
+                ", quiet=" + quiet +
+                ", outlets=" + outlets +
+                '}';
+    }
 }
 
 class StudySpotData {
@@ -39,7 +48,7 @@ class StudySpotData {
     String location;
     double latitude;
     double longitude;
-    String openHours;
+    String hours;
     boolean busy;
     boolean quiet;
     boolean outlets;

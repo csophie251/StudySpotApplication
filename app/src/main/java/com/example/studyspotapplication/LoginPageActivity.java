@@ -82,28 +82,26 @@ public class LoginPageActivity extends AppCompatActivity {
             }
         });
     }
-    //VALIDATING USERNAME INPUT AND PASSWORD --> need to change to retrieve from database of user info
-    public boolean userValidation(String username, String password){
-        //for the database retrieval
-       // https://www.tutorialspoint.com/json/json_java_example.htm
-        Boolean b = Util.loginUser(username, password);
-        return b;
 
-//        try{
-//            JSONObject json = new JSONObject();
-//            json.put("username", username);
-//            json.put("password", password);
-//
-//            String jsonStr = json.toString();
-//            String jsonResultStr = Util.sendMessage(jsonStr); //sending to server and retrieving result as a string
-//            //assuming we are receiving a JSON object from the server
-//            JSONObject jsonResult = new JSONObject(jsonResultStr);
-//            if(jsonResult.getString("valid") == "1"){
-//                return true;
-//            }
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
-//        return false;
+    public boolean userValidation(String username, String password){
+        Boolean b = Util.loginUser(username, password);
+//        String name = "Doheny Memorial Library";
+//        StudySpot ss = Util.retrieveStudySpot(name);
+//        Double ratingNum = Util.retrieveStudySpotRating(name);
+//        String data = "{\n" +
+//                "    \"type\": \"boo\",\n" +
+//                "    \"data\": null" +
+//                "}";
+//        String s1 = Util.sendMessage(data);
+//        String s2 = Util.sendMessage(data);
+//        String s3 = Util.sendMessage(data);
+//        Log.d("myTag", ">>>> TESTING UTILS");
+//        Log.d("myTag", name);
+//        Log.d("myTag", ss.toString());
+//        Log.d("myTag", "");
+//        Log.d("myTag", "Rating: ");
+//        Log.d("myTag", String.valueOf(ratingNum));
+//        Log.d("myTag", "<<<< END TESTING");
+        return b;
     }
 }

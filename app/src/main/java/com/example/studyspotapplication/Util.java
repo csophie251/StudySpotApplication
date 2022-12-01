@@ -6,17 +6,28 @@ import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Util {
+//    private static HashMap<String, StudySpot> ssMap;
 
     public static String sendMessage(String input) {
         ServerThread st = new ServerThread(input);
         while (!st.done) {}
-        Log.d("myTag", st.output);
+        Log.d("myTag", "done");
         return st.output;
+    }
+    public static ArrayList<StudySpot> retrieveAllStudySpots() {
+        return new ArrayList<>();
     }
 
     public static StudySpot retrieveStudySpot(String name) {
+        Log.d("myTag", ">> retrieveStudySpot start");
+//        if (ssMap.containsKey(name)) {
+//            return ssMap.get(name);
+//        }
+        Log.d("myTag", ">> retrieveStudySpot check key");
+
         String json = String.format("{\n" +
                 "    \"type\": \"studySpot\",\n" +
                 "    \"data\": {\n" +
@@ -24,33 +35,16 @@ public class Util {
                 "    }\n" +
                 "}", name);
         String ss = sendMessage(json);
-        if (ss.equals("") || ss == null) {
+        Log.d("myTag", ">> retrieveStudySpot after send message");
+        if (ss.equals("null") || ss == null) {
             // handle error!
             return null;
         }
         Gson gson = new Gson();
         StudySpotData studySpot = gson.fromJson(ss, StudySpotData.class);
-        return new StudySpot(studySpot);
-    }
-
-    public static String retrieveStudySpotAddress(String name) {
-        // Returns address of study spot name in json
-        StudySpot ss = retrieveStudySpot(name);
-        if (ss == null) {
-            // handle error!
-            return null;
-        }
-        return ss.location;
-    }
-
-    public static String retrieveStudySpotTimesOpen(String name) {
-        // Returns open times of study spot name in json
-        StudySpot ss = retrieveStudySpot(name);
-        if (ss == null) {
-            // handle error!
-            return null;
-        }
-        return ss.openHours;
+        StudySpot newSS = new StudySpot(studySpot);
+//        ssMap.put(name, newSS);
+        return newSS;
     }
 
     public static Double retrieveStudySpotRating(String name) {
@@ -62,7 +56,7 @@ public class Util {
                 "    }\n" +
                 "}", name);
         String ss = sendMessage(json);
-        if (ss.equals("") || ss == null) {
+        if (ss.equals("null") || ss == null) {
             // handle error!!!!!!
             return null;
         }
@@ -93,7 +87,7 @@ public class Util {
                 "    }\n" +
                 "}", name, busy, quiet, outlets);
         String ss = sendMessage(json);
-        if (ss.equals("") || ss == null) {
+        if (ss.equals("null") || ss == null) {
             // handle error!
             return null;
         }
@@ -110,7 +104,7 @@ public class Util {
                 "    }\n" +
                 "}", name);
         String ss = sendMessage(json);
-        if (ss.equals("") || ss == null) {
+        if (ss.equals("null") || ss == null) {
             // handle error!
             return null;
         }
@@ -130,7 +124,7 @@ public class Util {
                 "    }\n" +
                 "}", name, review);
         String ss = sendMessage(json);
-        if (ss.equals("") || ss == null) {
+        if (ss.equals("null") || ss == null) {
             // handle error!
             return null;
         }
@@ -150,14 +144,14 @@ public class Util {
                         "}", firstName, lastName, email, password);
 
         String ss = sendMessage(json);
-        if(ss.equals("") || ss == null){
+        if(ss.equals("null") || ss == null){
             System.out.println("An error occurred in sending message: Null or empty value");
             return null;
         }
         Gson gson = new Gson();
         return gson.fromJson(ss, boolean.class);
     }
-    public static Boolean loginUser(String email, String password){
+    public static Boolean loginUser(String email, String password) {
         String json = String.format(
                 "{\n" +
                         "    \"type\": \"validate\",\n" +
@@ -167,13 +161,15 @@ public class Util {
                         "    }\n" +
                         "}", email, password);
         String ss = sendMessage(json);
-        if(ss.equals("") || ss == null){
+        if(ss.equals("null") || ss == null){
             System.out.println("An error occurred in sending message: Null or empty value");
             return null;
         }
         Gson gson = new Gson();
         return gson.fromJson(ss, boolean.class);
     }
+
+
 }
 
 
