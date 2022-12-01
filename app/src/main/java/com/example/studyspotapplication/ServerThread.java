@@ -37,6 +37,7 @@ public class ServerThread extends Thread {
             URL url = new URL(API_POINT);
             Log.i("myTag", "Start API call");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            Log.i("myTag", "Connection started");
             conn.setRequestMethod("POST");
             conn.setRequestProperty("Content-Type", "application/json");
             conn.setRequestProperty("Accept", "application/json");
@@ -67,7 +68,7 @@ public class ServerThread extends Thread {
             Log.d("myTag", String.valueOf(this.done));
             Log.d("myTag", "");
         } catch (Exception e) {
-            Log.e("myTag", "Http connection failed: ", e);
+            Log.e("myTag", "Http connection failed: " + e.toString(), e);
         }
     }
 

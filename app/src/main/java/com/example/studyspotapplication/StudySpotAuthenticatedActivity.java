@@ -130,9 +130,11 @@ public class StudySpotAuthenticatedActivity extends AppCompatActivity {
     public void onQuietClicked(android.view.View view){
 
     }
+
     public void onBusyClicked(android.view.View view){
 
     }
+
     public void onOutletClicked(android.view.View view){
 
     }

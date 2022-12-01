@@ -24,6 +24,7 @@
         android:bottomLeftRadius="10dp"
         android:topLeftRadius="10dp"
         android:topRightRadius="10dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="690dp"
+        android:layout_marginLeft="10dp"
         android:text="Login" />
 </RelativeLayout>

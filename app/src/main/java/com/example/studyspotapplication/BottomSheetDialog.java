@@ -52,14 +52,12 @@ public class BottomSheetDialog extends BottomSheetDialogFragment {
         Button filter_1_button = v.findViewById(R.id.filter_1);
         Button filter_2_button = v.findViewById(R.id.filter_2);
         Button filter_3_button = v.findViewById(R.id.filter_3);
-        Button filter_4_button = v.findViewById(R.id.filter_4);
         Button apply_filters_button = v.findViewById(R.id.apply_filters);
 
         // Hardcoding over hashmap
         filter_1_button.setSelected(filter_status.get(0));
         filter_2_button.setSelected(filter_status.get(1));
         filter_3_button.setSelected(filter_status.get(2));
-        filter_4_button.setSelected(filter_status.get(3));
 
         apply_filters_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,18 +109,6 @@ public class BottomSheetDialog extends BottomSheetDialogFragment {
             }
         });
 
-        filter_4_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
-                filter_status.set(3, !filter_status.get(3));
-                filter_4_button.setSelected(filter_status.get(3));
-                Toast.makeText(getActivity(),
-                                "Filter 4 selected", Toast.LENGTH_SHORT)
-                        .show();
-//                dismiss();
-            }
-        });
         return v;
     }
 }

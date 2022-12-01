@@ -2,6 +2,8 @@ package com.example.studyspotapplication;
 
 import com.google.android.gms.maps.model.LatLng;
 
+import java.util.ArrayList;
+
 public class StudySpot {
     LatLng position;
     String name;
@@ -52,4 +54,8 @@ class StudySpotData {
     boolean busy;
     boolean quiet;
     boolean outlets;
+}
+
+class StudySpotsData {
+    ArrayList<StudySpotData> data;
 }

@@ -1,24 +1,36 @@
 package com.example.studyspotapplication;
+import android.content.Intent;
 import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
+import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.lang.reflect.Type;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class Util {
-//    private static HashMap<String, StudySpot> ssMap;
+    private static String SERVER = "https://mythic-tenure-340409.wn.r.appspot.com/form";
+    private static String LOCAL = "http://10.26.1.222:8080/StudySpotServer/form";
+    private static String API_POINT = LOCAL;
 
     public static String sendMessage(String input) {
         ServerThread st = new ServerThread(input);
         while (!st.done) {}
         Log.d("myTag", "done");
         return st.output;
-    }
-    public static ArrayList<StudySpot> retrieveAllStudySpots() {
-        return new ArrayList<>();
     }
 
     public static StudySpot retrieveStudySpot(String name) {
@@ -169,7 +181,74 @@ public class Util {
         return gson.fromJson(ss, boolean.class);
     }
 
+    public static String sendMessageBetter(String input) {
+        String output = "";
+        try {
+            URL url = new URL(API_POINT);
+            Log.i("myTag", "Start better API call");
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            Log.i("myTag", "Connection started with input:\n" + input);
+            conn.setRequestMethod("POST");
+            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setRequestProperty("Accept", "application/json");
+            conn.setDoOutput(true);
 
+            OutputStreamWriter out = new OutputStreamWriter(conn.getOutputStream());
+            out.write(input);
+            out.flush();
+            out.close();
+
+            Log.d("myTag", "Before connection.");
+            conn.connect();
+            Log.d("myTag", "Connected. The response is: " + conn.getResponseCode());
+            BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            String line;
+            while ((line = br.readLine()) != null) {
+                output += line;
+            }
+            conn.disconnect();
+            Log.d("myTag", "Disconnect with output:\n" + output);
+        } catch (Exception e) {
+            Log.e("myTag", "Http connection failed: " + e, e);
+        }
+        return output;
+    }
+
+    public static boolean validateUser(String username, String password) {
+        String json = String.format(
+                "{\n" +
+                        "    \"type\": \"validate\",\n" +
+                        "    \"data\": {\n" +
+                        "        \"email\": \"%s\",\n" +
+                        "        \"password\": \"%s\"\n" +
+                        "    }\n" +
+                        "}", username, password);
+        String ss = sendMessageBetter(json);
+        if(ss.equals("null") || ss == null){
+            System.out.println("An error occurred in sending message: Null or empty value");
+            return false;
+        }
+        return new Gson().fromJson(ss, boolean.class);
+    }
+
+    public static ArrayList<StudySpot> retrieveAllStudySpots() {
+        String json = String.format("{\n" +
+                "    \"type\": \"allStudySpots\",\n" +
+                "    \"data\": {}\n" +
+                "}");
+        String ss = sendMessageBetter(json);
+        if (ss.equals("null") || ss == null) {
+            // handle error!
+            return null;
+        }
+        Gson gson = new Gson();
+        List<StudySpotData> spotsData = new Gson().fromJson(ss, new TypeToken<List<StudySpotData>>() {}.getType());
+        ArrayList<StudySpot> spots = new ArrayList<StudySpot>();
+        for(StudySpotData cur : spotsData) {
+            spots.add(new StudySpot(cur));
+        }
+        return spots;
+    }
 }
 
 
