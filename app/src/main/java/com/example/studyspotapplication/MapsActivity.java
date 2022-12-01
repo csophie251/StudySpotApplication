@@ -46,7 +46,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         leaveyData.location = "testlocation";
         leaveyData.latitude =34.02193;
         leaveyData.longitude =-118.28277;
-        leaveyData.openHours = "test hours";
+        leaveyData.hours = "test hours";
         leaveyData.busy = true;
         leaveyData.quiet = false;
         leaveyData.outlets = true;
@@ -56,7 +56,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         dohenyData.location = "testlocation";
         dohenyData.latitude =34.02015;
         dohenyData.longitude =-118.28372;
-        dohenyData.openHours = "test hours";
+        dohenyData.hours = "test hours";
         dohenyData.busy = false;
         dohenyData.quiet = true;
         dohenyData.outlets = true;
@@ -66,7 +66,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         sidneyData.location = "testlocation";
         sidneyData.latitude =34.02235;
         sidneyData.longitude =-118.28512;
-        sidneyData.openHours = "test hours";
+        sidneyData.hours = "test hours";
         sidneyData.busy = true;
         sidneyData.quiet = false;
         sidneyData.outlets = false;
@@ -217,6 +217,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 //switch page to studyspot page
                 Intent myIntent = new Intent(MapsActivity.this, StudySpotAuthenticatedActivity.class);
                 username = myIntent.getStringExtra("username");
+                Log.d("myTag", "clicked marker window: " + marker.getTitle());
                 myIntent.putExtra("name", marker.getTitle());
                 myIntent.putExtra("username", username);
                 startActivity(myIntent);

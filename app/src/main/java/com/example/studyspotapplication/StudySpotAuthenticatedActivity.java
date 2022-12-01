@@ -1,88 +1,33 @@
 package com.example.studyspotapplication;
 
-import static java.lang.Double.parseDouble;
+import static java.lang.Float.parseFloat;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.ArrayList;
+import java.lang.reflect.Array;
 
 public class StudySpotAuthenticatedActivity extends AppCompatActivity {
-    public String studySpotName;
-    public ArrayList<String> selectedTags;
-    public ArrayList<String> reviewsList;
-    public String username;
-    CheckBox busy;
-    CheckBox outlets;
-    CheckBox quiet;
+    public static Float originalRating = 0f;
+    public JSONArray reviewsArray;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_study_spot_authenticated);
         Intent intent = getIntent();
-
-        studySpotName = intent.getStringExtra("name");
-        username = intent.getStringExtra("username");
-        Log.d("Study Spot Name: ", studySpotName);
-
-        String studySpotRating = "No Rating";
-        String studySpotAddress = "No Address";
-        String studySpotOpenTimes = "No Openings";
-        if(Util.retrieveStudySpotRating(studySpotName) != null){
-            studySpotRating = Util.retrieveStudySpotRating(studySpotName).toString(); // uncomment out later
-        }
-        if(Util.retrieveStudySpotAddress(studySpotName) != null){
-            studySpotAddress = Util.retrieveStudySpotAddress(studySpotName).toString(); // uncomment out later
-        }
-        if(Util.retrieveStudySpotTimesOpen(studySpotName) != null){
-            studySpotOpenTimes = Util.retrieveStudySpotTimesOpen(studySpotName).toString(); // uncomment out later
-        }
-        Log.d("Study Spot Information:", (studySpotRating + ", " +studySpotAddress  + ", " + studySpotOpenTimes));
-
-        //Set text
-        final TextView name = findViewById(R.id.StudySpotName);
-        name.setText(studySpotName);
-        final TextView rating = findViewById(R.id.StudySpotRating);
-        rating.setText(studySpotRating);
-        final TextView location = findViewById(R.id.StudySpotLocation);
-        location.setText(studySpotAddress);
-        final TextView timesOpen= findViewById(R.id.StudySpotTimesOpen);
-        timesOpen.setText(studySpotOpenTimes);
-        Log.d("Set Study Info:", "finished");
-
-        //Tags
-        selectedTags = new ArrayList<String>();
-        busy = findViewById(R.id.BusyTag);
-        outlets = findViewById(R.id.OutletTag);
-        quiet = findViewById(R.id.QuietTag);
-
-        if(Util.retrieveReviews(studySpotName) == null || Util.retrieveReviews(studySpotName).isEmpty()){
-            reviewsList.add("No Reviews Yet!");
-        }
-        else{
-            reviewsList = Util.retrieveReviews(studySpotName);
-        }
-        final TextView studySpotReviews= findViewById(R.id.PlaceReviewsHere);
-        String text = "";
-        for(int i =0; i < (int) reviewsList.size(); i++){
-            text += reviewsList.get(i);
-            text += '\n';
-        }
-        studySpotReviews.setText(text);
-
-        final ImageView studySpotImage = findViewById(R.id.imageView);
-        int image = Images.getImage(studySpotName);
-        studySpotImage.setImageResource(image);
+        String name = intent.getStringExtra("name");
+        Log.d("myTag", name);
+        // start new thread getting data with name
 
         Button mButton = findViewById(R.id.logout);
         mButton.setOnClickListener(new View.OnClickListener() {
@@ -102,52 +47,93 @@ public class StudySpotAuthenticatedActivity extends AppCompatActivity {
                 startActivity(myIntent);
             }
         });
+
+        try {
+            String jsonString = "{"
+                    + " \"study spots data\": ["
+                    + " {"
+                    + " \"name\": \"USC Village\","
+                    + " \"location\" : \"123 ABC St Los Angeles, CA 90089\","
+                    + " \"openHours\" : \"Monday-Sunday 9-5pm\","
+                    +  " \"reviews\" : ["
+                    + " \"Amazing Spot!\","
+                    + " \"10 out of 10\","
+                    + " \"Loved it here!\" ],"
+                    + " \"rating\" : \"4.5\""
+                    + " },"
+                    + " ]"
+                    + "}";
+
+
+            JSONObject obj = new JSONObject(jsonString);
+            JSONArray studySpotsData = obj.getJSONArray("study spots data");
+            JSONObject studySpot = studySpotsData.getJSONObject(0);
+
+
+            reviewsArray =  studySpot.getJSONArray("reviews");
+            int arySize = reviewsArray.length();
+            final TextView studySpotReviews= (TextView) findViewById(R.id.PlaceReviewsHere);
+            String text = "";
+            for(int i =0; i < arySize; i++){
+                text += reviewsArray.get(i);
+                text += '\n';
+            }
+            studySpotReviews.setText(text);
+
+            String rating = "No Rating";
+            String location = "No Address";
+            String hours = "No Openings";
+            StudySpot ss = Util.retrieveStudySpot(name);
+            if(Util.retrieveStudySpotRating(name) != null){
+                rating = Util.retrieveStudySpotRating(name).toString(); // uncomment out later
+            }
+            if(ss != null){
+                location = ss.location;
+                hours = ss.hours;
+            }
+            final TextView studySpotName = (TextView) findViewById(R.id.StudySpotName);
+            studySpotName.setText(name);
+            final TextView studySpotRating = (TextView) findViewById(R.id.StudySpotRating);
+            studySpotRating.setText(rating);
+            final TextView studySpotLocation= (TextView) findViewById(R.id.StudySpotLocation);
+            studySpotLocation.setText(location);
+            final TextView studySpotTimesOpen= (TextView) findViewById(R.id.StudySpotTimesOpen);
+            studySpotTimesOpen.setText(hours);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
+    public void goToLoginPage(android.view.View view) {
+        Intent intent = new Intent(this, LoginPageActivity.class);
+        startActivity(intent);
+    }
+    public void goToSignUpPage(android.view.View view){
+        Intent intent = new Intent (this, RegistrationActivity.class);
+        startActivity(intent);
     }
 
-    public void saveRating() {
+    public void saveRating(android.view.View view) {
         final RatingBar ratingBar = findViewById(R.id.UserRating);
-        Float rating =  ratingBar.getRating();
-        Double userRating = parseDouble(rating.toString());
-        Log.d("User Rating: ",  userRating.toString());
-        Double newRating = Util.sendRating(username, studySpotName, userRating);
-        Log.d("Updated Rating: ",  newRating.toString());
-        final TextView studySpotRating = findViewById(R.id.StudySpotRating);
+        Float userRating =  ratingBar.getRating();
+        System.out.println("Review: " + userRating);
+        Float newRating = (originalRating + userRating)/2;
+        final TextView studySpotRating = (TextView) findViewById(R.id.StudySpotRating);
         studySpotRating.setText(newRating.toString());
     }
-    public ArrayList<String> saveTags()  {
-        ArrayList<String> selectedTags = new ArrayList<String>();
-        if (busy.isChecked()) {
-            selectedTags.add("Busy");
-            Log.d("Add", "busy to list");
-        }
-        if (outlets.isChecked()) {
-            selectedTags.add("Outlets");
-            Log.d("Add", "outlets to list");
-        }
-        if (quiet.isChecked()) {
-            selectedTags.add("Quiet");
-            Log.d("Add", "quiet to list");
-        }
-        for (String element : selectedTags) {
-            Log.d("element", element);
-        }
-        boolean isSaved = Util.sendTags(studySpotName, selectedTags);
-        if (isSaved) {
-            Log.d("true", "tags were successfully added to database");
-        } else {
-            Log.d("false", "some error occurred while adding tags to database");
-        }
-        return selectedTags;
+
+    public void saveReview(android.view.View view){
+        //final TextView studySpotNewReview = (TextView) findViewById(R.id.WriteAReviewText);
+        //String newReview = (String) studySpotNewReview.getText();
+        //int index = reviewsArray.length() + 1;
     }
-    public void saveReview(){
-        final EditText studySpotNewReview = findViewById(R.id.WriteAReviewText);
-        String newReview = studySpotNewReview.getText().toString();
-        Log.d("New Review", newReview);
-        boolean sendReview = Util.sendReview(studySpotName, newReview);
-        if (sendReview) {
-            Log.d("true", "new review was successfully added to database");
-        } else {
-            Log.d("false", "some error occurred while adding review to database");
-        }
+    public void onQuietClicked(android.view.View view){
+
+    }
+    public void onBusyClicked(android.view.View view){
+
+    }
+    public void onOutletClicked(android.view.View view){
+
     }
 }
