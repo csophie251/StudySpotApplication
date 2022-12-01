@@ -17,11 +17,12 @@ public class RegistrationActivity extends AppCompatActivity {
     Pattern pattern;
     Matcher emailMatcher;
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+//
+    private EditText efirstName;
+    private EditText elastName;
+    private EditText eemailAddress;
+    private EditText epassWord;
 
-    private EditText firstName;
-    private EditText lastName;
-    private EditText emailAddress;
-    private EditText passWord;
     private Button singUp;
 
 
@@ -30,19 +31,25 @@ public class RegistrationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration_page);
 
-        firstName = findViewById(R.id.firstName);
-        lastName = findViewById(R.id.lastName);
-        emailAddress = findViewById(R.id.emailAddress);
-        passWord = findViewById(R.id.password);
+        efirstName = findViewById(R.id.firstName);
+        elastName = findViewById(R.id.lastName);
+        eemailAddress = findViewById(R.id.emailAddress);
+        epassWord = findViewById(R.id.password);
         singUp = findViewById(R.id.signUp);
 
-        pattern = Pattern.compile(emailPattern);
-        emailMatcher = pattern.matcher(emailAddress.toString());
 
         singUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 boolean reDirect = true;
+                String firstName = efirstName.getText().toString();
+                String lastName = elastName.getText().toString();
+                String emailAddress = eemailAddress.getText().toString();
+                String passWord = epassWord.getText().toString();
+
+                pattern = Pattern.compile(emailPattern);
+                emailMatcher = pattern.matcher(emailAddress.toString());
+
                 if(firstName.toString().isEmpty() || lastName.toString().isEmpty() || emailAddress.toString().isEmpty() || passWord.toString().isEmpty()){
                     reDirect = false;
                     Toast.makeText(RegistrationActivity.this, "Please complete all fields before submitting!", Toast.LENGTH_SHORT).show();
@@ -53,13 +60,14 @@ public class RegistrationActivity extends AppCompatActivity {
                     Toast.makeText(RegistrationActivity.this, "Please enter a correct email before before submitting!", Toast.LENGTH_SHORT).show();
                 }
 
-                Util util = new Util();
-                if(util.registerUser(firstName.toString(), lastName.toString(), emailAddress.toString(), passWord.toString())){
-                    reDirect = false;
-                    Toast.makeText(RegistrationActivity.this, "Please enter an email that is not associated with an already registered user!", Toast.LENGTH_SHORT).show();
-                }
+//                person who already has an account attempts to register
+//                Util util = new Util();
+//                if(util.registerUser(firstName.toString(), lastName.toString(), emailAddress.toString(), passWord.toString())){
+//                    reDirect = false;
+//                    Toast.makeText(RegistrationActivity.this, "Please enter an email that is not associated with an already registered user!", Toast.LENGTH_SHORT).show();
+//                }
 
-                if(passWord.length() > 32){
+                if(passWord.length() < 8 && passWord.length() > 32){
                     reDirect = false;
                     Toast.makeText(RegistrationActivity.this, "Password entered was in the wrong format!", Toast.LENGTH_SHORT).show();
                 }
@@ -79,6 +87,6 @@ public class RegistrationActivity extends AppCompatActivity {
 
     public Boolean userValidation(String firstName, String lastName, String email, String password) {
         Util util = new Util();
-        return !(util.registerUser(firstName.toString(), lastName.toString(), emailAddress.toString(), passWord.toString()));
+        return !(util.registerUser(firstName, lastName, email, password));
     }
 }
