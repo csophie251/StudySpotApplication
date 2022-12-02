@@ -101,8 +101,20 @@ public class Util {
     }
 
     public static String sendRating(String username, String name, Double rating) {
-        // TODO
-        return "0.0";
+        String json = String.format("{\n" +
+                "    \"type\": \"sendRating\",\n" +
+                "    \"data\": {\n" +
+                "        \"rating\": \"%f\",\n" +
+                "        \"username\": \"%s\",\n" +
+                "        \"location\": \"%s\"\n" +
+                "    }\n" +
+                "}", rating, username, name);
+        String ss = sendMessage(json);
+        if (ss.equals("null") || ss == null) {
+            // handle error!
+            return "No rating";
+        }
+        return ss;
     }
 
     public static Boolean sendTags(String name, ArrayList<String> tags) {
@@ -111,8 +123,7 @@ public class Util {
         boolean busy = tags.contains("Busy");
         boolean quiet = tags.contains("Quiet");
         boolean outlets = tags.contains("Outlets");
-        String json = String.format(
-                "{\n" +
+        String json = String.format("{\n" +
                 "    \"type\": \"sendTags\",\n" +
                 "    \"data\": {\n" +
                 "        \"name\": \"%s\",\n" +

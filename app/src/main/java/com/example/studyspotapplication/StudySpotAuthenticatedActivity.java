@@ -60,12 +60,14 @@ public class StudySpotAuthenticatedActivity extends AppCompatActivity {
         Button mButton = findViewById(R.id.logout);
         mButton.setOnClickListener(view -> {
             Intent myIntent = new Intent(StudySpotAuthenticatedActivity.this, LandingPageActivity.class);
+
             startActivity(myIntent);
         });
 
         Button mButton2 = findViewById(R.id.mapBtn);
         mButton2.setOnClickListener(view -> {
             Intent myIntent = new Intent(StudySpotAuthenticatedActivity.this, MapsActivity.class);
+            myIntent.putExtra("username", username);
             startActivity(myIntent);
         });
     }
@@ -104,25 +106,23 @@ public class StudySpotAuthenticatedActivity extends AppCompatActivity {
             public void run() {
                 reviewsList = Util.retrieveReviews(name);
                 Log.d("myTag", "reviews: " + reviewsList.size());
-                if (reviewsList == null || reviewsList.isEmpty() ) {
+                if(reviewsList != null && !reviewsList.isEmpty()){
                     runOnUiThread(() -> {
-                        reviewsList = new ArrayList<Review>();
-                        reviewsList.add(null); // TODO FIXME
-//                        reviewsList.add("No Reviews Yet!");
+                        final TextView studySpotReviews= findViewById(R.id.PlaceReviewsHere);
+                        String text = "";
+                        for(int i =0; i < (int) reviewsList.size(); i++){
+                            text += reviewsList.get(i).review;
+                            text += "-";
+                            text += reviewsList.get(i).username.toString();
+                            text += '\n';
+                        }
+                        studySpotReviews.setText(text);
                     });
                 }
-                runOnUiThread(() -> {
-                    final TextView studySpotReviews= findViewById(R.id.PlaceReviewsHere);
-                    String text = "";
-                    for(int i =0; i < (int) reviewsList.size(); i++){
-                        text += reviewsList.get(i).review;
-                        text += '\n';
-                    }
-                    studySpotReviews.setText(text);
-                });
             }
         }.start();
     }
+
 
     public void saveRating(android.view.View view) {
         new Thread() {
@@ -187,7 +187,7 @@ public class StudySpotAuthenticatedActivity extends AppCompatActivity {
 //                boolean sendReview = true;
                 Log.d("myTag", "send review: " + username + " " + name);
                 boolean sendReview = Util.sendReview(username, name, newReview);
-                if (sendReview ) {
+                if (sendReview) {
                     runOnUiThread(() -> {
                         Log.d("true", "new review was successfully added to database");
                         displayReviews();
