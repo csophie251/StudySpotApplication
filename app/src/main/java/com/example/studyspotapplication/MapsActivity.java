@@ -30,16 +30,12 @@ import java.util.List;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {GoogleMap mMap;
     private List<Boolean> filter_status;
-
-
-    //AutoComplete
+    // AutoComplete
     private HashMap<String, StudySpot> names_to_spots;
     private AutoCompleteTextView autocomplete_searchField;
     private ArrayList<String> places;
     private ArrayList<StudySpot> spots;
     public String username;
-
-
 
     public void grabStudySpots() {
         new Thread() {
@@ -51,7 +47,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 } else {
                     runOnUiThread(() -> {
                         spots = res;
-                        places = get_dropDown_titles();
+                        places = getDropdownTitles();
                         ArrayAdapter<String> adapter = new ArrayAdapter<String>(MapsActivity.this, android.R.layout.simple_dropdown_item_1line, places);
                         autocomplete_searchField.setAdapter(adapter);
                         autocomplete_searchField.setThreshold(1);
@@ -89,8 +85,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         names_to_spots = temp;
     }
 
-
-    private ArrayList<String> get_dropDown_titles() {
+    private ArrayList<String> getDropdownTitles() {
         ArrayList<String> places = new ArrayList<String>();
         for (int i = 0; i < spots.size(); ++i) {
             places.add(spots.get(i).getName());
@@ -130,78 +125,43 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+        Intent intent = getIntent();
+        username = intent.getStringExtra("username");
         this.spots = new ArrayList<StudySpot>();
-//        this.spots = generateStudySpots();
-//        grabStudySpots();
-
-
 
         Button mButton = findViewById(R.id.logout);
-        mButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view)
-            {
-                Intent myIntent = new Intent(MapsActivity.this, LandingPageActivity.class);
-                startActivity(myIntent);
-            }
+        mButton.setOnClickListener(view -> {
+            Intent myIntent = new Intent(MapsActivity.this, LandingPageActivity.class);
+            startActivity(myIntent);
         });
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
 
-        //Filters
+        // Filters
         // https://www.geeksforgeeks.org/modal-bottom-sheet-in-android-with-examples/
         Button OpenBottomSheet = findViewById(R.id.open_bottom_sheet);
 
-        //hardcoded over hashmap
+        // hardcoded over hashmap
         filter_status = Collections.synchronizedList(new ArrayList<Boolean>());
         filter_status.add(false);
         filter_status.add(false);
         filter_status.add(false);
         filter_status.add(false);
         OpenBottomSheet.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v)
-                    {
-                        BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                v -> {
+                    BottomSheetDialog bottomSheet = new BottomSheetDialog();
 
-                        bottomSheet.setCancelable(false);
-                        // send filter data
-                        bottomSheet.addList(filter_status);
-                        bottomSheet.addMap(MapsActivity.this);
-                        bottomSheet.show(getSupportFragmentManager(),
-                                "ModalBottomSheet");
-                    }
+                    bottomSheet.setCancelable(false);
+                    // send filter data
+                    bottomSheet.addList(filter_status);
+                    bottomSheet.addMap(MapsActivity.this);
+                    bottomSheet.show(getSupportFragmentManager(), "ModalBottomSheet");
                 });
 
 
         // Colors and Appearance!!!
         // https://stackoverflow.com/questions/30763879/clicked-drop-down-item-in-autocompletetextview-does-not-respond-on-the-first-cli
         autocomplete_searchField = (AutoCompleteTextView) findViewById(R.id.map_toolbar);
-//        displayField = (TextView) findViewById(R.id.dropdown_item);
-
-        // Gets the string array
-
-
-        // Creates the adapter and set it to the AutoCompleteTextView
-//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, places);
-//        autocomplete_searchField.setAdapter(adapter);
-//        autocomplete_searchField.setThreshold(1);
-//        autocomplete_searchField.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                autocomplete_searchField.showDropDown();
-//            }
-//        });
-//        autocomplete_searchField.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id){
-//                String selected_Place = autocomplete_searchField.getText().toString();
-//                Log.d("myTag", "Clicked Dropdown Item " + selected_Place);
-//                StudySpot cur_spot = names_to_spots.get(selected_Place);
-//                mMap.addMarker(new MarkerOptions().position(cur_spot.getPosition()).title(selected_Place));
-//                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(cur_spot.getPosition(), 18));
-//            }
-//        });
         mapFragment.getMapAsync(this);
     }
 
@@ -209,7 +169,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-//        placeMarkers();
         grabStudySpots();
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
@@ -224,7 +183,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public void onInfoWindowClick(Marker marker) {
                 //switch page to studyspot page
                 Intent myIntent = new Intent(MapsActivity.this, StudySpotAuthenticatedActivity.class);
-                username = myIntent.getStringExtra("username");
+                Log.d("myTag", ">> map username: " + username);
                 Log.d("myTag", "clicked marker window: " + marker.getTitle());
                 myIntent.putExtra("name", marker.getTitle());
                 myIntent.putExtra("username", username);
@@ -232,7 +191,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(34.0224, -118.2851), 15));
-        //Set Custom InfoWindow Adapter
+        // Set Custom InfoWindow Adapter
         CustomInfoWindowAdapter adapter = new CustomInfoWindowAdapter(MapsActivity.this);
         mMap.setInfoWindowAdapter(adapter);
     }

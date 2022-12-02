@@ -25,7 +25,7 @@ import java.util.ArrayList;
 
 public class StudySpotAuthenticatedActivity extends AppCompatActivity {
     public ArrayList<String> selectedTags;
-    public ArrayList<String> reviewsList;
+    public ArrayList<Review> reviewsList;
     String name;
     String username;
     CheckBox busy;
@@ -54,7 +54,7 @@ public class StudySpotAuthenticatedActivity extends AppCompatActivity {
         quiet = findViewById(R.id.QuietTag);
 
         //Display reviews
-        reviewsList = new ArrayList<String>();
+        reviewsList = new ArrayList<Review>();
         displayReviews();
 
         Button mButton = findViewById(R.id.logout);
@@ -103,17 +103,19 @@ public class StudySpotAuthenticatedActivity extends AppCompatActivity {
             @Override
             public void run() {
                 reviewsList = Util.retrieveReviews(name);
+                Log.d("myTag", "reviews: " + reviewsList.size());
                 if (reviewsList == null || reviewsList.isEmpty() ) {
                     runOnUiThread(() -> {
-                        reviewsList = new ArrayList<String>();
-                        reviewsList.add("No Reviews Yet!");
+                        reviewsList = new ArrayList<Review>();
+                        reviewsList.add(null); // TODO FIXME
+//                        reviewsList.add("No Reviews Yet!");
                     });
                 }
                 runOnUiThread(() -> {
                     final TextView studySpotReviews= findViewById(R.id.PlaceReviewsHere);
                     String text = "";
                     for(int i =0; i < (int) reviewsList.size(); i++){
-                        text += reviewsList.get(i);
+                        text += reviewsList.get(i).review;
                         text += '\n';
                     }
                     studySpotReviews.setText(text);
@@ -182,8 +184,9 @@ public class StudySpotAuthenticatedActivity extends AppCompatActivity {
             public void run() {
                 final EditText studySpotNewReview = findViewById(R.id.WriteAReviewText);
                 String newReview = studySpotNewReview.getText().toString();
-                boolean sendReview = true;
-               // boolean sendReview = Util.sendReview(username, name, newReview);
+//                boolean sendReview = true;
+                Log.d("myTag", "send review: " + username + " " + name);
+                boolean sendReview = Util.sendReview(username, name, newReview);
                 if (sendReview ) {
                     runOnUiThread(() -> {
                         Log.d("true", "new review was successfully added to database");
