@@ -40,7 +40,6 @@
         <RadioButton
             android:id="@+id/filter_1"
             style="@style/radionbutton"
-            android:buttonTint="#C1FFFFFF"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -52,7 +51,6 @@
         <RadioButton
             android:id="@+id/filter_2"
             style="@style/radionbutton"
-            android:buttonTint="#C1FFFFFF"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -63,12 +61,13 @@
         <RadioButton
             android:id="@+id/filter_3"
             style="@style/radionbutton"
-            android:buttonTint="#C1FFFFFF"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:text="@string/outlets"
             android:textColor="#FEFEFE"
+
             android:fontFamily="@font/mochiypoponeregular"/>
 
 

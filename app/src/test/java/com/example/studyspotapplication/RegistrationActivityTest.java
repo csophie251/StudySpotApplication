@@ -12,21 +12,21 @@ public class RegistrationActivityTest {
         String firstName = "Testing";
         String lastName = "Testing";
         String email = "admin@usc.edu";
-        String password = "123456";
+        String password = "password";
 
-        RegistrationActivity testClass = new RegistrationActivity();
-        Boolean result = testClass.userValidation(firstName, lastName, email, password);
+        Util testClass = new Util();
+        Boolean result = testClass.registerUser(firstName, lastName, email, password);
         assertEquals(false, result);
     }
-
+    @Test
     public void newValidInput(){
         String firstName = "Testing";
         String lastName = "Testing";
         String email = "newemail@usc.edu";
-        String password = "123456";
+        String password = "12345678";
 
-        RegistrationActivity testClass = new RegistrationActivity();
-        Boolean result = testClass.userValidation(firstName, lastName, email, password);
+        Util testClass = new Util();
+        Boolean result = testClass.registerUser(firstName, lastName, email, password);
         assertEquals(true, result);
     }
 }
