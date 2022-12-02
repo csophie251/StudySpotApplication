@@ -55,7 +55,7 @@
         android:textColorHint="@color/white"
         android:textColor="@color/white"
         android:padding="5dp"
-        android:background="@drawable/extraroundedges"
+        android:background="@drawable/rounded_edges"
         android:textSize="32px"
         android:fontFamily="@font/mochiypoponeregular"
         />
@@ -70,7 +70,7 @@
         android:hint="Last Name"
         android:textColorHint="@color/white"
         android:textColor="@color/white"
-        android:background="@drawable/extraroundedges"
+        android:background="@drawable/rounded_edges"
         android:padding="5dp"
         android:textSize="32px"
         android:fontFamily="@font/mochiypoponeregular"
@@ -87,7 +87,7 @@
         android:inputType="textEmailAddress"
         android:textColorHint="@color/white"
         android:textColor="@color/white"
-        android:background="@drawable/extraroundedges"
+        android:background="@drawable/rounded_edges"
         android:padding="5dp"
         android:textSize="32px"
         android:fontFamily="@font/mochiypoponeregular"/>
@@ -103,25 +103,25 @@
         android:hint="Password"
         android:textColorHint="@color/white"
         android:textColor="@color/white"
-        android:background="@drawable/extraroundedges"
+        android:background="@drawable/rounded_edges"
         android:padding="5dp"
         android:textSize="32px"
         android:fontFamily="@font/mochiypoponeregular"
         />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/signUp"
         android:layout_width="362px"
         android:layout_height="150px"
         android:layout_marginLeft = "368px"
-        android:backgroundTint="#69F4FD"
+        android:background="@drawable/bright_blue_oval"
         android:layout_below="@id/informationBlock"
         android:layout_marginTop = "181px"
         android:text=" SIGN UP "
         android:textColor="#FEFEFE"
         tools:textSize="32px"
         android:fontFamily="@font/mochiypoponeregular"
-        ></Button>
+        ></androidx.appcompat.widget.AppCompatButton>
 
     <TextView
         android:gravity="center"

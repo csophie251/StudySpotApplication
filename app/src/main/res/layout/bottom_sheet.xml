@@ -4,11 +4,15 @@
     android:id="@+id/transparent_panel_hud"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:background="@drawable/rounded_edges"
+    android:backgroundTint="#D0CBFF">
     <LinearLayout
         android:id="@+id/filter_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/rounded_edges"
+        android:backgroundTint="#D0CBFF"
         android:gravity="center_horizontal"
         android:orientation="vertical"
         android:padding="16dp">
@@ -18,7 +22,10 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:text="@string/filters"
-            android:textSize="25sp" />
+            android:textSize="25sp"
+            android:textColor="#699AFD"
+            android:textAllCaps="true"
+            android:fontFamily="@font/mochiypoponeregular"></TextView>/>
     </LinearLayout>
 
     <LinearLayout
@@ -33,27 +40,36 @@
         <RadioButton
             android:id="@+id/filter_1"
             style="@style/radionbutton"
+            android:buttonTint="#C1FFFFFF"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:gravity="left"
-            android:text="@string/busy" />
+            android:text="@string/busy"
+            android:textColor="#FEFEFE"
+            android:fontFamily="@font/mochiypoponeregular"/>
 
         <RadioButton
             android:id="@+id/filter_2"
             style="@style/radionbutton"
+            android:buttonTint="#C1FFFFFF"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="@string/quiet" />
+            android:text="@string/quiet"
+            android:textColor="#FEFEFE"
+            android:fontFamily="@font/mochiypoponeregular"/>
 
         <RadioButton
             android:id="@+id/filter_3"
             style="@style/radionbutton"
+            android:buttonTint="#C1FFFFFF"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="@string/outlets" />
+            android:text="@string/outlets"
+            android:textColor="#FEFEFE"
+            android:fontFamily="@font/mochiypoponeregular"/>
 
 
     </LinearLayout>
@@ -70,7 +86,10 @@
             android:id="@+id/apply_filters"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/mybutton"
-            android:text="@string/apply_filters" />
+            android:background="@drawable/dark_blue_oval"
+            android:backgroundTint="#699AFD"
+            android:text="@string/apply_filters"
+            android:textColor="#FEFEFE"
+            android:fontFamily="@font/mochiypoponeregular"/>
     </LinearLayout>
 </RelativeLayout>
