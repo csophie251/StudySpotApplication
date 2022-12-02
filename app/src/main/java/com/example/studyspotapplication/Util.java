@@ -23,7 +23,7 @@ import java.util.List;
 
 public class Util {
     private static String SERVER = "https://mythic-tenure-340409.wn.r.appspot.com/form";
-    private static String LOCAL = "http://10.26.1.222:8080/StudySpotServer/form";
+    private static String LOCAL = "http://192.168.24.145:8080/StudySpotServer/form";
     private static String API_POINT = LOCAL;
 
     public static String sendMessage(String input) {
@@ -59,6 +59,25 @@ public class Util {
         return output;
     }
 
+    public static ArrayList<StudySpot> retrieveAllStudySpots() {
+        String json = String.format("{\n" +
+                "    \"type\": \"allStudySpots\",\n" +
+                "    \"data\": {}\n" +
+                "}");
+        String ss = sendMessage(json);
+        if (ss.equals("null") || ss == null) {
+            // handle error!
+            return null;
+        }
+        Gson gson = new Gson();
+        List<StudySpotData> spotsData = new Gson().fromJson(ss, new TypeToken<List<StudySpotData>>() {}.getType());
+        ArrayList<StudySpot> spots = new ArrayList<StudySpot>();
+        for(StudySpotData cur : spotsData) {
+            spots.add(new StudySpot(cur));
+        }
+        return spots;
+    }
+
     public static StudySpot retrieveStudySpot(String name) {
         Log.d("myTag", ">> retrieveStudySpot start");
         String json = String.format("{\n" +
@@ -81,24 +100,8 @@ public class Util {
         return newSS;
     }
 
-    public static Double retrieveStudySpotRating(String name) {
-        //Returns average rating
-        String json = String.format("{\n" +
-                "    \"type\": \"avgReview\",\n" +
-                "    \"data\": {\n" +
-                "        \"name\": \"%s\"\n" +
-                "    }\n" +
-                "}", name);
-        String ss = sendMessage(json);
-        if (ss.equals("null") || ss == null) {
-            // handle error!!!!!!
-            return null;
-        }
-        Gson gson = new Gson();
-        return gson.fromJson(ss, double.class);
-    }
     public static String sendRating(String username, String name, Double rating) {
-
+        // TODO
         return "0.0";
     }
 
@@ -126,7 +129,8 @@ public class Util {
         Gson gson = new Gson();
         return gson.fromJson(ss, boolean.class);
     }
-    public static ArrayList<String> retrieveReviews(String name) {
+
+    public static ArrayList<Review> retrieveReviews(String name) {
 //        Returns arraylist of all reviews for given study spot name
         String json = String.format(
                 "{\n" +
@@ -140,30 +144,32 @@ public class Util {
             // handle error!
             return null;
         }
-        ArrayList<String> reviews = new Gson().fromJson(ss, new TypeToken<List<String>>() {}.getType());
+        ArrayList<Review> reviews = new Gson().fromJson(ss, new TypeToken<List<Review>>() {}.getType());
         return reviews;
     }
 
-    public static Boolean sendReview(String name, String review) {
+    public static boolean sendReview(String username, String name, String review) {
 //        Add review to the arraylist of reviews for given study spot
 //        Return true/false if successful
         String json = String.format(
                 "{\n" +
                 "    \"type\": \"sendReview\",\n" +
                 "    \"data\": {\n" +
-                "        \"name\": \"%s\",\n" +
-                "        \"review\": \"%s\"\n" +
+                "        \"review\": \"%s\",\n" +
+                "        \"username\": \"%s\",\n" +
+                "        \"location\": \"%s\"\n" +
                 "    }\n" +
-                "}", name, review);
+                "}", review, username, name);
         String ss = sendMessage(json);
         if (ss.equals("null") || ss == null) {
             // handle error!
-            return null;
+            return false;
         }
         Gson gson = new Gson();
         return gson.fromJson(ss, boolean.class);
     }
-    public static Boolean registerUser(String firstName, String lastName, String email, String password) {
+
+    public static boolean registerUser(String firstName, String lastName, String email, String password) {
         String json = String.format(
                 "{\n" +
                 "    \"type\": \"register\",\n" +
@@ -178,12 +184,13 @@ public class Util {
         String ss = sendMessage(json);
         if(ss.equals("null") || ss == null){
             System.out.println("An error occurred in sending message: Null or empty value");
-            return null;
+            return false;
         }
         Gson gson = new Gson();
         return gson.fromJson(ss, boolean.class);
     }
-    public static Boolean loginUser(String email, String password) {
+
+    public static boolean loginUser(String email, String password) {
         String json = String.format(
                 "{\n" +
                         "    \"type\": \"login\",\n" +
@@ -195,33 +202,15 @@ public class Util {
         String ss = sendMessage(json);
         if(ss.equals("null") || ss == null){
             System.out.println("An error occurred in sending message: Null or empty value");
-            return null;
+            return false;
         }
         Gson gson = new Gson();
         return gson.fromJson(ss, boolean.class);
     }
-
-    public static ArrayList<StudySpot> retrieveAllStudySpots() {
-        String json = String.format("{\n" +
-                "    \"type\": \"allStudySpots\",\n" +
-                "    \"data\": {}\n" +
-                "}");
-        String ss = sendMessage(json);
-        if (ss.equals("null") || ss == null) {
-            // handle error!
-            return null;
-        }
-        Gson gson = new Gson();
-        List<StudySpotData> spotsData = new Gson().fromJson(ss, new TypeToken<List<StudySpotData>>() {}.getType());
-        ArrayList<StudySpot> spots = new ArrayList<StudySpot>();
-        for(StudySpotData cur : spotsData) {
-            spots.add(new StudySpot(cur));
-        }
-        return spots;
-    }
 }
 
-
-class Reviews {
-    ArrayList<String> reviews;
+class Review {
+    String review;
+    String username;
+    String location;
 }
