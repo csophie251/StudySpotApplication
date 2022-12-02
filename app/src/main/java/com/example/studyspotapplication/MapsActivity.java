@@ -74,7 +74,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     private void placeMarkers() {
-        // synchronized?
         HashMap<String, StudySpot> temp = new HashMap<String, StudySpot>();
         for (int i = 0; i < spots.size(); ++i) {
             StudySpot cur = spots.get(i);
@@ -89,7 +88,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         ArrayList<String> places = new ArrayList<String>();
         for (int i = 0; i < spots.size(); ++i) {
             places.add(spots.get(i).getName());
-            //places.add(spots.get(i).getTitle());
         }
         return places;
     }

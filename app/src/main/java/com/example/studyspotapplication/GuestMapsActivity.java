@@ -7,7 +7,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -26,63 +29,30 @@ public class GuestMapsActivity extends FragmentActivity implements OnMapReadyCal
     private ArrayList<StudySpot> spots;
     private HashMap<String, StudySpot> names_to_spots;
 
-    private ArrayList<StudySpot> generateStudySpots() {
-        ArrayList<StudySpot> cur_spots = new ArrayList<StudySpot>();
-        StudySpotData leaveyData = new StudySpotData();
-        leaveyData.name = "Leavey Library";
-        leaveyData.location = "testlocation";
-        leaveyData.latitude =34.02193;
-        leaveyData.longitude =-118.28277;
-        leaveyData.hours = "test hours";
-        leaveyData.busy = true;
-        leaveyData.quiet = false;
-        leaveyData.outlets = true;
-
-        StudySpotData dohenyData = new StudySpotData();
-        dohenyData.name = "Doheny Memorial Library";
-        dohenyData.location = "testlocation";
-        dohenyData.latitude =34.02015;
-        dohenyData.longitude =-118.28372;
-        dohenyData.hours = "test hours";
-        dohenyData.busy = false;
-        dohenyData.quiet = true;
-        dohenyData.outlets = true;
-
-        StudySpotData sidneyData = new StudySpotData();
-        sidneyData.name = "Sydney Harman";
-        sidneyData.location = "testlocation";
-        sidneyData.latitude =34.02235;
-        sidneyData.longitude =-118.28512;
-        sidneyData.hours = "test hours";
-        sidneyData.busy = true;
-        sidneyData.quiet = false;
-        sidneyData.outlets = false;
-
-        StudySpot leavey = new StudySpot(leaveyData);
-        StudySpot doheny = new StudySpot(dohenyData);
-        StudySpot sidney = new StudySpot(sidneyData);
-
-        //StudySpot leavey = new StudySpot(34.02193, -118.28277, "Leavey Library", "testlocation", "testopenHours", true, false, true);
-        //StudySpot doheny = new StudySpot(34.02015, -118.28372, "Doheny Library");
-        // StudySpot sidney = new StudySpot(34.02235, -118.28512, "Sydney Harman");
-        cur_spots.add(leavey);
-        cur_spots.add(doheny);
-        cur_spots.add(sidney);
-        return cur_spots;
-//        return Util.retrieveAllPages();
+    public void grabStudySpots() {
+        new Thread() {
+            @Override
+            public void run() {
+                ArrayList<StudySpot> res = Util.retrieveAllStudySpots();
+                if (res == null) {
+                    runOnUiThread(() -> Toast.makeText(GuestMapsActivity.this, "No Study Spots Available", Toast.LENGTH_SHORT).show());
+                } else {
+                    runOnUiThread(() -> {
+                        spots = res;
+                        place_markers();
+                    });
+                }
+            }
+        }.start();
     }
 
     private void place_markers() {
-        // synchronized?
         HashMap<String, StudySpot> temp = new HashMap<String, StudySpot>();
         for (int i = 0; i < spots.size(); ++i) {
             StudySpot cur = spots.get(i);
             Log.d("myTag", cur.getName());
             temp.put(cur.getName(), cur);
             mMap.addMarker(new MarkerOptions().position(cur.getPosition()).title(cur.getName()));
-            //Log.d("myTag", cur.getTitle());
-            //temp.put(cur.getTitle(), cur);
-            // mMap.addMarker(new MarkerOptions().position(cur.getPosition()).title(cur.getTitle()));
         }
         names_to_spots = temp;
     }
@@ -91,9 +61,8 @@ public class GuestMapsActivity extends FragmentActivity implements OnMapReadyCal
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.guest_activity_maps);
-        this.spots = generateStudySpots();
+        this.spots = new ArrayList<StudySpot>();
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
-        // Synchronize on study spots arraylist?
         mapFragment.getMapAsync(this);
 
         Button mButton = findViewById(R.id.login);
@@ -111,7 +80,7 @@ public class GuestMapsActivity extends FragmentActivity implements OnMapReadyCal
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        place_markers();
+        grabStudySpots();
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
@@ -124,9 +93,6 @@ public class GuestMapsActivity extends FragmentActivity implements OnMapReadyCal
         mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
             @Override
             public void onInfoWindowClick(Marker marker) {
-                //switch page to studyspot page
-                // must have an if condition checking if the user is authenticated, must have an authenticated flag
-                //startActivity(new Intent(MainActivity.this, MyOtherActivity.class));
                 Intent myIntent = new Intent(GuestMapsActivity.this, StudySpotGuestActivity.class);
                 myIntent.putExtra("name", marker.getTitle());
                 startActivity(myIntent);

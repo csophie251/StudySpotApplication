@@ -75,8 +75,6 @@ public class LoginPageActivity extends AppCompatActivity {
 
         eGuest.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                //TODO: REDIRECT TO NEW ACTIVITY [GUEST MAP PAGE]
-
                 Intent intent = new Intent(LoginPageActivity.this, GuestMapsActivity.class);
                 startActivity(intent);
             }
@@ -93,7 +91,6 @@ public class LoginPageActivity extends AppCompatActivity {
                 } else {
                     runOnUiThread(() -> {
                         Toast.makeText(LoginPageActivity.this, "Login Successful.", Toast.LENGTH_SHORT).show();
-                        //TODO: REDIRECT TO NEW ACTIVITY [AUTHENTICATED MAP PAGE]
                         Intent intent = new Intent(LoginPageActivity.this, MapsActivity.class);
                         intent.putExtra("username", username); //send the username
                         startActivity(intent);

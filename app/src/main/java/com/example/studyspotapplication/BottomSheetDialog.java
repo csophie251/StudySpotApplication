@@ -105,7 +105,6 @@ public class BottomSheetDialog extends BottomSheetDialogFragment {
                 Toast.makeText(getActivity(),
                                 "Filter 3 selected", Toast.LENGTH_SHORT)
                         .show();
-//                dismiss();
             }
         });
 

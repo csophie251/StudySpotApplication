@@ -24,7 +24,7 @@ import java.util.List;
 public class Util {
     private static String SERVER = "https://mythic-tenure-340409.wn.r.appspot.com/form";
     private static String LOCAL = "http://192.168.24.145:8080/StudySpotServer/form";
-    private static String API_POINT = LOCAL;
+    private static String API_POINT = SERVER;
 
     public static String sendMessage(String input) {
         String output = "";
@@ -96,7 +96,6 @@ public class Util {
         StudySpotData studySpot = gson.fromJson(ss, StudySpotData.class);
         StudySpot newSS = new StudySpot(studySpot);
         Log.d("myTag", ">> retrieveStudySpot after gson");
-//        ssMap.put(name, newSS);
         return newSS;
     }
 

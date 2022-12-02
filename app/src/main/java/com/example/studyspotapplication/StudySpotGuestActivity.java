@@ -51,40 +51,26 @@ public class StudySpotGuestActivity extends AppCompatActivity {
         });
     }
     public void displayStudySpotInfo() {
+        Log.d("myTag", ">> displayStudySpotInfo");
         new Thread() {
             @Override
             public void run() {
-                StudySpotData testData = new StudySpotData();
-                testData.name = "Doheny Memorial Library";
-                testData.location = "testlocation";
-                testData.latitude =34.02015;
-                testData.rating = "4.4";
-                testData.longitude =-118.28372;
-                testData.hours = "test hours";
-                testData.busy = false;
-                testData.quiet = true;
-                testData.outlets = true;
-                StudySpot ss = new StudySpot(testData);
-
-                //StudySpot ss = Util.retrieveStudySpot(name);
+                StudySpot ss = Util.retrieveStudySpot(name);
                 String rating = "No Rating";
                 String location = "No Address";
                 String hours = "No Openings";
-                if (ss == null ) {
+                if (ss == null || ss.rating == null || ss.location == null || ss.hours == null) {
                     runOnUiThread(() -> Toast.makeText(StudySpotGuestActivity.this, "Invalid Study Spot", Toast.LENGTH_SHORT).show());
-                }
-                else if (ss.rating == null || ss.location == null || ss.hours == null){
-                    runOnUiThread(() -> Toast.makeText(StudySpotGuestActivity.this, "Invalid Study Spot.", Toast.LENGTH_SHORT).show());
-                }else {
+                } else {
                     runOnUiThread(() -> {
                         final TextView studySpotName = findViewById(R.id.StudySpotName);
                         studySpotName.setText(name);
-                        final TextView studySpotRating = findViewById(R.id.StudySpotRating);
-                        studySpotRating.setText(rating);
-                        final TextView studySpotLocation = findViewById(R.id.StudySpotLocation);
-                        studySpotLocation.setText(location);
+                        final TextView studySpotRating =  findViewById(R.id.StudySpotRating);
+                        studySpotRating.setText(ss.rating);
+                        final TextView studySpotLocation=  findViewById(R.id.StudySpotLocation);
+                        studySpotLocation.setText(ss.location);
                         final TextView studySpotTimesOpen= findViewById(R.id.StudySpotTimesOpen);
-                        studySpotTimesOpen.setText(hours);
+                        studySpotTimesOpen.setText(ss.hours);
                     });
                 }
             }

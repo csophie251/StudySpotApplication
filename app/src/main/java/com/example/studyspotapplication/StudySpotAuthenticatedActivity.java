@@ -132,7 +132,6 @@ public class StudySpotAuthenticatedActivity extends AppCompatActivity {
                 Float rate =  ratingBar.getRating();
                 Double userRating = parseDouble(rate.toString());
                 Log.d("myTag", "Rating: " + userRating);
-//                String newRating = "4.0";
                 String newRating = Util.sendRating(username, name, userRating);
                 if (newRating == null || newRating.isEmpty() ) {
                     runOnUiThread(() -> Toast.makeText(StudySpotAuthenticatedActivity.this, "Failed to save rating", Toast.LENGTH_SHORT).show());
@@ -162,7 +161,6 @@ public class StudySpotAuthenticatedActivity extends AppCompatActivity {
                     selectedTags.add("Quiet");
                     Log.d("Add", "quiet to list");
                 }
-//                boolean isSaved = true;
                 boolean isSaved = Util.sendTags(name, selectedTags);
                 if (isSaved ) {
                     runOnUiThread(() -> {
@@ -184,7 +182,6 @@ public class StudySpotAuthenticatedActivity extends AppCompatActivity {
             public void run() {
                 final EditText studySpotNewReview = findViewById(R.id.WriteAReviewText);
                 String newReview = studySpotNewReview.getText().toString();
-//                boolean sendReview = true;
                 Log.d("myTag", "send review: " + username + " " + name);
                 boolean sendReview = Util.sendReview(username, name, newReview);
                 if (sendReview) {
@@ -195,7 +192,7 @@ public class StudySpotAuthenticatedActivity extends AppCompatActivity {
                 }
                 else {
                     runOnUiThread(() -> {
-                        Log.d("true", "new review was successfully added to database");
+                        Log.d("false", "new review was not added to database");
                         displayReviews();
                     });
                 }
