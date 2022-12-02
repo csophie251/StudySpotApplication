@@ -293,7 +293,7 @@
         android:layout_height="48dp"
         android:layout_marginStart="285dp"
         android:layout_marginTop="675dp"
-        android:backgroundTint="#699AFD"
+        android:backgroundTint="#D0CBFF"
         android:fontFamily="@font/mochiypoponeregular"
         android:onClick="saveReview"
         android:padding="8dp"
